@@ -82,31 +82,20 @@ setup_env_user () {
 # Solve authority issues
 setup_specific_user_setting () {
     sudo chmod 777 /root
-    
-    # ROS
-    echo "source /home/$USER/catkin_ws/devel/setup.bash" >> /root/.bashrc
-    sudo mkdir /home/$USER/.ros/
-    sudo chmod -R 777 /home/$USER/.ros/
 
-    # MuJoCo & mujoco-py 
-    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/home/$USER/.mujoco/mujoco200/bin
-    sudo cp -r /root/.mujoco/ /home/$USER/
-    sudo chmod -R 777 /home/$USER/.mujoco/
-    sudo chmod -R 777 /usr/local/lib/python3.8/dist-packages/mujoco_py*
-    sudo mkdir /home/$USER/.cache
-    sudo chmod -R 777 /home/$USER/.cache/
+    # ROS
+    echo "source /home/$USER/Workspace/melodic_ws/devel/setup.bash" >> /root/.bashrc
+    echo "alias cm='cd /home/$USER/Workspace/melodic_ws/ && catkin_make'"  >> /root/.bashrc
+    echo "source /home/$USER/Workspace/melodic_ws/devel/setup.bash" >> /home/$USER/.bashrc
+    echo "alias cm='cd /home/$USER/Workspace/melodic_ws/ && catkin_make'"  >> /home/$USER/.bashrc
 
     # pygame
     sudo chmod -R 777 /home/$USER/.config/
     sudo chmod -R 777 /dev/input
-
-    # Isaac
-    sudo cp -r /root/isaacgym/ /home/$USER/isaacgym
 }
 
 
 #---------- main ----------#
-
 
 # Create new user
 check_envs

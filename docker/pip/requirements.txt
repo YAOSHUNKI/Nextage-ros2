@@ -1,0 +1,6 @@
+###### Requirements without Version Specifiers ######
+numpy
+matplotlib
+paho-mqtt
+pyquaternion
+scipy
