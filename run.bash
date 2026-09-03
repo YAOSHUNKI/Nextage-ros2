@@ -7,8 +7,8 @@ xhost +local:root
 export DISPLAY=$DISPLAY
 
 # Docker コンテナ名・イメージ
-IMAGE_NAME="docker_ros1_ubuntu18_nongpu"
-CONTAINER_NAME="ros1_melodic"
+IMAGE_NAME="docker_naxtage"
+CONTAINER_NAME="ros_naxtage"
 
 # ホームディレクトリの ROS ワークスペースをマウント
 HOST_WS="$HOME/melodic_ws"
@@ -24,6 +24,9 @@ docker run --rm -it \
 --privileged \
 --net=host \
 --ipc=host \
+-e ROS_DOMAIN_ID=20 \
+-e RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
+-e ROS_LOCALHOST_ONLY=0 \
 -e DOCKER_USER_NAME="$(id -un)" \
 -e DOCKER_USER_ID="$(id -u)" \
 -e DOCKER_USER_GROUP_NAME="$(id -gn)" \
@@ -39,4 +42,3 @@ docker run --rm -it \
 --device="$USB_DEVICE:$USB_DEVICE" \
 --device="$JS_DEVICE:$JS_DEVICE" \
 "$IMAGE_NAME"
-
