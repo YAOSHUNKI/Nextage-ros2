@@ -14,7 +14,7 @@
    <property name="connection" value="HGcontroller0.dqOut:HiroNX(Robot)0.dqRef"/>
    <property name="connection" value="HGcontroller0.ddqOut:HiroNX(Robot)0.ddqRef"/>
   </item>
-  <item class="com.generalrobotix.ui.item.GrxModelItem" name="nextage_fillie_open" url="/home/smz-lab-robot/melodic_ws/src/nextage_fillie_open_ros_bridge/models/nextage_fillie_open.dae">
+  <item class="com.generalrobotix.ui.item.GrxModelItem" name="nextage_fillie_open" url="/ws/melodic_ws/src/nextage_fillie_open_ros_bridge/models/nextage_fillie_open.dae">
    <property name="rtcName" value="HiroNX(Robot)0"/>
    <property name="inport" value="qRef:JOINT_VALUE"/>
    <property name="inport" value="dqRef:JOINT_VELOCITY"/>
