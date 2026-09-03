@@ -107,29 +107,5 @@ setup_env_user $DOCKER_USER_NAME $DOCKER_USER_ID $DOCKER_USER_GROUP_NAME $DOCKER
 
 setup_specific_user_setting
 
-
-# ---- auto-build melodic_ws on container start ----
-build_melodic_ws () {
-    WS="/home/${DOCKER_USER_NAME}/Workspace/melodic_ws"
-    # fall back to /ws/melodic_ws if the user's Workspace copy is not there
-    if [ ! -d "$WS/src" ] && [ -d "/ws/melodic_ws/src" ]; then
-        WS="/ws/melodic_ws"
-    fi
-    if [ -d "$WS/src" ]; then
-        echo "[entrypoint] catkin_make in $WS"
-        bash -lc "source /opt/ros/melodic/setup.bash && cd $WS && catkin_make" \
-            || echo "[entrypoint] catkin_make failed (continuing)"
-        # make sure rosrun can find tork_moveit_tutorial scripts even before rebuild
-        if [ -d "$WS/src/tork_moveit_tutorial/script" ]; then
-            mkdir -p "$WS/devel/lib/tork_moveit_tutorial"
-            ln -sfn "$WS"/src/tork_moveit_tutorial/script/*.py \
-                    "$WS/devel/lib/tork_moveit_tutorial/" 2>/dev/null || true
-            chmod +x "$WS"/src/tork_moveit_tutorial/script/*.py 2>/dev/null || true
-        fi
-    fi
-}
-build_melodic_ws
-# --------------------------------------------------
-
 # Run CMD from Docker
 "$@"
