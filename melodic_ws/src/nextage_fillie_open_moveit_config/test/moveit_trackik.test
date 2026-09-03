@@ -1,0 +1,5 @@
+<launch>
+  <arg name="kinematics_conf_file" default="$(find nextage_fillie_open_moveit_config)/config/kinematics_tracik.yaml" />
+
+  <include file="$(find nextage_fillie_open_moveit_config)/test/nextage_fillie_open_moveit.test" pass_all_args="true" />
+</launch>

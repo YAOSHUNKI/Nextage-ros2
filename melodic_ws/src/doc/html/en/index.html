@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXTAGE OPEN Tutorial &mdash; rtmros_nextage 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="manual_en_start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_start.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html">Overview of robot hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#computer-and-software-overview">Computer and Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#maintenance-and-management">Maintenance and management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_development-pc-setup.html">Setting up the development PC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_trouble-shooting.html">Trouble shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_python-if.html">Tutorial: Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html">Tutorial: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-python.html">Tutorial: MoveIt! Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_gui.html">Use of DiagnosisUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_3d-perception.html">Tutorial: Three-Dimensional Recognition</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">NEXTAGE OPEN Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nextage-open-tutorial">
+<h1>NEXTAGE OPEN Tutorial<a class="headerlink" href="#nextage-open-tutorial" title="Permalink to this heading"></a></h1>
+<p>The code is open source, and the original code is <a class="reference external" href="http://github.com/tork-a/rtmros_nextage">available on github</a>.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_start.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_start.html#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_start.html#starting-the-computer">Starting the computer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_start.html#starting-ros-servers">Starting ROS Servers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_start.html#manipulation-of-robots-by-diagnosisui">Manipulation of robots by DiagnosisUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_start.html#running-operations-in-moveit">Running Operations in MoveIt!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_start.html#robot-shutdown-process">Robot shutdown process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_start.html#precautions">Precautions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_start.html#kinetics-simulation">Kinetics simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_start.html#dynamic-simulations-of-rtm-hrpsys-simulator">Dynamic Simulations of RTM-hrpsys-simulator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html">Overview of robot hardware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_reference.html#robot-specifications">Robot specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_reference.html#coordinate-system">Coordinate system</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#computer-and-software-overview">Computer and Software Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_reference.html#computer-for-control">Computer for control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_reference.html#development-computer">Development computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_reference.html#overview-of-the-software">Overview of the software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_reference.html#summary-of-api">Summary of API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#maintenance-and-management">Maintenance and management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_reference.html#updating-ubuntu-software">Updating Ubuntu Software</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_development-pc-setup.html">Setting up the development PC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_development-pc-setup.html#installing-from-the-debian-binary-package">Installing from the Debian Binary Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_development-pc-setup.html#installing-the-ros-and-hiro-software">Installing the ROS and HIRO Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_development-pc-setup.html#installing-nextage-open-software-only">Installing NEXTAGE OPEN Software Only</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_development-pc-setup.html#network-settings">Network settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_development-pc-setup.html#host-name-setting-optional">Host name setting (optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_development-pc-setup.html#workspace-setup">Workspace setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_development-pc-setup.html#diagnosisui-setup">DiagnosisUI setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_development-pc-setup.html#camera-setup">Camera Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_trouble-shooting.html">Trouble shooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_trouble-shooting.html#monitoring-the-rtm-state">Monitoring the RTM State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_trouble-shooting.html#monitoring-the-ros-state">Monitoring the ROS State</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_trouble-shooting.html#checking-the-ros-environments">Checking the ROS Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_trouble-shooting.html#monitoring-with-rqt">Monitoring with rqt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_trouble-shooting.html#operation-by-ros-topic">Operation by ROS Topic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_trouble-shooting.html#designation-of-operation-target">Designation of operation target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_trouble-shooting.html#troubleshooting-in-actual-operation">Troubleshooting in actual operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_trouble-shooting.html#troubleshooting-with-diagnosisui">Troubleshooting with DiagnosisUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_trouble-shooting.html#troubleshooting-with-others">Troubleshooting with others</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_python-if.html">Tutorial: Python interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_python-if.html#rtm-python-interfaces">RTM Python interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_python-if.html#interactive-mode-of-operation">Interactive mode of operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_python-if.html#rtm-python-interface-programming">RTM Python interface programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_python-if.html#use-of-digital-i-o-nextage-fillie-open">Use of digital I/O (NEXTAGE Fillie OPEN)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html">Tutorial: MoveIt! GUI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html#moveit-ros-motion-planning-software">MoveIt!-ROS motion planning software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html#working-with-the-moveit-gui">Working with the MoveIt! GUI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html#switching-to-a-left-arm-and-two-arms-movement-plan">Switching to a left arm and two arms movement plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html#displaying-loop-animation-and-trajectories-in-a-motion-plan">Displaying Loop Animation and Trajectories in a Motion Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html#confirmation-of-each-posture-in-the-motion-plan">Confirmation of each posture in the motion plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html#adjustment-of-speed-and-acceleration-of-execution-operation">Adjustment of speed and acceleration of execution operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html#use-of-the-best-solution-in-a-posture-without-an-inverse-kinematic-solution">Use of the best solution in a posture without an inverse kinematic solution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html#motion-plans-to-avoid-obstacles-in-moveit-gui">motion plans to avoid obstacles in  MoveIt! GUI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html#moveit-motion-planning-using-obstacle-model-data">MoveIt! motion planning using obstacle model data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-python.html">Tutorial: MoveIt! Python interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_moveit-python.html#moveit-commander">MoveIt! Commander</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_moveit-python.html#moveit-python-interfaces-usage-environments">MoveIt! Python Interfaces Usage Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_moveit-python.html#robotics-from-moveit-python-interfaces">Robotics from MoveIt! Python interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_moveit-python.html#starting-the-moveit-python-interfaces">Starting the MoveIt! Python interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_moveit-python.html#robotics-with-moveit-commander-in-python">Robotics with MoveIt! Commander in Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_gui.html">Use of DiagnosisUI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_gui.html#starting-the-diagnosisui-and-connecting-robots">Starting the DiagnosisUI and Connecting Robots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_gui.html#releace-momentary-stop">Releace momentary stop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_gui.html#checking-the-digital-input-output-and-operating-the-digital-output">Checking the Digital Input/Output and operating the Digital Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_gui.html#servo-on-off">Servo ON/OFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_gui.html#brake-on-off">Brake ON/OFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_gui.html#get-diagnosis-reports-and-logs">Get diagnosis reports and logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_gui.html#starting-the-ueyedemo">Starting the uEyeDemo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_gui.html#shutdown-of-the-controller">Shutdown of the controller</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_3d-perception.html">Tutorial: Three-Dimensional Recognition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_en_tutorial_3d-perception.html#robot-camera-settings">Robot camera settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_3d-perception.html#nextage-fillie-open-cameras">NEXTAGE Fillie OPEN cameras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_3d-perception.html#user-specific-cameras">User-Specific Cameras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_3d-perception.html#head-camera-settings">Head camera settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_3d-perception.html#hand-camera-settings-todo-not-tested">Hand-Camera Settings <!--todo not tested--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_en_tutorial_3d-perception.html#camera-settings">Camera settings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_en_start.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

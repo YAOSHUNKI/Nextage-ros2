@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xtion/Kinect カメラの TF キャリブレーション &mdash; rtmros_nextage 0.1 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_start.html">はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html">ロボットハードウェアの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#computer-and-software-overview">コンピュータとソフトウェアの概要<!--computer-and-software-overview--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#maintenance-and-management">保守・管理<!--Maintenance and management--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_development-pc-setup.html">開発用PCのセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_trouble-shooting.html">トラブルシューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_python-if.html">チュートリアル: Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html">チュートリアル: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html">チュートリアル: MoveIt! Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_gui.html">DiagnosisUIの使い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html">チュートリアル: 3次元認識</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Xtion/Kinect カメラの TF キャリブレーション</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_ja_tutorial_3d-perception_xtion-kinect.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="xtion-kinect-tf">
+<h1>Xtion/Kinect カメラの TF キャリブレーション<a class="headerlink" href="#xtion-kinect-tf" title="この見出しへのパーマリンク"></a></h1>
+<p>3次元深度カメラの Xtion や Kinect を利用してロボット環境情報を取得する場合において，
+得られた環境空間情報とロボットとの相対位置・姿勢が分からなければ意味がありません．</p>
+<p>そのためにはカメラがロボットに対してどのような位置・姿勢で設置されているかを知る必要があります．
+具体的にはカメラを設置するリンクもしくはワールド空間に対するカメラの TF を取得します．</p>
+<section id="id1">
+<h2>ロボット実機での Xtion/Kinect TF キャリブレーション<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h2>
+<section id="id2">
+<h3>ロボットの準備<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h3>
+<p>ROS を使用するので rtm_ros_bridge が起動している必要があります．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_ros_bridge nextage_ros_bridge_real.launch nameserver:=%HOSTNAME%
+</pre></div>
+</div>
+<p>ロボット各関節のキャリブレーションを行います．
+関節のキャリブレーションが終わったら一旦ロボットの姿勢を終了姿勢にしてサーボを切ります．</p>
+<p>ここでは操作に iPython コンソールを使用しています．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython -i `rospack find nextage_ros_bridge`/script/nextage.py -- --host nextage
+
+:
+(many connection messages)
+:
+
+[hrpsys.py] initialized successfully
+
+:
+
+In [1]: robot.checkEncoders()
+In [2]: robot.goOffPose()
+In [3]: robot.servoOff()
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>チェッカーボードのロボットへの設置<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h3>
+<p>カメラとロボットの相対位置・姿勢を定めるためにチェッカーボードをロボットに取り付けます．
+このときチェッカーボードと設置するロボットのリンクとの相対位置は機械設計上既知である必要があります．</p>
+<ul class="simple">
+<li><p>注意: ロボット実機への作業ですのでサーボが切れていることを確認してください．</p></li>
+</ul>
+<p>下図のように胸部チェッカーボードもしくは腰部チェッカーボードをロボットに取り付けてください．</p>
+<p>胸部チェッカーボード
+<img alt="NEXTAGE OPEN - Chekcerboard on Chest / Top View" src="https://cloud.githubusercontent.com/assets/3119480/23578751/41009c9e-0121-11e7-9db1-585ce8b2f690.JPG" />
+<img alt="NEXTAGE OPEN - Checkerboard on Chest / Bottom View" src="https://cloud.githubusercontent.com/assets/3119480/23578755/4a47e9e2-0121-11e7-8b47-fb6efe2aa8ee.JPG" /></p>
+<p>腰部チェッカーボード
+<img alt="NEXTAGE OPEN - Checkerboard on Waist" src="https://cloud.githubusercontent.com/assets/3119480/23707568/3b461486-0456-11e7-9c64-3a7c4dde4444.JPG" /></p>
+</section>
+<section id="id4">
+<h3>サーボを入れる（胸部チェッカーボードの場合）<a class="headerlink" href="#id4" title="この見出しへのパーマリンク"></a></h3>
+<p>胸部チェッカーボードを使用する場合は CHEST_JOINT0 の関節角度を
+0 deg（正面）で維持する必要がありますので，ロボットのサーボを入れて初期姿勢にします．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">robot</span><span class="o">.</span><span class="n">servoOn</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="xtion-kinect">
+<h3>Xtion/Kinect カメラをチェッカーボードに向ける<a class="headerlink" href="#xtion-kinect" title="この見出しへのパーマリンク"></a></h3>
+<p>Xtion/Kinect カメラにチェッカーボードが映るようにします．
+頭部に Xtion/Kinect カメラを設置した場合には関節を制御して頭部姿勢を変えます．</p>
+<p>下に頭部関節を動作・制御するコマンドを記します．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">robot</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span> <span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">45.0</span> <span class="p">],</span> <span class="mf">5.0</span> <span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">robot</span><span class="o">.</span><span class="n">getJointAngles</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>チェッカーボード検出プログラムの実行<a class="headerlink" href="#id5" title="この見出しへのパーマリンク"></a></h3>
+<p>Xtion/Kinect カメラを本作業を行っている UIコントロールボックス（Ubuntu PC/Vision PC）
+もしくは 開発用コンピュータ（Ubuntu）に接続してください．</p>
+<p>チェッカーボードを検出プログラムを実行します．
+Kinect カメラを使用している場合は実行時に引数 <code class="docutils literal notranslate"><span class="pre">launch_openni2:=false</span></code> を指定してください．</p>
+<p>Xtion カメラの場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_calibration camera_checkerboard_chest.launch  #chest
+or
+$ roslaunch nextage_calibration camera_checkerboard_waist.launch  #waist
+</pre></div>
+</div>
+<p>Kinect カメラの場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_calibration camera_checkerboard_chest.launch launch_openni2:=false  #chest
+or
+$ roslaunch nextage_calibration camera_checkerboard_waist.launch launch_openni2:=false  #waist
+</pre></div>
+</div>
+<p>Checkerboard Detector - 胸部チェッカーボード <br>
+<img alt="Checkerboard Detector - Chest" src="https://cloud.githubusercontent.com/assets/3119480/23707535/1e2bb162-0456-11e7-800b-4df1c5055950.png" /></p>
+<p>Checkerboard Detector - 腰部チェッカーボード <br>
+<img alt="Checkerboard Detector - Waist" src="https://cloud.githubusercontent.com/assets/3119480/23644970/2b156a44-034d-11e7-8975-aad46da11ba2.png" /></p>
+</section>
+<section id="rviz">
+<h3>RViz の起動<a class="headerlink" href="#rviz" title="この見出しへのパーマリンク"></a></h3>
+<p>各機能の実行状況を確認するために RViz を起動します．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rviz -d `rospack find nextage_calibration`/conf/calibration.rviz
+</pre></div>
+</div>
+<p>RViz - 胸部チェッカーボード <br>
+<img alt="RViz - Checkerboard on Chest" src="https://cloud.githubusercontent.com/assets/3119480/23707683/9e0a8318-0456-11e7-9147-5d0150df026e.png" /></p>
+<p>RViz - 腰部チェッカーボード <br>
+<img alt="RViz - Checkerboard on Chest" src="https://cloud.githubusercontent.com/assets/3119480/23707753/cf9967f0-0456-11e7-8556-8bcf0c561490.png" /></p>
+</section>
+<section id="tf">
+<h3>カメラリンクと親リンクの TF の取得<a class="headerlink" href="#tf" title="この見出しへのパーマリンク"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">tf_echo</span></code> コマンドを利用して camera_link から親リンクへの TF を取得します．
+ここでは camera_link から HEAD_JOINT1 への TF を表示します．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosrun tf tf_echo HEAD_JOINT1_Link camera_link
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">tf_echo</span></code> の結果の例</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">At</span> <span class="n">time</span> <span class="mf">93.641</span>
+<span class="o">-</span> <span class="n">Translation</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.101</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.014</span><span class="p">,</span> <span class="mf">0.199</span><span class="p">]</span>
+<span class="o">-</span> <span class="n">Rotation</span><span class="p">:</span> <span class="ow">in</span> <span class="n">Quaternion</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.704</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.710</span><span class="p">]</span>
+            <span class="ow">in</span> <span class="n">RPY</span> <span class="p">(</span><span class="n">radian</span><span class="p">)</span> <span class="p">[</span><span class="mf">0.126</span><span class="p">,</span> <span class="mf">1.563</span><span class="p">,</span> <span class="mf">0.130</span><span class="p">]</span>
+            <span class="ow">in</span> <span class="n">RPY</span> <span class="p">(</span><span class="n">degree</span><span class="p">)</span> <span class="p">[</span><span class="mf">7.223</span><span class="p">,</span> <span class="mf">89.561</span><span class="p">,</span> <span class="mf">7.477</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>ロボットでの作業の終了<a class="headerlink" href="#id6" title="この見出しへのパーマリンク"></a></h3>
+<p>カメラリンクと親リンクの TF の取得ができたらロボットを終了姿勢にしてサーボを切ります．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">robot</span><span class="o">.</span><span class="n">goOffPose</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">robot</span><span class="o">.</span><span class="n">servoOff</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>全ノードの終了<a class="headerlink" href="#id7" title="この見出しへのパーマリンク"></a></h3>
+<p>ロボットのサーボが切れたら全てのノードを Ctrl-C で終了します．</p>
+</section>
+<section id="id8">
+<h3>カメラリンク TF の適用<a class="headerlink" href="#id8" title="この見出しへのパーマリンク"></a></h3>
+<p>取得した Xtion/Kinect カメラ TF をロボット上のカメラのパラメータとして適用します．
+適用は Xtion/Kinect カメラモジュール xtion_kinect.launch 起動時に引数として渡して行います．</p>
+<ul class="simple">
+<li><p>単位系</p>
+<ul>
+<li><p>TF_COORD_XYZ : [m]</p></li>
+<li><p>TF_COORD_RPY : [rad]</p></li>
+</ul>
+</li>
+</ul>
+<p>まず rtm_ros_bridge を起動します．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_ros_bridge nextage_ros_bridge_real.launch nameserver:=%HOSTNAME%
+</pre></div>
+</div>
+<p>Xtion カメラの場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_calibration xtion_kinect.launch TF_COORD_XYZ:=&#39;0.101 -0.014 0.199&#39; TF_COORD_RPY:=&#39;0.126 1.563 0.130&#39;
+</pre></div>
+</div>
+<p>Kinect カメラの場合（<code class="docutils literal notranslate"><span class="pre">launch_openni2:=false</span></code> のみの違い）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_calibration xtion_kinect.launch TF_COORD_XYZ:=&#39;0.101 -0.014 0.199&#39; TF_COORD_RPY:=&#39;0.126 1.563 0.130&#39; launch_openni2:=false
+</pre></div>
+</div>
+</section>
+<section id="xtion">
+<h3>Xtion カメラの画像キャリブレーション（オプション）<a class="headerlink" href="#xtion" title="この見出しへのパーマリンク"></a></h3>
+<p>Xtion カメラにおいては画像のキャリブレーション情報を取得しておくことをお勧めします．
+画像キャリブレーションの作業手順は下記のサイトを参照ください．</p>
+<ul class="simple">
+<li><p>ROS Wiki - How to Calibrate a Monocular Camera</p>
+<ul>
+<li><p><a class="reference external" href="http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration">http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="gazebo-xtion-kinect-tf">
+<h2>Gazebo を用いた Xtion/Kinect TF 取得シミュレーション<a class="headerlink" href="#gazebo-xtion-kinect-tf" title="この見出しへのパーマリンク"></a></h2>
+<p>実機で行う Xtion/Kinect カメラの TF キャリブレーションの作業は
+Gazebo シミュレータ上でも同様のことを行うことができます．</p>
+<section id="gazebo">
+<h3>Gazebo の起動<a class="headerlink" href="#gazebo" title="この見出しへのパーマリンク"></a></h3>
+<p>NEXTAGE OPEN ロボットモデルの Gazebo シミュレータを起動します．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_gazebo nextage_world.launch
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>メモ: ROS / Gazebo でのシミュレーションのため rtm_ros_bridge は不要</p></li>
+</ul>
+</section>
+<section id="gazebo-kinect">
+<h3>Gazebo 内での Kinect とチェッカーボードモデルの設置<a class="headerlink" href="#gazebo-kinect" title="この見出しへのパーマリンク"></a></h3>
+<p>Gazebo 起動後の NEXTAGE OPEN ロボットの初期動作が終了しましたら，
+Kinect と チェッカーボード のモデルを Gazebo 内に設置します．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_calibration gazebo_kinect_checkerboard_chest.launch   #chest
+or
+$ roslaunch nextage_calibration gazebo_kinect_checkerboard_waist.launch   #waist
+</pre></div>
+</div>
+<p>Gazebo シミュレータ内の Kinect と胸部チェッカーボードモデルの設置 <br>
+<img alt="Gazebo - Kinect and Checkerboard" src="https://cloud.githubusercontent.com/assets/3119480/23578847/50332e3c-0123-11e7-845d-ac0416a243af.png" /></p>
+</section>
+<section id="id9">
+<h3>チェッカーボード検出プログラムの実行<a class="headerlink" href="#id9" title="この見出しへのパーマリンク"></a></h3>
+<p>実機ロボットの場合と同様に Xtion/Kinect カメラでのチェッカーボード検出プログラムを実行します．</p>
+<p>Kinect の場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_calibration camera_checkerboard_chest.launch launch_openni2:=false
+or
+$ roslaunch nextage_calibration camera_checkerboard_waist.launch launch_openni2:=false
+</pre></div>
+</div>
+<p><img alt="Checkerboard Detector - Gazebo / Checkerboard on Chest" src="https://cloud.githubusercontent.com/assets/3119480/23578864/8a614e90-0123-11e7-979c-5300efd3a33c.png" /></p>
+</section>
+<section id="id10">
+<h3>RViz の起動<a class="headerlink" href="#id10" title="この見出しへのパーマリンク"></a></h3>
+<p>実機ロボットの場合と同様に各種チェックのために RViz を起動します．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rviz -d `rospack find nextage_calibration`/conf/calibration.rviz
+</pre></div>
+</div>
+<p><img alt="RViz - Checkerboard Gazebo Simulation" src="https://cloud.githubusercontent.com/assets/3119480/23578868/97f214ae-0123-11e7-8ce3-12cc53a6f1df.png" /></p>
+</section>
+<section id="id11">
+<h3>カメラリンクと親リンクの TF の取得<a class="headerlink" href="#id11" title="この見出しへのパーマリンク"></a></h3>
+<p>実機ロボットの場合と同様に camera_link から親リンクへの TF を取得します．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosrun tf tf_echo HEAD_JOINT1_Link camera_link
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">tf_echo</span></code> の結果の例</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">At</span> <span class="n">time</span> <span class="mf">93.641</span>
+<span class="o">-</span> <span class="n">Translation</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.101</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.014</span><span class="p">,</span> <span class="mf">0.199</span><span class="p">]</span>
+<span class="o">-</span> <span class="n">Rotation</span><span class="p">:</span> <span class="ow">in</span> <span class="n">Quaternion</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.704</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.710</span><span class="p">]</span>
+            <span class="ow">in</span> <span class="n">RPY</span> <span class="p">(</span><span class="n">radian</span><span class="p">)</span> <span class="p">[</span><span class="mf">0.126</span><span class="p">,</span> <span class="mf">1.563</span><span class="p">,</span> <span class="mf">0.130</span><span class="p">]</span>
+            <span class="ow">in</span> <span class="n">RPY</span> <span class="p">(</span><span class="n">degree</span><span class="p">)</span> <span class="p">[</span><span class="mf">7.223</span><span class="p">,</span> <span class="mf">89.561</span><span class="p">,</span> <span class="mf">7.477</span><span class="p">]</span>
+</pre></div>
+</div>
+<!-- EOF --></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

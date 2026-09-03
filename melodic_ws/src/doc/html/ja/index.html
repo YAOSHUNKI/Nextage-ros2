@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXTAGE OPEN チュートリアル &mdash; rtmros_nextage 0.1 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="はじめに" href="manual_ja_start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_start.html">はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html">ロボットハードウェアの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#computer-and-software-overview">コンピュータとソフトウェアの概要<!--computer-and-software-overview--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#maintenance-and-management">保守・管理<!--Maintenance and management--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_development-pc-setup.html">開発用PCのセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_trouble-shooting.html">トラブルシューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_python-if.html">チュートリアル: Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html">チュートリアル: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html">チュートリアル: MoveIt! Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_gui.html">DiagnosisUIの使い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html">チュートリアル: 3次元認識</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">NEXTAGE OPEN チュートリアル</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nextage-open">
+<h1>NEXTAGE OPEN チュートリアル<a class="headerlink" href="#nextage-open" title="この見出しへのパーマリンク"></a></h1>
+<p>The code is open source, and the original code is <a class="reference external" href="http://github.com/tork-a/rtmros_nextage">available on github</a>.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_start.html">はじめに</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_start.html#quick-start">クイックスタート<!--quick-start--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_start.html#starting-the-computer">コンピュータの起動<!--starting-the-computer--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_start.html#ros-starting-ros-servers">ROS サーバの起動<!--starting-ros-servers--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_start.html#diagnosisui-manipulation-of-robots-by-diagnosisui">DiagnosisUI によるロボットの操作<!--manipulation-of-robots-by-diagnosisui--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_start.html#moveit-running-operations-inmoveit">MoveIt! での動作の実行<!--running-operations-inmoveit--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_start.html#robot-shutdown-process">ロボットのシャットダウン処理<!--robot-shutdown-process--></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_start.html#operational-precautions">注意事項<!--Operational Precautions--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_start.html#kinetics-simulation">動力学シミュレーション<!--Kinetics simulation--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_start.html#rtm-hrpsys-simulator-dynamic-simulations-of-rtm-hrpsys-simulator">RTM の動力学シミュレーション - hrpsys-simulator<!--Dynamic Simulations of RTM-hrpsys-simulator--></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html">ロボットハードウェアの概要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_reference.html#robot-specifications">ロボット諸元<!--robot-specifications--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_reference.html#coordinate-system">座標系<!--coordinate-system--></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#computer-and-software-overview">コンピュータとソフトウェアの概要<!--computer-and-software-overview--></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_reference.html#computer-for-control">制御用コンピュータ<!--computer-for-control--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_reference.html#computer-for-dev">開発用コンピュータ<!--computer-for-dev--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_reference.html#overview-of-the-software">ソフトウェアの概要<!--overview-of-the-software--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_reference.html#api-summary-of-api">API の概要<!--summary-of-api--></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#maintenance-and-management">保守・管理<!--Maintenance and management--></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_reference.html#ubuntu-updating-ubuntu-software">Ubuntuソフトウェアのアップデート<!--Updating Ubuntu Software--></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_development-pc-setup.html">開発用PCのセットアップ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_development-pc-setup.html#debian-installing-from-the-debian-binary-package">Debian バイナリパッケージからのインストール<!--installing-from-the-debian-binary-package--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_development-pc-setup.html#ros-hiro-installing-the-ros-and-hiro-nextage-open-software">ROS および HIROソフトウェアのインストール<!--installing-the-ros-and-hiro-nextage-open-software--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_development-pc-setup.html#nextage-open-installing-nextage-open-software-only">NEXTAGE OPEN ソフトウェアのみのインストール<!--installing-nextage-open-software-only--></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_development-pc-setup.html#network-settings">ネットワーク設定<!--network-settings--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_development-pc-setup.html#host-name-setting-optional">ホスト名の設定（オプション）<!--host-name-setting-optional--></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_development-pc-setup.html#workspace-setup">ワークスペースのセットアップ<!--workspace-setup--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_development-pc-setup.html#diagnosisui-diagnosisui-setup">DiagnosisUIのセットアップ<!--DiagnosisUI-setup--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_development-pc-setup.html#camera-setup">カメラのセットアップ<!--Camera-setup--></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_trouble-shooting.html">トラブルシューティング</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_trouble-shooting.html#rtm-monitoring-the-rtm-state">RTM ステートのモニタリング<!--monitoring-the-rtm-state--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_trouble-shooting.html#ros-monitoring-the-ros-state">ROS ステートのモニタリング<!--monitoring-the-ros-state--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_trouble-shooting.html#ros-checking-the-ros-environments">ROS 環境の確認<!--checking-the-ros-environments--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_trouble-shooting.html#rqt-monitoring-with-rqt">rqt を用いたモニタリング<!--monitoring-with-rqt--></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_trouble-shooting.html#ros-topic">ROS Topicによる動作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_trouble-shooting.html#id2">動作対象の指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_trouble-shooting.html#id3">実機動作でのトラブルシューティング</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_trouble-shooting.html#diagnosisui">DiagnosisUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_trouble-shooting.html#troubleshooting-with-qnx">その他のトラブルシューティング<!--troubleshooting-with-qnx--></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_python-if.html">チュートリアル: Python インタフェース</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_python-if.html#rtm-python-rtm-python-interfaces">RTM Python インタフェース<!--RTM Python interfaces--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_python-if.html#interactive-mode-of-operation">インタラクティブモードでの操作<!--Interactive mode of operation--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_python-if.html#rtm-python-rtm-python-interface-programming">RTM Python インタフェースプログラミング<!--RTM Python interface programming--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_python-if.html#i-o-nextage-fillie-open-use-of-digital-i-o-nextage-fillie-open">デジタルI/O の利用（NEXTAGE Fillie OPEN）<!--Use of digital I/O (NEXTAGE Fillie OPEN)--></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html">チュートリアル: MoveIt! GUI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html#moveit-ros-moveit-ros-operation-planning-software">MoveIt! - ROS の動作計画ソフトウェア <!--MoveIt-ROS operation planning software--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html#moveit-gui-working-with-the-moveit-gui">MoveIt! GUI の操作 <!--Working with the MoveIt GUI--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html#switching-to-a-left-arm-and-two-arms-movement-plan">左腕・両腕の動作計画への切り替え <!--Switching to a left arm and two arms movement plan--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html#displaying-loop-animation-and-trajectories-in-a-motion-plan">動作計画のループアニメーションと軌跡の表示 <!--Displaying Loop Animation and Trajectories in a Motion Plan--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html#confirmation-of-each-posture-in-the-action-plan">動作計画上の各経過姿勢の確認 <!--Confirmation of each posture in the action plan--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html#adjustment-of-speed-and-acceleration-of-execution-operation">実行動作の速度・加速度の調整 <!--Adjustment of speed and acceleration of execution operation--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html#use-of-the-best-solution-in-a-posture-without-an-inverse-kinematic-solution">逆運動学解のない姿勢での最善解の利用 <!--Use of the best solution in a posture without an inverse kinematic solution--></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html#moveit-gui-operation-plans-to-avoid-obstacles-in-moveit-gui">MoveIt! GUI での障害物を回避する動作計画 <!--Operation plans to avoid obstacles in  MoveIt GUI--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html#moveit-moveit-operation-planning-using-obstacle-model-data">障害物モデルデータを利用した MoveIt! の動作計画 <!--MoveIt operation planning using obstacle model data--></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html">チュートリアル: MoveIt! Python インタフェース</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html#moveit-commander-moveit-commander">MoveIt! Commander<!--MoveIt Commander--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html#moveit-python-moveit-python-interfaces-usage-environments">MoveIt! Python インタフェース使用環境<!--MoveIt Python Interfaces Usage Environments--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html#moveit-python-robotics-from-moveit-python-interfaces">MoveIt! Python インタフェースからのロボット操作<!--Robotics from MoveIt Python interfaces--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html#moveit-python-starting-the-moveit-python-interfaces">MoveIt! Python インタフェースの起動<!--Starting the MoveIt Python interfaces--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html#python-moveit-commander-robotics-with-moveit-commander-in-python">Python での MoveIt! Commander を用いたロボット操作<!--Robotics with MoveIt Commander in Python--></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_gui.html">DiagnosisUIの使い方</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_gui.html#diagnosisui-starting-the-diagnosisui-and-connecting-robots">DiagnosisUIの起動とロボットとの接続 <!--Starting the DiagnosisUI and Connecting Robots--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_gui.html#end-pause">一時停止解除<!--End Pause--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_gui.html#digital-input-outputdigital-output-checking-the-digital-input-output-and-operating-the-digital-output">Digital Input/Outputの確認、Digital Outputの操作<!--Checking the Digital Input/Output and operating the Digital Output--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_gui.html#servo-on-off">サーボオン/オフ<!--Servo ON/OFF--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_gui.html#brake-on-off">ブレーキオン/オフ<!--Brake ON/OFF--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_gui.html#get-emergency-stop-log">診断レポートとログの取得<!--Get Emergency Stop Log--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_gui.html#ueyedemo-hoge">uEyeDemoの起動<!--hoge--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_gui.html#shutdown-of-the-controller">コントローラのシャットダウン<!--Shutdown of the controller--></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html">チュートリアル: 3次元認識</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html#robot-camera-settings">ロボット搭載カメラの設定<!--Robot camera settings--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html#nextage-fillie-open-nextage-fillie-open-cameras">NEXTAGE Fillie OPEN のカメラ<!--NEXTAGE Fillie OPEN cameras--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html#user-specific-cameras">ユーザ独自のカメラの利用について<!--User-Specific Cameras--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html#head-camera-settings">ヘッドカメラの設定<!--Head camera settings--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html#hand-camera-setting-todo">ハンドカメラの設定 <!--Hand-Camera Setting--><!--todo 未テスト --></a></li>
+<li class="toctree-l3"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html#camera-settings">カメラの設定<!--Camera settings--></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_ja_start.html" class="btn btn-neutral float-right" title="はじめに" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

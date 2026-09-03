@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>チュートリアル: MoveIt! GUI &mdash; rtmros_nextage 0.1 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="チュートリアル: MoveIt! Python インタフェース" href="manual_ja_tutorial_moveit-python.html" />
+    <link rel="prev" title="チュートリアル: Python インタフェース" href="manual_ja_tutorial_python-if.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_start.html">はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html">ロボットハードウェアの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#computer-and-software-overview">コンピュータとソフトウェアの概要<!--computer-and-software-overview--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#maintenance-and-management">保守・管理<!--Maintenance and management--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_development-pc-setup.html">開発用PCのセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_trouble-shooting.html">トラブルシューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_python-if.html">チュートリアル: Python インタフェース</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">チュートリアル: MoveIt! GUI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#moveit-ros-moveit-ros-operation-planning-software">MoveIt! - ROS の動作計画ソフトウェア <!--MoveIt-ROS operation planning software--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#moveit-gui-working-with-the-moveit-gui">MoveIt! GUI の操作 <!--Working with the MoveIt GUI--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#switching-to-a-left-arm-and-two-arms-movement-plan">左腕・両腕の動作計画への切り替え <!--Switching to a left arm and two arms movement plan--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#displaying-loop-animation-and-trajectories-in-a-motion-plan">動作計画のループアニメーションと軌跡の表示 <!--Displaying Loop Animation and Trajectories in a Motion Plan--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#confirmation-of-each-posture-in-the-action-plan">動作計画上の各経過姿勢の確認 <!--Confirmation of each posture in the action plan--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adjustment-of-speed-and-acceleration-of-execution-operation">実行動作の速度・加速度の調整 <!--Adjustment of speed and acceleration of execution operation--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-of-the-best-solution-in-a-posture-without-an-inverse-kinematic-solution">逆運動学解のない姿勢での最善解の利用 <!--Use of the best solution in a posture without an inverse kinematic solution--></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#moveit-gui-operation-plans-to-avoid-obstacles-in-moveit-gui">MoveIt! GUI での障害物を回避する動作計画 <!--Operation plans to avoid obstacles in  MoveIt GUI--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#moveit-moveit-operation-planning-using-obstacle-model-data">障害物モデルデータを利用した MoveIt! の動作計画 <!--MoveIt operation planning using obstacle model data--></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reading-scene-files-for-obstacle-models">障害物モデルのシーンファイルの読み込み <!--Reading Scene Files for Obstacle Models--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#operation-plan-for-avoiding-obstacles-and-execution-thereof">障害物を回避する動作計画とその実行 <!--Operation plan for avoiding obstacles and execution thereof--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stl-collada-dae-using-stl-collada-model-files">STL / COLLADA(DAE) モデルファイルの利用 <!--Using STL /COLLADA Model Files--></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html">チュートリアル: MoveIt! Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_gui.html">DiagnosisUIの使い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html">チュートリアル: 3次元認識</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">チュートリアル: MoveIt! GUI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_ja_tutorial_moveit-gui.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="moveit-gui">
+<h1>チュートリアル: MoveIt! GUI<a class="headerlink" href="#moveit-gui" title="この見出しへのパーマリンク"></a></h1>
+<section id="moveit-ros-moveit-ros-operation-planning-software">
+<h2>MoveIt! - ROS の動作計画ソフトウェア <!--MoveIt-ROS operation planning software--><a class="headerlink" href="#moveit-ros-moveit-ros-operation-planning-software" title="この見出しへのパーマリンク"></a></h2>
+<p>ROS の動作計画アプリケーションの代表的なソフトウェアパッケージが MoveIt! です。
+NEXTAGE Fillie OPENにおいても rtmros_bridge がありますので
+MoveIt! の動作計画機能を利用することができます。</p>
+</section>
+<section id="moveit-gui-working-with-the-moveit-gui">
+<h2>MoveIt! GUI の操作 <!--Working with the MoveIt GUI--><a class="headerlink" href="#moveit-gui-working-with-the-moveit-gui" title="この見出しへのパーマリンク"></a></h2>
+<p>基本的な操作は &quot;クイックスタート&quot; の &quot;MoveIt! での動作の実行&quot; を参照してください。</p>
+<section id="switching-to-a-left-arm-and-two-arms-movement-plan">
+<h3>左腕・両腕の動作計画への切り替え <!--Switching to a left arm and two arms movement plan--><a class="headerlink" href="#switching-to-a-left-arm-and-two-arms-movement-plan" title="この見出しへのパーマリンク"></a></h3>
+<p>NEXTAGE Fillie OPENにおいて MoveIt! を起動後、
+左腕を操作して左腕の動作計画を作成するには、次の手順にて MoveIt! の設定を変更します。</p>
+<ol class="simple">
+<li><p>子ウィンドウ Displays 内の MotionPlanning → Plannning Request → Planning Group で left_arm を選択</p></li>
+<li><p>右腕と同様に InteractiveMarker を操作して [ Plan and Execute ]ボタンをクリック</p></li>
+</ol>
+<p><img alt="MoveIt! - left_arm" src="_images/nxo_moveit_planning-group_left_arm.png" /></p>
+<p>NEXTAGE Fillie OPENの MoveIt! では両腕での動作計画もできます。<br>
+MoveIt! の GUI: RViz 上では 次のように選択します。</p>
+<ol class="simple">
+<li><p>Displays 内の MotionPlanning → Plannning Request → Planning Group で botharms を選択</p></li>
+<li><p>各腕の InteractiveMarker を操作して [ Plan and Execute ]をクリック</p></li>
+</ol>
+<p><img alt="MoveIt! RViz - Both Arms" src="_images/PlanBothArms.png" /></p>
+</section>
+<section id="displaying-loop-animation-and-trajectories-in-a-motion-plan">
+<h3>動作計画のループアニメーションと軌跡の表示 <!--Displaying Loop Animation and Trajectories in a Motion Plan--><a class="headerlink" href="#displaying-loop-animation-and-trajectories-in-a-motion-plan" title="この見出しへのパーマリンク"></a></h3>
+<p>MoveIt! にて動作計画が作成されたとき、その動作アニメーションが1度表示されます。
+動作計画をより確認しやすくするために動作アニメーションの繰り返し表示や
+軌跡表示を行うことができます。</p>
+<p>次の手順で MoveIt! の設定を変更します。</p>
+<ol class="simple">
+<li><p>子ウィンドウ Displays 内の MotionPlanning → Planning Path → Loop Animation のチェックボックスを ON</p></li>
+<li><p>Loop Animation のすぐ下にある Show Trail のチェックボックスを ON</p></li>
+</ol>
+<p>MoveIt! でのアニメーションと軌跡の表示の様子（画像はアニメーションの途中をキャプチャ）</p>
+<p><img alt="MoveIt! - Loop Animaiton / Show Trail" src="_images/nxo_moveit_loop-animation_show-trail_pillar.png" /></p>
+</section>
+<section id="confirmation-of-each-posture-in-the-action-plan">
+<h3>動作計画上の各経過姿勢の確認 <!--Confirmation of each posture in the action plan--><a class="headerlink" href="#confirmation-of-each-posture-in-the-action-plan" title="この見出しへのパーマリンク"></a></h3>
+<p>ループアニメーションでは確認しづらい動作計画上の任意の経過点の姿勢を確認するには
+MotionPlanning - Slider を使います。</p>
+<ol class="simple">
+<li><p>MoveIt! のメニュー Panels 内の MotionPlanning - Trajectory Slider を選択</p></li>
+<li><p>動作計画を作成した後にスライダを操作して経過点の姿勢を表示</p></li>
+</ol>
+<p><img alt="MoveIt! - MotionPlanning - Slider" src="_images/nxo_moveit_panels_motionplanning-slider_halfpos.png" /></p>
+</section>
+<section id="adjustment-of-speed-and-acceleration-of-execution-operation">
+<h3>実行動作の速度・加速度の調整 <!--Adjustment of speed and acceleration of execution operation--><a class="headerlink" href="#adjustment-of-speed-and-acceleration-of-execution-operation" title="この見出しへのパーマリンク"></a></h3>
+<p>MotionPlanning 内 Planning タブにある Options の</p>
+<ul class="simple">
+<li><p>Velocity Scaling: 1.00</p></li>
+<li><p>Acceleration Scaling: 1.00</p></li>
+</ul>
+<p>の値を 0〜1 の間で変更して動作の実行速度と加速度をそれぞれ動的に変更することができます。</p>
+<p><img alt="MoveIt! - Velocity Scalling" src="_images/nxo_moveit_velocity-scalling.png" /></p>
+</section>
+<section id="use-of-the-best-solution-in-a-posture-without-an-inverse-kinematic-solution">
+<h3>逆運動学解のない姿勢での最善解の利用 <!--Use of the best solution in a posture without an inverse kinematic solution--><a class="headerlink" href="#use-of-the-best-solution-in-a-posture-without-an-inverse-kinematic-solution" title="この見出しへのパーマリンク"></a></h3>
+<p>デフォルトの設定では逆運動学解のない姿勢まで InteractiveMarker を動かすと
+エンドエフェクタ（手先など）は解の存在するところで止まります。</p>
+<p>MotionPlanning 子ウィンドウの Planning タブ内の  Approx IK Solutions のチェックを入れると、
+厳密に逆運動学解がない姿勢でも近い最善の解が利用されます。</p>
+<p><img alt="MoveIt! - Allow Approx IK Solutions" src="_images/nxo_moveit_approx-ik-solutions.png" /></p>
+<!-- #### NEXTAGE OPEN での IKFast の利用 --><!-- NEXTAGE_OPEN では IKFast パッケージを利用することができます。 --><!-- MoveIt! を実行するときに引数として運動学の設定を IKFast を利用するように指定します。 --><!-- ``` --><!-- $ roslaunch nextage_moveit_config moveit_planning_execution.launch kinematics_conf:=`rospack find nextage_moveit_config`/config/kinematics_ikfast.yaml --><!-- ``` --></section>
+</section>
+<section id="moveit-gui-operation-plans-to-avoid-obstacles-in-moveit-gui">
+<h2>MoveIt! GUI での障害物を回避する動作計画 <!--Operation plans to avoid obstacles in  MoveIt GUI--><a class="headerlink" href="#moveit-gui-operation-plans-to-avoid-obstacles-in-moveit-gui" title="この見出しへのパーマリンク"></a></h2>
+<p>MoveIt! の最大の特徴の1つは障害物を回避するような動作が自動生成されるところにあります。</p>
+<section id="moveit-moveit-operation-planning-using-obstacle-model-data">
+<h3>障害物モデルデータを利用した MoveIt! の動作計画 <!--MoveIt operation planning using obstacle model data--><a class="headerlink" href="#moveit-moveit-operation-planning-using-obstacle-model-data" title="この見出しへのパーマリンク"></a></h3>
+<p>環境が既知とした場合に,障害物の 3D モデルデータのファイルを MoveIt! に読み込んで動作計画を行う方法を紹介します。</p>
+<section id="reading-scene-files-for-obstacle-models">
+<h4>障害物モデルのシーンファイルの読み込み <!--Reading Scene Files for Obstacle Models--><a class="headerlink" href="#reading-scene-files-for-obstacle-models" title="この見出しへのパーマリンク"></a></h4>
+<p>MoveIt! 内に次の手順により障害物モデルファイルの読み込みを行います。</p>
+<ol class="simple">
+<li><p>MotionPlanning 内 Scene Objects タブで [ Import ] ボタンをクリック</p></li>
+<li><p>ファイル nxo_pillar.scene を選択して [ OK ] をクリック</p></li>
+<li><p>必要であればCurrent Scene Objectsにおいてnxo_pillarを選択し、障害物の InteractiveMarker を操作してロボットの手の近くに移動</p></li>
+<li><p>Scene Objects タブで [ Publish ] をクリック → 障害物がシーンに反映</p></li>
+</ol>
+<ul class="simple">
+<li><p>障害物モデルファイル</p>
+<ul>
+<li><p>Catkin ワークスペース内 ~/catkin_ws/src/nextage_fillie_open_moveit_config/models/nxo_pillar.scene</p></li>
+</ul>
+</li>
+</ul>
+<p>Import<br></p>
+<p><img alt="MoveIt! - Import From Text" src="_images/nxo_moveit_scene-object_import-from-text.png" /></p>
+<p>Publish<br></p>
+<p><img alt="MoveIt! - Publish Current Scene" src="_images/nxo_moveit_context_publish-current-scene.png" /></p>
+<p>シーンファイル nxo_pillar.scene の内容</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nxo_pillar</span>
+<span class="o">*</span> <span class="n">nxo_pillar</span>
+<span class="mi">1</span>
+<span class="n">box</span>
+<span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">1.1</span>
+<span class="mf">0.4</span> <span class="o">-</span><span class="mf">0.2</span> <span class="o">-</span><span class="mf">0.42</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="operation-plan-for-avoiding-obstacles-and-execution-thereof">
+<h4>障害物を回避する動作計画とその実行 <!--Operation plan for avoiding obstacles and execution thereof--><a class="headerlink" href="#operation-plan-for-avoiding-obstacles-and-execution-thereof" title="この見出しへのパーマリンク"></a></h4>
+<p>読み込んだ障害物モデルのある環境に応じた動作計画を行ってロボットを動かします。</p>
+<p>障害物を回避する経路は自動的に生成されるので、動作計画を行う操作は障害物が無い場合と同じです。
+次の操作で障害物を回避したモーションが自動生成されてロボットにその動作が出力されます。</p>
+<ul class="simple">
+<li><p>注意: ロボットが動きます。</p></li>
+</ul>
+<ol class="simple">
+<li><p>Planning タブ Query の Select Start State を &lt; current &gt; にする</p></li>
+<li><p>Planning タブ Query の Select Goal State を &lt; current &gt; にする</p></li>
+<li><p>MoveIt! 上の InteractiveMarker でロボットの手を現在の位置から障害物の反対側にドラッグ</p></li>
+<li><p>Planning タブ Commands の [ Plan &amp; Execute ] ボタンをクリック</p></li>
+</ol>
+<p>障害物を回避する動作計画の例</p>
+<p><img alt="MoveIt! Planning with Pillar" src="_images/nxo_moveit-planning_pillar.png" /></p>
+<p>障害物が無い場合の動作計画の例</p>
+<p><img alt="MoveIt! Planning without Pillar" src="_images/nxo_moveit-planning_no-pillar.png" /></p>
+</section>
+<section id="stl-collada-dae-using-stl-collada-model-files">
+<h4>STL / COLLADA(DAE) モデルファイルの利用 <!--Using STL /COLLADA Model Files--><a class="headerlink" href="#stl-collada-dae-using-stl-collada-model-files" title="この見出しへのパーマリンク"></a></h4>
+<p>MoveIt! には STL や COLLADA(DAE) モデルのファイルを直接読み込む機能もあります。<br>
+MoveIt! 内に次の手順により障害物モデルファイルの読み込みを行います。</p>
+<ol class="simple">
+<li><p>MotionPlanning 内 Scene Objects タブで 'Add/Remove Scene Objects' 下のドロップダウンリストで'Mesh from file'を選択し、 [ + ] ボタンをクリック</p></li>
+<li><p>ファイル tsubo.dae もしくは tsubo.stl を選択して [ OK ] をクリック</p></li>
+<li><p>必要であれば障害物の InteractiveMarker を操作してロボットの手の近くに移動</p></li>
+<li><p>Scene Objectsタブで [ Publish ] をクリック → 障害物がシーンに反映</p></li>
+</ol>
+<ul class="simple">
+<li><p>STL / COLLADA モデルファイル</p>
+<ul>
+<li><p>Catkin ワークスペース内 ~/catkin_ws/src/nextage_fillie_open_moveit_config/models/tsubo.*</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="MoveIt! - Import DAE File (Adjusting Position)" src="_images/nxo_moveit_scene-object_tsubo-stl_adjusting-pos.png" /></p>
+<p>STL / COLLADA(DAE) モデルファイルを用いた場合も
+シーンファイルを読み込んだ場合と同じ手順で
+MoveIt! で障害物を回避する動作計画を作成できます。</p>
+<p>Motion Planning - tsubo.stl</p>
+<p><img alt="MoveIt! tsubo.dae Motion Planning" src="_images/nxo_moveit_plan_show-trail-2_tsubo-stl.png" /></p>
+<!-- EOF --></section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_ja_tutorial_python-if.html" class="btn btn-neutral float-left" title="チュートリアル: Python インタフェース" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_ja_tutorial_moveit-python.html" class="btn btn-neutral float-right" title="チュートリアル: MoveIt! Python インタフェース" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

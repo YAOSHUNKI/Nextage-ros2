@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Use of DiagnosisUI &mdash; rtmros_nextage 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial: Three-Dimensional Recognition" href="manual_en_tutorial_3d-perception.html" />
+    <link rel="prev" title="Tutorial: MoveIt! Python interfaces" href="manual_en_tutorial_moveit-python.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_en_start.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html">Overview of robot hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#computer-and-software-overview">Computer and Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#maintenance-and-management">Maintenance and management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_development-pc-setup.html">Setting up the development PC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_trouble-shooting.html">Trouble shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_python-if.html">Tutorial: Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html">Tutorial: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-python.html">Tutorial: MoveIt! Python interfaces</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Use of DiagnosisUI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#starting-the-diagnosisui-and-connecting-robots">Starting the DiagnosisUI and Connecting Robots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#releace-momentary-stop">Releace momentary stop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checking-the-digital-input-output-and-operating-the-digital-output">Checking the Digital Input/Output and operating the Digital Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#servo-on-off">Servo ON/OFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#brake-on-off">Brake ON/OFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-diagnosis-reports-and-logs">Get diagnosis reports and logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#starting-the-ueyedemo">Starting the uEyeDemo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shutdown-of-the-controller">Shutdown of the controller</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_3d-perception.html">Tutorial: Three-Dimensional Recognition</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Use of DiagnosisUI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_en_tutorial_gui.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="use-of-diagnosisui">
+<h1>Use of DiagnosisUI<a class="headerlink" href="#use-of-diagnosisui" title="Permalink to this heading"></a></h1>
+<p>The following functions can be executed from the DiagnosisUI, which is a simplified graphical user interface for some functions of robots.</p>
+<ul class="simple">
+<li><p>Joint calibration</p></li>
+<li><p>Releace momentary stop</p></li>
+<li><p>Confirmation of digital input/output, operation of digital output</p></li>
+<li><p>Servo ON/OFF</p></li>
+<li><p>Brake ON/OFF</p></li>
+<li><p>Acquisition of diagnostic reports and logs</p></li>
+<li><p>Starting uEyeDemo</p></li>
+<li><p>Shutdown controller</p></li>
+</ul>
+<section id="starting-the-diagnosisui-and-connecting-robots">
+<h2>Starting the DiagnosisUI and Connecting Robots<a class="headerlink" href="#starting-the-diagnosisui-and-connecting-robots" title="Permalink to this heading"></a></h2>
+<p>Start DiagnosisUI.
+Open a new terminal and execute the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source /opt/ros/melodic/setup.bash
+$ cd ~/;./DiagnosisUI
+</pre></div>
+</div>
+<p>※ <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/ros/melodic/setup.bash</span></code> can be omitted if set up in .bashrc in advance.</p>
+<p><img alt="diagnosisui" src="_images/dignosisUI.png" /></p>
+<p>Only the Connect and uEyeDemo buttons can be used immediately after starting the DiagnosisUI.
+First, enter the robot hostname or IP-address in the Hostname or IPaddr’s entry box, and then press connect (defaulted to nextage).
+When the connection with the robot is successful, all buttons are enabled.
+If the connection fails, check the network settings of the user PC and the connection of the LAN cable.</p>
+<!--
+## ジョイントキャリブレーション--><!--ロボットが起動後に、LEDが青点滅の状態になったら関節角度のエンコーダのキャリブレーションを行ってください。--><!--[Joint Calibration]ボタンをクリックすることでのエンコーダのキャリブレーションを行います。--><!-- ロボット起動後、ロボットの関節原点復帰に失敗(LEDが青点滅)の場合にこの作業を行います。 --><!-- Joint Calibrationボタンを押すことでジョイントキャリブを行います。 --><!--ジョイントキャリブに成功するとLEDが緑点灯になります。--></section>
+<section id="releace-momentary-stop">
+<h2>Releace momentary stop<a class="headerlink" href="#releace-momentary-stop" title="Permalink to this heading"></a></h2>
+<p>Turn the momentary stop witch of the switch box to the “Momentary Stop” position,
+Or in the manual operation mode, release or grasp the enable switch to pause the robot.<br />At this time, recover from the error by the following procedure.</p>
+<ul class="simple">
+<li><p>For Automatic Operation Mode:</p>
+<ul>
+<li><p>Return the stop switch to the “Active” position once</p></li>
+<li><p>Press [Suspend Resume].</p></li>
+</ul>
+</li>
+<li><p>For Manual Operation Mode:</p>
+<ul>
+<li><p>Return the stop switch to the “Active” position once</p></li>
+<li><p>Hold the enable switch in the intermediate position</p></li>
+<li><p>Press [Suspend Resume].</p></li>
+</ul>
+</li>
+</ul>
+<p>However, the output of the command value of the higher-order operation generation controller can be stopped before returning.<br />e.g. If the robot is paused while moving for 10 seconds,
+the robot stops operating, but the upper controller continues to output the command value as planned for 10 seconds.Even if the [Suspend Resume] button is pressed for the 10 seconds, the robot does not return.<br />In addition, depending on the operation immediately before stopping, such as stopping during low-speed operation, the system may return to normal operation without operating the [Suspend Resume] button.</p>
+<!-- ロボットの一旦停止からの復帰条件は"ジョイントの現在値と同じ指令値を連続2回を受信"となります。 --><!-- このボタン押すと、指令値を現在値と一瞬に上書きするが、上位にある動作生成コントローラの動作はキャンセルされないので、 --><!-- 指令値はまたすぐに上位にある動作生成コントローラの出力に --><!-- すなわち、 --></section>
+<section id="checking-the-digital-input-output-and-operating-the-digital-output">
+<h2>Checking the Digital Input/Output and operating the Digital Output<a class="headerlink" href="#checking-the-digital-input-output-and-operating-the-digital-output" title="Permalink to this heading"></a></h2>
+<p>Press the [Digital I/O] button to start the DIO window.</p>
+<p><img alt="dio_window" src="_images/dio_window.png" /></p>
+<p>The DIO status on this screen is updated at 100 ms intervals.</p>
+<ul class="simple">
+<li><p>Displaying the Input</p>
+<ul>
+<li><p>Red: Short</p></li>
+<li><p>Grey: open</p></li>
+</ul>
+</li>
+<li><p>Displaying the Output</p>
+<ul>
+<li><p>Green: Short</p></li>
+<li><p>Grey: open</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="servo-on-off">
+<h2>Servo ON/OFF<a class="headerlink" href="#servo-on-off" title="Permalink to this heading"></a></h2>
+<p>Turn on the servos with the [Servo ON] button,
+Turn off the servos with the [Servo OFF] button.
+If robot is the momentary stop state, you can not turn on the servos.</p>
+</section>
+<section id="brake-on-off">
+<h2>Brake ON/OFF<a class="headerlink" href="#brake-on-off" title="Permalink to this heading"></a></h2>
+<p>Use the [Brake ON] button to turn on the brakes on the right and left arms.
+You can release the brakes on either of the left or right arms with the [Brake OFF Right/Left] button.</p>
+</section>
+<section id="get-diagnosis-reports-and-logs">
+<h2>Get diagnosis reports and logs<a class="headerlink" href="#get-diagnosis-reports-and-logs" title="Permalink to this heading"></a></h2>
+<p>An diagnosis reports and logs may be required when a trouble occurs or an inquiry is made.
+Press the [Get Log] button to open a screen for specifying the log period to be retrieved.
+Check the checkbox of the year and month, and press get to copy the daily log data to the current directory as “log_startday-finishday.tar.bz2”. The start/end date should be specified in controller time, referring to today’s date shown on the screen. The controller’s time zone is set to UTC.
+The diagnosis reports and logs is encrypted and cannot be viewed by the user.</p>
+<p><img alt="get_log" src="_images/getlog.png" /></p>
+<ul>
+<li><p>Start date check box</p>
+<p>Checking this checkbox enables you to specify the start date of acquisition.<br />If unchecked, the oldest log date will be applied as the start date.</p>
+</li>
+<li><p>End date check box</p>
+<p>Checking this checkbox enables to specify the end date of acquisition.<br />If not checked, the date of the latest log will be applied as the end date.</p>
+</li>
+</ul>
+</section>
+<section id="starting-the-ueyedemo">
+<h2>Starting the uEyeDemo<a class="headerlink" href="#starting-the-ueyedemo" title="Permalink to this heading"></a></h2>
+<p>Press the [uEyeDemo] button to start the operation screen of the uEye camera.
+You can check the camera status from this screen.</p>
+</section>
+<section id="shutdown-of-the-controller">
+<h2>Shutdown of the controller<a class="headerlink" href="#shutdown-of-the-controller" title="Permalink to this heading"></a></h2>
+<p>Press Shutdown QNX to turn off the controller.
+Shut down the power of the user PC separately.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_en_tutorial_moveit-python.html" class="btn btn-neutral float-left" title="Tutorial: MoveIt! Python interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_en_tutorial_3d-perception.html" class="btn btn-neutral float-right" title="Tutorial: Three-Dimensional Recognition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

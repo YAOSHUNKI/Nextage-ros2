@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+  <name>nextage_fillie_open_ros_bridge</name>
+  <version>1.0.0</version>
+  <description>A main ROS interface for developers and users of <a href = "http://www.kawadarobot.co.jp/en/nextage/">Nextage Fillie</a> dual-armed robot from Kawada Robotics Corporation. Developers can build their own application that takes control over Nextage Fillie via this package. Interface for both ROS and <a href = "http://openrtm.org/">OpenRTM</a> is provided.
+  </description>
+
+  <maintainer email="opensource@kawadarobot.co.jp">KRC</maintainer>
+  <author email="iisaito@opensource-robotics.tokyo.jp">Isaac Isao Saito</author>
+  <author>Akio Ochiai</author>
+  <license>BSD</license>
+  <license>MIT</license>
+
+  <!-- <url type="website">http://ros.org/wiki/nextage_ros_bridge</url> -->
+  <!-- <url type="bugtracker">https://github.com/tork-a/rtmros_nextage/issues</url> -->
+  <!-- <url type="repository">https://github.com/tork-a/rtmros_nextage</url> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend version_gte="1.1.13">hironx_ros_bridge</build_depend>
+  <build_depend>nextage_fillie_open_description</build_depend>
+  <build_depend>roslint</build_depend>
+  
+  <run_depend version_gte="1.1.13">hironx_ros_bridge</run_depend>
+  <run_depend>nextage_fillie_open_description</run_depend>
+  <run_depend>stereo_image_proc</run_depend>
+  <run_depend>ueye_cam</run_depend>
+
+  <test_depend>rostest</test_depend>
+  <export/>
+</package>

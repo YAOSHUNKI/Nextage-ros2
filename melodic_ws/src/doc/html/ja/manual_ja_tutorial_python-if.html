@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>チュートリアル: Python インタフェース &mdash; rtmros_nextage 0.1 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="チュートリアル: MoveIt! GUI" href="manual_ja_tutorial_moveit-gui.html" />
+    <link rel="prev" title="トラブルシューティング" href="manual_ja_trouble-shooting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_start.html">はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html">ロボットハードウェアの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#computer-and-software-overview">コンピュータとソフトウェアの概要<!--computer-and-software-overview--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#maintenance-and-management">保守・管理<!--Maintenance and management--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_development-pc-setup.html">開発用PCのセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_trouble-shooting.html">トラブルシューティング</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">チュートリアル: Python インタフェース</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rtm-python-rtm-python-interfaces">RTM Python インタフェース<!--RTM Python interfaces--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-mode-of-operation">インタラクティブモードでの操作<!--Interactive mode of operation--></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#moveit-starting-moveit">MoveIt の起動<!--Starting MoveIt--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtm-ros-bridge-starting-rtm-ros-bridge">rtm_ros_bridge の起動<!--Starting rtm_ros_bridge--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ipython-starting-the-ipython-interfaces">iPython インタフェースの起動<!--Starting the iPython interfaces--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtm-python-common-rtm-python-interface-commands">よく使う RTM Python インタフェースコマンド<!--Common RTM Python interface commands--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtm-python-using-rtm-python-interfaces">RTM Python インタフェースの利用<!--Using RTM Python Interfaces--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hrpsys-based-api-hrpsys-based-api-sources-and-documents">hrpsys-based API のソースとドキュメント<!--hrpsys-based API sources and documents--></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rtm-python-rtm-python-interface-programming">RTM Python インタフェースプログラミング<!--RTM Python interface programming--></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#acceptance-test-rtm-sample-code-acceptance-test-rtm">サンプルコード - Acceptance Test (RTM)<!--Sample Code-Acceptance Test (RTM)--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-code-draw-a-circle">サンプルコード - 円を描く<!--Sample code-draw a circle--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#programming-according-to-the-situation-of-use">使用場面に応じたプログラミング<!--Programming according to the situation of use--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#motion-with-continuous-trajectory-coordinate-designation">連続した軌道座標指示による動作<!--Motion with continuous trajectory coordinate designation--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#relative-attitude-indication">相対姿勢指示による動作<!--Relative attitude indication--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python-creating-user-python-codes">ユーザ Python コードの作成<!--Creating User Python Codes--></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#i-o-nextage-fillie-open-use-of-digital-i-o-nextage-fillie-open">デジタルI/O の利用（NEXTAGE Fillie OPEN）<!--Use of digital I/O (NEXTAGE Fillie OPEN)--></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rtm-interactive-operations-from-rtm-clients">RTM クライアントからのインタラクティブな操作<!-- Interactive Operations from RTM Clients--></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html">チュートリアル: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html">チュートリアル: MoveIt! Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_gui.html">DiagnosisUIの使い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html">チュートリアル: 3次元認識</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">チュートリアル: Python インタフェース</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_ja_tutorial_python-if.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python">
+<h1>チュートリアル: Python インタフェース<a class="headerlink" href="#python" title="この見出しへのパーマリンク"></a></h1>
+<section id="rtm-python-rtm-python-interfaces">
+<h2>RTM Python インタフェース<!--RTM Python interfaces--><a class="headerlink" href="#rtm-python-rtm-python-interfaces" title="この見出しへのパーマリンク"></a></h2>
+<section id="interactive-mode-of-operation">
+<h3>インタラクティブモードでの操作<!--Interactive mode of operation--><a class="headerlink" href="#interactive-mode-of-operation" title="この見出しへのパーマリンク"></a></h3>
+<section id="moveit-starting-moveit">
+<h4>MoveIt の起動<!--Starting MoveIt--><a class="headerlink" href="#moveit-starting-moveit" title="この見出しへのパーマリンク"></a></h4>
+<p>「Move It!」の起動を実施しておきます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_moveit_config moveit_planning_execution.launch
+</pre></div>
+</div>
+</section>
+<section id="rtm-ros-bridge-starting-rtm-ros-bridge">
+<h4>rtm_ros_bridge の起動<!--Starting rtm_ros_bridge--><a class="headerlink" href="#rtm-ros-bridge-starting-rtm-ros-bridge" title="この見出しへのパーマリンク"></a></h4>
+<p>rtm_ros_bridge を起動します。シミュレーションの場合は不要です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_ros_bridge nextage_fillie_open_ros_bridge_real.launch nameserver:=%HOSTNAME%
+</pre></div>
+</div>
+</section>
+<section id="ipython-starting-the-ipython-interfaces">
+<h4>iPython インタフェースの起動<!--Starting the iPython interfaces--><a class="headerlink" href="#ipython-starting-the-ipython-interfaces" title="この見出しへのパーマリンク"></a></h4>
+<p>NEXTAGE OPEN での iPython インタフェースの起動を起動します。
+ホスト名は各ロボットの設定に応じて変更してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython -i `rospack find nextage_fillie_open_ros_bridge`/script/nextage_fillie_open.py
+(Simulation)
+
+$ ipython -i `rospack find nextage_fillie_open_ros_bridge`/script/nextage_fillie_open.py  -- --host nextage  
+(Real Robot Example)
+</pre></div>
+</div>
+<p>他のオプションも必要であれば指定することができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython -i `rospack find nextage_fillie_open_ros_bridge`/script/nextage_fillie_open.py -- \
+ --modelfile /opt/jsk/etc/FILLIE/model/main.wrl --host nextage --port 15005
+</pre></div>
+</div>
+<p>リモート接続する場合は <code class="docutils literal notranslate"><span class="pre">--robot</span></code> 引数を使用してロボットのインスタンス名を指定する必要があります。
+例えば次のように指定して実行します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython -i `rospack find nextage_fillie_open_ros_bridge`/scripts/nextage_fillie_open.py -- \
+ --host nxo_simulation_host --robot &quot;RobotHardware0&quot;
+</pre></div>
+</div>
+<p>iPython インタフェース初期化時には次のことを行っています。</p>
+<ul class="simple">
+<li><p>RTCManager と RobotHardware の検出</p>
+<ul>
+<li><p>RTCManager: RT コンポーネントを起動する OpenRTM のクラス</p></li>
+<li><p>RobotHardware: ロボットハードウェアとのインタフェースである hrpsys に定義されているRTコンポーネント</p></li>
+</ul>
+</li>
+<li><p>hrpsys コントローラを動作させるのに必要な RT コンポーネントへの接続とアクティベーション</p></li>
+<li><p>ロガーの開始</p></li>
+<li><p>Joint Groups への割当て（HIRO/NEXTAGE OPEN 固有）</p></li>
+</ul>
+</section>
+<section id="rtm-python-common-rtm-python-interface-commands">
+<h4>よく使う RTM Python インタフェースコマンド<!--Common RTM Python interface commands--><a class="headerlink" href="#rtm-python-common-rtm-python-interface-commands" title="この見出しへのパーマリンク"></a></h4>
+<p>ロボット実機操作において特有なコマンドを紹介します。</p>
+<ul class="simple">
+<li><p>注意-1: コマンドを実行するとロボットが動きます。</p></li>
+<li><p>注意-2: 非常停止スイッチをいつでも押せる状態にしておいてください。</p></li>
+</ul>
+<p>ロボット実機のキャリブレーションを行うコマンドです。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">checkEncoders</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul>
+<li><p>ロボット実機の再キャリブレーションが必要な場合(LED青点滅)にのみ実行します。</p>
+<!-- - ほとんどの場合においてロボット胸部の緑のロボットステートインジケータライトが点滅します。 --></li>
+</ul>
+<p>ロボットを初期姿勢にするコマンドです。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+</pre></div>
+</div>
+<!-- 作業終了姿勢に移行するコマンドです。終了姿勢に移行した後にサーボが切れます。 --><!-- ``` --><!-- In [0] : robot.goOffPose() --><!-- ``` --><!-- - システムの再起動・シャットダウン時の前にはこのコマンドを実行してください。 --><p>サーボを入れるコマンドです。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">servoOn</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>次の動作を行ってサーボが切れた状態のときには上記コマンド等によりサーボを入れる必要があります。</p>
+<ul>
+<li><p>非常停止スイッチを押したとき（この場合はまず <code class="docutils literal notranslate"><span class="pre">servoOff</span></code> を行う必要があります）</p></li>
+<li><p>ロボットが自己診断で緊急停止したとき</p></li>
+</ul>
+</li>
+<li><p>関節角度と現在の角度指示値が異なっている場合に上記コマンドでサーボを入れると、ロボットが指示値に向かって急激に動作を行います。サーボを入れる直前に以下の操作の内どちらかを必ず実行してください。</p>
+<ul>
+<li><p>DiagnosisUIの[Suspend Resume]ボタンを押す。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">robot.goActual()</span></code>を実行する。</p></li>
+</ul>
+</li>
+</ul>
+<p>サーボを切るコマンドです。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">servoOff</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>サーボを切るのではなく非常停止スイッチを押した場合にはこのコマンドを実行してください。</p></li>
+</ul>
+</section>
+<section id="rtm-python-using-rtm-python-interfaces">
+<h4>RTM Python インタフェースの利用<!--Using RTM Python Interfaces--><a class="headerlink" href="#rtm-python-using-rtm-python-interfaces" title="この見出しへのパーマリンク"></a></h4>
+<p>iPython の初期化時にロボットのクライアントインタフェースクラスである NextageFillieOpenClient が iPython ターミナル上で <code class="docutils literal notranslate"><span class="pre">robot</span></code> としてインスタンス化されます。</p>
+<p><code class="docutils literal notranslate"><span class="pre">robot</span></code> において何ができるのかを見てみます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>上記のように iPython ターミナル上で入力したのに tab キーを押すと選択可能なものが表示されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot</span><span class="o">.</span><span class="n">Groups</span>              <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentRPY</span>         <span class="n">robot</span><span class="o">.</span><span class="n">rh_svc</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">HandClose</span>           <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentRotation</span>    <span class="n">robot</span><span class="o">.</span><span class="n">saveLog</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">HandGroups</span>          <span class="n">robot</span><span class="o">.</span><span class="n">getJointAngles</span>        <span class="n">robot</span><span class="o">.</span><span class="n">sc</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">HandOpen</span>            <span class="n">robot</span><span class="o">.</span><span class="n">getRTCInstanceList</span>    <span class="n">robot</span><span class="o">.</span><span class="n">sc_svc</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">InitialPose</span>         <span class="n">robot</span><span class="o">.</span><span class="n">getRTCList</span>            <span class="n">robot</span><span class="o">.</span><span class="n">sensors</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">OffPose</span>             <span class="n">robot</span><span class="o">.</span><span class="n">getReferencePose</span>      <span class="n">robot</span><span class="o">.</span><span class="n">seq</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">RtcList</span>             <span class="n">robot</span><span class="o">.</span><span class="n">getReferencePosition</span>  <span class="n">robot</span><span class="o">.</span><span class="n">seq_svc</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">abc</span>                 <span class="n">robot</span><span class="o">.</span><span class="n">getReferenceRPY</span>       <span class="n">robot</span><span class="o">.</span><span class="n">servoOff</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">activateComps</span>       <span class="n">robot</span><span class="o">.</span><span class="n">getReferenceRotation</span>  <span class="n">robot</span><span class="o">.</span><span class="n">servoOn</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">afs</span>                 <span class="n">robot</span><span class="o">.</span><span class="n">getSensors</span>            <span class="n">robot</span><span class="o">.</span><span class="n">setHandEffort</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">checkEncoders</span>       <span class="n">robot</span><span class="o">.</span><span class="n">goActual</span>              <span class="n">robot</span><span class="o">.</span><span class="n">setHandJointAngles</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">clearLog</span>            <span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span>             <span class="n">robot</span><span class="o">.</span><span class="n">setHandWidth</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">co</span>                  <span class="n">robot</span><span class="o">.</span><span class="n">goOffPose</span>             <span class="n">robot</span><span class="o">.</span><span class="n">setJointAngle</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">co_svc</span>              <span class="n">robot</span><span class="o">.</span><span class="n">hand_width2angles</span>     <span class="n">robot</span><span class="o">.</span><span class="n">setJointAngles</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">configurator_name</span>   <span class="n">robot</span><span class="o">.</span><span class="n">hgc</span>                   <span class="n">robot</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">connectComps</span>        <span class="n">robot</span><span class="o">.</span><span class="n">ic</span>                    <span class="n">robot</span><span class="o">.</span><span class="n">setSelfGroups</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">connectLoggerPort</span>   <span class="n">robot</span><span class="o">.</span><span class="n">init</span>                  <span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">createComp</span>          <span class="n">robot</span><span class="o">.</span><span class="n">isCalibDone</span>           <span class="n">robot</span><span class="o">.</span><span class="n">setupLogger</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">createComps</span>         <span class="n">robot</span><span class="o">.</span><span class="n">isServoOn</span>             <span class="n">robot</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">el</span>                  <span class="n">robot</span><span class="o">.</span><span class="n">kf</span>                    <span class="n">robot</span><span class="o">.</span><span class="n">sh_svc</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">el_svc</span>              <span class="n">robot</span><span class="o">.</span><span class="n">lengthDigitalInput</span>    <span class="n">robot</span><span class="o">.</span><span class="n">simulation_mode</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">ep_svc</span>              <span class="n">robot</span><span class="o">.</span><span class="n">lengthDigitalOutput</span>   <span class="n">robot</span><span class="o">.</span><span class="n">st</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">findModelLoader</span>     <span class="n">robot</span><span class="o">.</span><span class="n">liftRobotUp</span>           <span class="n">robot</span><span class="o">.</span><span class="n">stOff</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">fk</span>                  <span class="n">robot</span><span class="o">.</span><span class="n">loadPattern</span>           <span class="n">robot</span><span class="o">.</span><span class="n">tf</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">fk_svc</span>              <span class="n">robot</span><span class="o">.</span><span class="n">log</span>                   <span class="n">robot</span><span class="o">.</span><span class="n">vs</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">flat2Groups</span>         <span class="n">robot</span><span class="o">.</span><span class="n">log_svc</span>               <span class="n">robot</span><span class="o">.</span><span class="n">waitForModelLoader</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">getActualState</span>      <span class="n">robot</span><span class="o">.</span><span class="n">moveHand</span>              <span class="n">robot</span><span class="o">.</span><span class="n">waitForRTCManagerAndRoboHardware</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">getBodyInfo</span>         <span class="n">robot</span><span class="o">.</span><span class="n">ms</span>                    <span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolation</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPose</span>      <span class="n">robot</span><span class="o">.</span><span class="n">readDigitalInput</span>      <span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPosition</span>  <span class="n">robot</span><span class="o">.</span><span class="n">rh</span>                    <span class="n">robot</span><span class="o">.</span><span class="n">writeDigitalOutput</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Groups</span></code> のリストとそのメンバを見てみます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">Groups</span>
+<span class="n">Out</span><span class="p">:</span>
+<span class="p">[[</span><span class="s1">&#39;torso&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CHEST_JOINT0&#39;</span><span class="p">]],</span>
+ <span class="p">[</span><span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;HEAD_JOINT0&#39;</span><span class="p">,</span> <span class="s1">&#39;HEAD_JOINT1&#39;</span><span class="p">]],</span>
+ <span class="p">[</span><span class="s1">&#39;rarm&#39;</span><span class="p">,</span>
+  <span class="p">[</span><span class="s1">&#39;RARM_JOINT0&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;RARM_JOINT1&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;RARM_JOINT2&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;RARM_JOINT3&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;RARM_JOINT4&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;RARM_JOINT5&#39;</span><span class="p">]],</span>
+ <span class="p">[</span><span class="s1">&#39;larm&#39;</span><span class="p">,</span>
+  <span class="p">[</span><span class="s1">&#39;LARM_JOINT0&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;LARM_JOINT1&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;LARM_JOINT2&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;LARM_JOINT3&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;LARM_JOINT4&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;LARM_JOINT5&#39;</span><span class="p">]]]</span>
+</pre></div>
+</div>
+<p>スクリプトインタラプタとしての iPython の利点はそこから API の情報を得られることにあります。</p>
+<p>例えば、ロボットの現在の姿勢を知りたいがそのコマンドを知らないような場合でも、
+まず少し推測してからタブ補完を利用することで次のように情報を得ることができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">getCurrent</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPose</span>  <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPosition</span>  <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentRPY</span>  <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentRotation</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">getCurren</span></code> に対して4つの選択肢があり、
+この内 <code class="docutils literal notranslate"><span class="pre">getCurrentPose</span></code> が意図するコマンドであることが分かります。
+さらにそのメソッドの引数を知る必要がある場合にはコマンドの最後に <code class="docutils literal notranslate"><span class="pre">?</span></code> を入力します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>In [0] : robot.getCurrentPose?
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Signature: robot.getCurrentPose(lname=None, frame_name=None)
+Docstring:
+!@brief
+Returns the current physical pose of the specified joint.
+cf. getReferencePose that returns commanded value.
+
+eg.
+^Kerbatim
+     IN: robot.getCurrentPose(&#39;LARM_JOINT5&#39;)
+     OUT: [-0.0017702356144599085,
+      0.00019034630541264752,
+      -0.9999984150158207,
+      0.32556275164378523,
+      0.00012155879975329215,
+      0.9999999745367515,
+       0.0001901314142046251,
+       0.18236394191140365,
+       0.9999984257434246,
+       -0.00012122202968358842,
+       -0.001770258707652326,
+       0.07462472659364472,
+       0.0,
+       0.0,
+       0.0,
+       1.0]
+\endverbatim
+
+@type lname: str
+@param lname: Name of the link.
+@param frame_name str: set reference frame name (from 315.2.5)
+@rtype: list of float
+@return: Rotational matrix and the position of the given joint in
+         1-dimensional list, that is:
+^Kerbatim
+         [a11, a12, a13, x,
+          a21, a22, a23, y,
+          a31, a32, a33, z,
+           0,   0,   0,  1]
+\endverbatim
+File:      /opt/ros/melodic/lib/python2.7/dist-packages/hironx_ros_bridge/hironx_client.py
+Type:      instancemethod
+</pre></div>
+</div>
+<p>ここで <code class="docutils literal notranslate"><span class="pre">getCurrentPose</span></code> は <code class="docutils literal notranslate"><span class="pre">lname</span></code>（link name の略）を受け取ることが分ります。
+よって次のように実行します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPose</span><span class="p">(</span><span class="s1">&#39;RARM_JOINT0&#39;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">:</span>
+<span class="p">[</span><span class="mf">1.0</span><span class="p">,</span>
+ <span class="o">-</span><span class="mf">3.3881317890172014e-21</span><span class="p">,</span>
+ <span class="mf">0.0</span><span class="p">,</span>
+ <span class="mf">0.04</span><span class="p">,</span>
+ <span class="mf">3.3881317890172014e-21</span><span class="p">,</span>
+ <span class="mf">1.0</span><span class="p">,</span>
+ <span class="mf">0.0</span><span class="p">,</span>
+ <span class="o">-</span><span class="mf">0.135</span><span class="p">,</span>
+ <span class="mf">0.0</span><span class="p">,</span>
+ <span class="mf">0.0</span><span class="p">,</span>
+ <span class="mf">1.0</span><span class="p">,</span>
+ <span class="mf">0.36850000000000005</span><span class="p">,</span>
+ <span class="mf">0.0</span><span class="p">,</span>
+ <span class="mf">0.0</span><span class="p">,</span>
+ <span class="mf">0.0</span><span class="p">,</span>
+ <span class="mf">1.0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>この <code class="docutils literal notranslate"><span class="pre">getCurrentPose</span></code> は指示したリンクの回転行列と位置の値を1次元のリストとして戻します。</p>
+<p>位置だけを知りたい場合には次の方法で取得することもできます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">getCurrent</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPose</span>  <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPosition</span>  <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentRPY</span>   <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentRotation</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPosition</span><span class="p">(</span><span class="s1">&#39;RARM_JOINT0&#39;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.04</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.135</span><span class="p">,</span> <span class="mf">0.36850000000000005</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>hrpsys においては位置ベクトルは次のように対応した3つの要素 [x, y, z] で表されます。</p>
+<ul class="simple">
+<li><p>x: 前</p></li>
+<li><p>y: 左</p></li>
+<li><p>z: 上</p></li>
+</ul>
+<hr class="docutils" />
+<p>次に腕を動かしてみます。
+まず初期姿勢まで動かします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>目標姿勢を設定するにはどうすれば良いかを調べます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>In [0] : robot.setTargetPose?
+Signature: robot.setTargetPose(gname, pos, rpy, tm, frame_name=None)
+Docstring:
+!@brief
+Move the end-effector to the given absolute pose.
+All d* arguments are in meter.
+
+@param gname str: Name of the joint group. Case-insensitive
+@param pos list of float: In meter.
+@param rpy list of float: In radian.
+@param tm float: Second to complete the command.
+@param frame_name str: Name of the frame that this particular command
+                   references to.
+@return bool: False if unreachable.
+File:      /opt/ros/melodic/lib/python2.7/dist-packages/hironx_ros_bridge/hironx_client.py
+Type:      instancemethod
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">gname</span></code> は <code class="docutils literal notranslate"><span class="pre">joint</span> <span class="pre">group</span></code> の名前です。
+<code class="docutils literal notranslate"><span class="pre">pos</span></code> と <code class="docutils literal notranslate"><span class="pre">rpy</span></code> はリスト形式です。</p>
+<p>目標姿勢を指定する前に現在のロボットの姿勢を変数に格納します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPosition</span><span class="p">(</span><span class="s1">&#39;RARM_JOINT5&#39;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">rpy</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">getReferenceRPY</span><span class="p">(</span><span class="s1">&#39;RARM_JOINT5&#39;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">tm</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>ロボットの姿勢は下図のようになっています。</p>
+<p><img alt="NEXTAGEA Current Pose" src="_images/snap_tutorial_hrpsysViewer.png" /></p>
+<p>それでは目標位置を現在の姿勢から少し変えて指示して、そこへの動作を実行させてみましょう。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">pos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">rpy</span><span class="p">,</span> <span class="n">tm</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">:</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>次の図のように右腕の手先が指定した位置へと移動しています。</p>
+<p><img alt="NEXTAGEA setTargetPose" src="_images/nextagea_after_move_rarm.png" /></p>
+<!-- ロボットでの作業が終了したら終了姿勢にしてください. --><!-- ``` --><!-- In [0] : robot.goOffPose() --><!-- ``` --><!-- ![HIRO goOffPose](http://wiki.ros.org/hironx_ros_bridge?action=AttachFile&do=get&target=hiro_powerOff.png) --></section>
+<section id="hrpsys-based-api-hrpsys-based-api-sources-and-documents">
+<h4>hrpsys-based API のソースとドキュメント<!--hrpsys-based API sources and documents--><a class="headerlink" href="#hrpsys-based-api-hrpsys-based-api-sources-and-documents" title="この見出しへのパーマリンク"></a></h4>
+<p>hrpsys-based API は次のリンク先にソースとドキュメントがあります。</p>
+<ul class="simple">
+<li><p>多くのコマンドは hrpsys_config.HrpsysConfigurator のペアレントクラスに定義されています。</p>
+<ul>
+<li><p><a class="reference external" href="http://fkanehiro.github.io/hrpsys-base/df/d98/classpython_1_1hrpsys__config_1_1HrpsysConfigurator.html">http://fkanehiro.github.io/hrpsys-base/df/d98/
+classpython_1_1hrpsys__config_1_1HrpsysConfigurator.html</a></p></li>
+</ul>
+</li>
+<li><p>HIRO:</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/start-jsk/rtmros_hironx/blob/hydro-devel/hironx_ros_bridge/src/hironx_ros_bridge/hironx_client.py">https://github.com/start-jsk/rtmros_hironx/blob/hydro-devel/hironx_ros_bridge/src/hironx_ros_bridge/hironx_client.py</a></p></li>
+</ul>
+</li>
+<li><p>NEXTAGE Fillie OPEN:</p>
+<ul>
+<li><p>~/catkin_ws/src/nextage_fillie_open_ros_bridge/src/nextage_fillie_open_ros_bridge/nextage_fillie_open_client.py</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="rtm-python-rtm-python-interface-programming">
+<h3>RTM Python インタフェースプログラミング<!--RTM Python interface programming--><a class="headerlink" href="#rtm-python-rtm-python-interface-programming" title="この見出しへのパーマリンク"></a></h3>
+<p>Python を用いた HIRO / NEXTAGE Fillie OPEN のプログラミングは1つの統合されたインタフェースによって行うことができます。
+インタフェースの名称はロボットによりそれぞれ異なります。</p>
+<ul class="simple">
+<li><p>HIRONX : HIRO / HIRONX ユーザ</p></li>
+<li><p>NextageFillieOpenClient : NEXTAGE Fillie OPEN ユーザ</p></li>
+</ul>
+<p>本項では &quot;HIRONX&quot; を使用しますが NEXTAGE Fillie OPEN ユーザは NextageFillieOpenClient インタフェースを用いて同様のことを行うことができます。</p>
+<section id="acceptance-test-rtm-sample-code-acceptance-test-rtm">
+<h4>サンプルコード - Acceptance Test (RTM)<!--Sample Code-Acceptance Test (RTM)--><a class="headerlink" href="#acceptance-test-rtm-sample-code-acceptance-test-rtm" title="この見出しへのパーマリンク"></a></h4>
+<p>Acceptance Test (RTM) のコードを参考に RTM Python インタフェースプログタミング
+の方法を見たあとにコードを実行します。</p>
+<section id="acceptancetest-rtm-py-acceptancetest-rtm-py">
+<h5>acceptancetest_rtm.py<!--acceptancetest_rtm.py--><a class="headerlink" href="#acceptancetest-rtm-py-acceptancetest-rtm-py" title="この見出しへのパーマリンク"></a></h5>
+<p>このサンプルは下図のような2段階の依存関係を持っています。</p>
+<p><img alt="AcceptanceTest_Hiro Dependency" src="_images/nxo_acceptancetest_hiro_dependency.png" /></p>
+<p>このサンプルコードの動作は <code class="docutils literal notranslate"><span class="pre">AcceptanceTest_Hiro</span></code> クラスに記述されていて
+<code class="docutils literal notranslate"><span class="pre">HIRONX</span></code> クラスに接続する <code class="docutils literal notranslate"><span class="pre">AcceptancetestRTM</span></code> クラスを利用しています。</p>
+<p><code class="docutils literal notranslate"><span class="pre">AcceptancetestRTM</span></code> について見てみます。コードの全体は次のようになっています。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://raw.githubusercontent.com/start-jsk/rtmros_hironx/a7a43e5baf4dcd48e34b94f9781defadfbca03d0/hironx_ros_bridge/src/hironx_ros_bridge/testutil/acceptancetest_rtm.py">https://raw.githubusercontent.com/start-jsk/rtmros_hironx/<br />a7a43e5baf4dcd48e34b94f9781defadfbca03d0/hironx_ros_bridge/<br />src/hironx_ros_bridge/testutil/acceptancetest_rtm.py</a></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="mi">2</span>
+<span class="mi">3</span> <span class="c1"># Software License Agreement (BSD License)</span>
+<span class="mi">4</span> <span class="c1">#</span>
+<span class="mi">5</span> <span class="c1"># Copyright (c) 2014, TORK (Tokyo Opensource Robotics Kyokai Association)</span>
+<span class="mi">6</span> <span class="c1"># All rights reserved.</span>
+<span class="mi">7</span> <span class="c1">#</span>
+<span class="mi">8</span> <span class="c1"># Redistribution and use in source and binary forms, with or without</span>
+<span class="mi">9</span> <span class="c1"># modification, are permitted provided that the following conditions</span>
+<span class="mi">10</span> <span class="c1"># are met:</span>
+<span class="mi">11</span> <span class="c1">#</span>
+<span class="mi">12</span> <span class="c1">#  * Redistributions of source code must retain the above copyright</span>
+<span class="mi">13</span> <span class="c1">#    notice, this list of conditions and the following disclaimer.</span>
+<span class="mi">14</span> <span class="c1">#  * Redistributions in binary form must reproduce the above</span>
+<span class="mi">15</span> <span class="c1">#    copyright notice, this list of conditions and the following</span>
+<span class="mi">16</span> <span class="c1">#    disclaimer in the documentation and/or other materials provided</span>
+<span class="mi">17</span> <span class="c1">#    with the distribution.</span>
+<span class="mi">18</span> <span class="c1">#  * Neither the name of TORK. nor the</span>
+<span class="mi">19</span> <span class="c1">#    names of its contributors may be used to endorse or promote products</span>
+<span class="mi">20</span> <span class="c1">#    derived from this software without specific prior written permission.</span>
+<span class="mi">21</span> <span class="c1">#</span>
+<span class="mi">22</span> <span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</span>
+<span class="mi">23</span> <span class="c1"># &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</span>
+<span class="mi">24</span> <span class="c1"># LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS</span>
+<span class="mi">25</span> <span class="c1"># FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE</span>
+<span class="mi">26</span> <span class="c1"># COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,</span>
+<span class="mi">27</span> <span class="c1"># INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,</span>
+<span class="mi">28</span> <span class="c1"># BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class="mi">29</span> <span class="c1"># LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER</span>
+<span class="mi">30</span> <span class="c1"># CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT</span>
+<span class="mi">31</span> <span class="c1"># LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN</span>
+<span class="mi">32</span> <span class="c1"># ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
+<span class="mi">33</span> <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="mi">34</span>
+<span class="mi">35</span> <span class="kn">import</span> <span class="nn">time</span>
+<span class="mi">36</span>
+<span class="mi">37</span> <span class="kn">from</span> <span class="nn">hironx_ros_bridge.constant</span> <span class="kn">import</span> <span class="n">Constant</span>
+<span class="mi">38</span> <span class="kn">from</span> <span class="nn">hironx_ros_bridge.testutil.abst_acceptancetest</span> <span class="kn">import</span> <span class="n">AbstAcceptanceTest</span>
+<span class="mi">39</span>
+<span class="mi">40</span>
+<span class="mi">41</span> <span class="k">class</span> <span class="nc">AcceptanceTestRTM</span><span class="p">(</span><span class="n">AbstAcceptanceTest</span><span class="p">):</span>
+<span class="mi">42</span>
+<span class="mi">43</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_client</span><span class="p">):</span>
+<span class="mi">44</span>         <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">45         @type robot_client: hironx_ros_bridge.hironx_client.HIRONX</span>
+<span class="s1">46         &#39;&#39;&#39;</span>
+<span class="mi">47</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span> <span class="o">=</span> <span class="n">robot_client</span>
+<span class="mi">48</span>
+<span class="mi">49</span>     <span class="k">def</span> <span class="nf">go_initpos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="mi">50</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+<span class="mi">51</span>
+<span class="mi">52</span>     <span class="k">def</span> <span class="nf">set_joint_angles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_group</span><span class="p">,</span> <span class="n">joint_angles</span><span class="p">,</span> <span class="n">msg_tasktitle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="mi">53</span>                          <span class="n">task_duration</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">do_wait</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="mi">54</span>         <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">55         @see: AbstAcceptanceTest.set_joint_angles</span>
+<span class="s1">56         &#39;&#39;&#39;</span>
+<span class="mi">57</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== RTM; </span><span class="si">{}</span><span class="s2"> ==&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg_tasktitle</span><span class="p">))</span>
+<span class="mi">58</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span>
+<span class="mi">59</span>                          <span class="n">joint_group</span><span class="p">,</span> <span class="n">joint_angles</span><span class="p">,</span> <span class="n">task_duration</span><span class="p">,</span> <span class="n">do_wait</span><span class="p">)</span>
+<span class="mi">60</span>
+<span class="mi">61</span>     <span class="k">def</span> <span class="nf">set_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_group</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">rpy</span><span class="p">,</span> <span class="n">msg_tasktitle</span><span class="p">,</span>
+<span class="mi">62</span>                       <span class="n">task_duration</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">do_wait</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ref_frame_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="mi">63</span>
+<span class="mi">64</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== RTM; </span><span class="si">{}</span><span class="s2"> ==&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg_tasktitle</span><span class="p">))</span>
+<span class="mi">65</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="n">joint_group</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">rpy</span><span class="p">,</span> <span class="n">task_duration</span><span class="p">,</span>
+<span class="mi">66</span>                                         <span class="n">ref_frame_name</span><span class="p">)</span>
+<span class="mi">67</span>         <span class="k">if</span> <span class="n">do_wait</span><span class="p">:</span>
+<span class="mi">68</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="n">joint_group</span><span class="p">)</span>
+<span class="mi">69</span>
+<span class="mi">70</span>     <span class="k">def</span> <span class="nf">set_pose_relative</span><span class="p">(</span>
+<span class="mi">71</span>                         <span class="bp">self</span><span class="p">,</span> <span class="n">joint_group</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dz</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="mi">72</span>                         <span class="n">msg_tasktitle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">task_duration</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">do_wait</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="mi">73</span>         <span class="k">if</span> <span class="n">joint_group</span> <span class="o">==</span> <span class="n">Constant</span><span class="o">.</span><span class="n">GRNAME_LEFT_ARM</span><span class="p">:</span>
+<span class="mi">74</span>             <span class="n">eef</span> <span class="o">=</span> <span class="s1">&#39;LARM_JOINT5&#39;</span>
+<span class="mi">75</span>         <span class="k">elif</span> <span class="n">joint_group</span> <span class="o">==</span> <span class="n">Constant</span><span class="o">.</span><span class="n">GRNAME_RIGHT_ARM</span><span class="p">:</span>
+<span class="mi">76</span>             <span class="n">eef</span> <span class="o">=</span> <span class="s1">&#39;RARM_JOINT5&#39;</span>
+<span class="mi">77</span>
+<span class="mi">78</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== RTM; </span><span class="si">{}</span><span class="s2"> ==&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg_tasktitle</span><span class="p">))</span>
+<span class="mi">79</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span>
+<span class="mi">80</span>                                     <span class="n">joint_group</span><span class="p">,</span> <span class="n">eef</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">dz</span><span class="p">,</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span>
+<span class="mi">81</span>                                     <span class="n">task_duration</span><span class="p">,</span> <span class="n">do_wait</span><span class="p">)</span>
+<span class="mi">82</span>
+<span class="mi">83</span>     <span class="k">def</span> <span class="nf">_run_tests_hrpsys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="mi">84</span>         <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">85         @deprecated: This method remains as a reference. This used to function</span>
+<span class="s1">86                      when being called directly from ipython commandline and</span>
+<span class="s1">87                      now replaced by optimized codes.</span>
+<span class="s1">88         &#39;&#39;&#39;</span>
+<span class="mi">89</span>         <span class="n">_TIME_SETTARGETP_L</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="mi">90</span>         <span class="n">_TIME_SETTARGETP_R</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="mi">91</span>         <span class="n">_TIME_BW_TESTS</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="mi">92</span>
+<span class="mi">93</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+<span class="mi">94</span>
+<span class="mi">95</span>         <span class="c1"># === TASK-1 ===</span>
+<span class="mi">96</span>         <span class="c1"># L arm setTargetPose</span>
+<span class="mi">97</span>         <span class="n">_POS_L_INIT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPosition</span><span class="p">(</span><span class="s1">&#39;LARM_JOINT5&#39;</span><span class="p">)</span>
+<span class="mi">98</span>         <span class="n">_POS_L_INIT</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">0.8</span>
+<span class="mi">99</span>         <span class="n">_RPY_L_INIT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">getCurrentRPY</span><span class="p">(</span><span class="s1">&#39;LARM_JOINT5&#39;</span><span class="p">)</span>
+<span class="mi">100</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">,</span> <span class="n">_POS_L_INIT</span><span class="p">,</span> <span class="n">_RPY_L_INIT</span><span class="p">,</span> <span class="n">_TIME_SETTARGETP_L</span><span class="p">)</span>
+<span class="mi">101</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">)</span>
+<span class="mi">102</span>
+<span class="mi">103</span>         <span class="c1"># R arm setTargetPose</span>
+<span class="mi">104</span>         <span class="n">_POS_R_INIT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPosition</span><span class="p">(</span><span class="s1">&#39;RARM_JOINT5&#39;</span><span class="p">)</span>
+<span class="mi">105</span>         <span class="n">_POS_R_INIT</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">0.07</span>
+<span class="mi">106</span>         <span class="n">_RPY_R_INIT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">getCurrentRPY</span><span class="p">(</span><span class="s1">&#39;RARM_JOINT5&#39;</span><span class="p">)</span>
+<span class="mi">107</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">,</span> <span class="n">_POS_R_INIT</span><span class="p">,</span> <span class="n">_RPY_R_INIT</span><span class="p">,</span> <span class="n">_TIME_SETTARGETP_R</span><span class="p">)</span>
+<span class="mi">108</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">)</span>
+<span class="mi">109</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">_TIME_BW_TESTS</span><span class="p">)</span>
+<span class="mi">110</span>
+<span class="mi">111</span>         <span class="c1"># === TASK-2 ===</span>
+<span class="mi">112</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+<span class="mi">113</span>         <span class="c1"># Both arm setTargetPose</span>
+<span class="mi">114</span>         <span class="n">_Z_SETTARGETP_L</span> <span class="o">=</span> <span class="mf">0.08</span>
+<span class="mi">115</span>         <span class="n">_Z_SETTARGETP_R</span> <span class="o">=</span> <span class="mf">0.08</span>
+<span class="mi">116</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">,</span> <span class="s1">&#39;LARM_JOINT5&#39;</span><span class="p">,</span>
+<span class="mi">117</span>                                          <span class="n">dz</span><span class="o">=</span><span class="n">_Z_SETTARGETP_L</span><span class="p">,</span>
+<span class="mi">118</span>                                          <span class="n">tm</span><span class="o">=</span><span class="n">_TIME_SETTARGETP_L</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="mi">119</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">,</span> <span class="s1">&#39;RARM_JOINT5&#39;</span><span class="p">,</span>
+<span class="mi">120</span>                                          <span class="n">dz</span><span class="o">=</span><span class="n">_Z_SETTARGETP_R</span><span class="p">,</span>
+<span class="mi">121</span>                                          <span class="n">tm</span><span class="o">=</span><span class="n">_TIME_SETTARGETP_R</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="mi">122</span>
+<span class="mi">123</span>         <span class="c1"># === TASK-3 ===</span>
+<span class="mi">124</span>         <span class="c1"># Head toward down</span>
+<span class="mi">125</span>         <span class="n">_TIME_HEAD</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="mi">126</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="s1">&#39;HEAD_JOINT0&#39;</span><span class="p">,</span> <span class="n">dp</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">tm</span><span class="o">=</span><span class="n">_TIME_HEAD</span><span class="p">)</span>
+<span class="mi">127</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)</span>
+<span class="mi">128</span>         <span class="c1"># Head toward up</span>
+<span class="mi">129</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="s1">&#39;HEAD_JOINT0&#39;</span><span class="p">,</span> <span class="n">dp</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">tm</span><span class="o">=</span><span class="n">_TIME_HEAD</span><span class="p">)</span>
+<span class="mi">130</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)</span>
+<span class="mi">131</span>         <span class="c1"># See left by position</span>
+<span class="mi">132</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="mi">133</span>         <span class="c1"># See right by position</span>
+<span class="mi">134</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="mi">135</span>         <span class="c1"># Set back face to the starting pose w/o wait.</span>
+<span class="mi">136</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span> <span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="mi">137</span>
+<span class="mi">138</span>         <span class="c1"># === TASK-4 ===</span>
+<span class="mi">139</span>         <span class="c1"># 0.1mm increment is not working for some reason.</span>
+<span class="mi">140</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+<span class="mi">141</span>         <span class="c1"># Move by iterating 0.1mm at cartesian space</span>
+<span class="mi">142</span>         <span class="n">_TIME_CARTESIAN</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="mi">143</span>         <span class="n">_INCREMENT_MIN</span> <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="mi">144</span>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">):</span>
+<span class="mi">145</span>             <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">,</span> <span class="s1">&#39;LARM_JOINT5&#39;</span><span class="p">,</span>
+<span class="mi">146</span>                                              <span class="n">dy</span><span class="o">=</span><span class="n">_INCREMENT_MIN</span><span class="p">,</span>
+<span class="mi">147</span>                                              <span class="n">tm</span><span class="o">=</span><span class="n">_TIME_CARTESIAN</span><span class="p">)</span>
+<span class="mi">148</span>             <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">,</span> <span class="s1">&#39;RARM_JOINT5&#39;</span><span class="p">,</span>
+<span class="mi">149</span>                                              <span class="n">dy</span><span class="o">=</span><span class="n">_INCREMENT_MIN</span><span class="p">,</span>
+<span class="mi">150</span>                                              <span class="n">tm</span><span class="o">=</span><span class="n">_TIME_CARTESIAN</span><span class="p">)</span>
+<span class="mi">151</span>             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">th move&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="mi">152</span>
+<span class="mi">153</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+<span class="mi">154</span>         <span class="c1"># === TASK-5 ===</span>
+<span class="mi">155</span>         <span class="c1"># Turn torso</span>
+<span class="mi">156</span>         <span class="n">_TORSO_ANGLE</span> <span class="o">=</span> <span class="mi">120</span>
+<span class="mi">157</span>         <span class="n">_TIME_TORSO_R</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="mi">158</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span><span class="s1">&#39;torso&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">_TORSO_ANGLE</span><span class="p">],</span> <span class="n">_TIME_TORSO_R</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="mi">159</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;torso&#39;</span><span class="p">)</span>
+<span class="mi">160</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span><span class="s1">&#39;torso&#39;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="n">_TORSO_ANGLE</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="mi">161</span>
+<span class="mi">162</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+<span class="mi">163</span>
+<span class="mi">164</span>         <span class="c1"># === TASK-6.1 ===</span>
+<span class="mi">165</span>         <span class="c1"># Overwrite previous command, for torso using setJointAnglesOfGroup</span>
+<span class="mi">166</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span><span class="s1">&#39;torso&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">_TORSO_ANGLE</span><span class="p">],</span> <span class="n">_TIME_TORSO_R</span><span class="p">,</span>
+<span class="mi">167</span>                                          <span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="mi">168</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">169</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span><span class="s1">&#39;torso&#39;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="n">_TORSO_ANGLE</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="mi">170</span>
+<span class="mi">171</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="mi">172</span>
+<span class="mi">173</span>         <span class="c1"># === TASK-6.2 ===</span>
+<span class="mi">174</span>         <span class="c1"># Overwrite previous command, for arms using setTargetPose</span>
+<span class="mi">175</span>         <span class="n">_X_EEF_OVERWRITE</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="mi">176</span>         <span class="n">_Z_EEF_OVERWRITE</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="mi">177</span>         <span class="n">_TIME_EEF_OVERWRITE</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="mi">178</span>         <span class="n">_POS_L_INIT</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_X_EEF_OVERWRITE</span>
+<span class="mi">179</span>         <span class="n">_POS_L_INIT</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_Z_EEF_OVERWRITE</span>
+<span class="mi">180</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">,</span> <span class="n">_POS_L_INIT</span><span class="p">,</span> <span class="n">_RPY_L_INIT</span><span class="p">,</span> <span class="n">_TIME_EEF_OVERWRITE</span><span class="p">)</span>
+<span class="mi">181</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">)</span>
+<span class="mi">182</span>         <span class="c1"># Trying to raise rarm to the same level of larm.</span>
+<span class="mi">183</span>         <span class="n">_POS_R_INIT</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_X_EEF_OVERWRITE</span>
+<span class="mi">184</span>         <span class="n">_POS_R_INIT</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_Z_EEF_OVERWRITE</span>
+<span class="mi">185</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">,</span> <span class="n">_POS_R_INIT</span><span class="p">,</span> <span class="n">_RPY_R_INIT</span><span class="p">,</span> <span class="n">_TIME_EEF_OVERWRITE</span><span class="p">)</span>
+<span class="mi">186</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">)</span>
+<span class="mi">187</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">188</span>         <span class="c1"># Stop rarm</span>
+<span class="mi">189</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">clearOfGroup</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">)</span>  <span class="c1"># Movement should stop here.</span>
+<span class="mi">190</span>
+<span class="mi">191</span>         <span class="c1"># === TASK-7.1 ===</span>
+<span class="mi">192</span>         <span class="c1"># Cover wide workspace.</span>
+<span class="mi">193</span>         <span class="n">_TIME_COVER_WORKSPACE</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="mi">194</span>         <span class="c1"># Close to the max width the robot can spread arms with the hand kept</span>
+<span class="mi">195</span>         <span class="c1"># at table level.</span>
+<span class="mi">196</span>         <span class="n">_POS_L_X_NEAR_Y_FAR</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.32552812002303166</span><span class="p">,</span> <span class="mf">0.47428609880442024</span><span class="p">,</span> <span class="mf">1.0376656470275407</span><span class="p">]</span>
+<span class="mi">197</span>         <span class="n">_RPY_L_X_NEAR_Y_FAR</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">3.07491977663752</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5690249316560323</span><span class="p">,</span> <span class="mf">3.074732073335767</span><span class="p">)</span>
+<span class="mi">198</span>         <span class="n">_POS_R_X_NEAR_Y_FAR</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.32556456455769633</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.47239119592815987</span><span class="p">,</span> <span class="mf">1.0476131608682244</span><span class="p">]</span>
+<span class="mi">199</span>         <span class="n">_RPY_R_X_NEAR_Y_FAR</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.072515432213872</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5690200270375372</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.072326882451363</span><span class="p">)</span>
+<span class="mi">200</span>
+<span class="mi">201</span>         <span class="c1"># Close to the farthest distance the robot can reach, with the hand kept</span>
+<span class="mi">202</span>         <span class="c1"># at table level.</span>
+<span class="mi">203</span>         <span class="n">_POS_L_X_FAR_Y_FAR</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.47548142379781055</span><span class="p">,</span> <span class="mf">0.17430276793604782</span><span class="p">,</span> <span class="mf">1.0376878025614884</span><span class="p">]</span>
+<span class="mi">204</span>         <span class="n">_RPY_L_X_FAR_Y_FAR</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">3.075954857224205</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5690261926181046</span><span class="p">,</span> <span class="mf">3.0757659493049574</span><span class="p">)</span>
+<span class="mi">205</span>         <span class="n">_POS_R_X_FAR_Y_FAR</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.4755337947019357</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.17242322190721648</span><span class="p">,</span> <span class="mf">1.0476395479774052</span><span class="p">]</span>
+<span class="mi">206</span>         <span class="n">_RPY_R_X_FAR_Y_FAR</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0715850722714944</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5690204449882248</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.071395243174742</span><span class="p">)</span>
+<span class="mi">207</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">,</span> <span class="n">_POS_L_X_NEAR_Y_FAR</span><span class="p">,</span> <span class="n">_RPY_L_X_NEAR_Y_FAR</span><span class="p">,</span> <span class="n">_TIME_COVER_WORKSPACE</span><span class="p">)</span>
+<span class="mi">208</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">,</span> <span class="n">_POS_R_X_NEAR_Y_FAR</span><span class="p">,</span> <span class="n">_RPY_R_X_NEAR_Y_FAR</span><span class="p">,</span> <span class="n">_TIME_COVER_WORKSPACE</span><span class="p">)</span>
+<span class="mi">209</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">)</span>
+<span class="mi">210</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">)</span>
+<span class="mi">211</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">212</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">,</span> <span class="n">_POS_L_X_FAR_Y_FAR</span><span class="p">,</span> <span class="n">_RPY_L_X_FAR_Y_FAR</span><span class="p">,</span> <span class="n">_TIME_COVER_WORKSPACE</span><span class="p">)</span>
+<span class="mi">213</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">,</span> <span class="n">_POS_R_X_FAR_Y_FAR</span><span class="p">,</span> <span class="n">_RPY_R_X_FAR_Y_FAR</span><span class="p">,</span> <span class="n">_TIME_COVER_WORKSPACE</span><span class="p">)</span>
+<span class="mi">214</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;larm&#39;</span><span class="p">)</span>
+<span class="mi">215</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">)</span>
+<span class="mi">216</span>
+<span class="mi">217</span>         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>タスクの内容を少し見てみます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">37</span> <span class="kn">from</span> <span class="nn">hironx_ros_bridge.constant</span> <span class="kn">import</span> <span class="n">Constant</span>
+<span class="mi">38</span> <span class="kn">from</span> <span class="nn">hironx_ros_bridge.testutil.abst_acceptancetest</span> <span class="kn">import</span> <span class="n">AbstAcceptanceTest</span>
+</pre></div>
+</div>
+<p>RTM API の HIRONX もしくは NextageFillieOpenClient クラスがインポートされていません。しかし、次の部分を見ると、</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">43</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_client</span><span class="p">):</span>
+<span class="mi">44</span>     <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">45     @type robot_client: hironx_ros_bridge.hironx_client.HIRONX</span>
+<span class="s1">46     &#39;&#39;&#39;</span>
+<span class="mi">47</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span> <span class="o">=</span> <span class="n">robot_client</span>
+</pre></div>
+</div>
+<p>コンストラクタが HIRONX を受け取り、メンバー <code class="docutils literal notranslate"><span class="pre">self._robotclient</span></code> に格納していることが分ります。
+以後は <code class="docutils literal notranslate"><span class="pre">self._robotclient</span></code> が HIRONX クラスインスタンスを参照することとなります。</p>
+<p>コードの残りの部分は基本的な操作を行っているだけです。</p>
+<p>例えば次のような部分です。
+簡潔に全ての関節が初期姿勢になるように記述されています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">49</span> <span class="k">def</span> <span class="nf">go_initpos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="mi">50</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">goInitial</span><span class="p">()</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>後々、自分のコードを開発してゆくうちに、
+各クラスとメソッドの API ドキュメントを見てオプションを知りたくなるかもしれません。
+このチュートリアルでは詳しく説明しませんので、ぜひご自身で探索してみてください。
+例えば <code class="docutils literal notranslate"><span class="pre">goInitial</span></code> メソッドには次のオプションがあります。</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hironx_ros_bridge</span><span class="o">.</span><span class="n">hironx_client</span><span class="o">.</span><span class="n">HIRONX</span><span class="o">.</span><span class="n">goInitial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tm</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="n">wait</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">init_pose_type</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="http://docs.ros.org/hydro/api/hironx_ros_bridge/html/classhironx__ros__bridge_1_1hironx__client_1_1HIRONX.html#a295b0b4950cb580273b224dc659c8a23">http://docs.ros.org/hydro/api/hironx_ros_bridge/html/
+classhironx__ros__bridge_1_1hironx__client_1_1HIRONX.html
+#a295b0b4950cb580273b224dc659c8a23</a></p></li>
+</ul>
+<p>更に例を挙げると次の部分です。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">52</span>     <span class="k">def</span> <span class="nf">set_joint_angles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_group</span><span class="p">,</span> <span class="n">joint_angles</span><span class="p">,</span> <span class="n">msg_tasktitle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="mi">53</span>                          <span class="n">task_duration</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">do_wait</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="mi">54</span>         <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">55         @see: AbstAcceptanceTest.set_joint_angles</span>
+<span class="s1">56         &#39;&#39;&#39;</span>
+<span class="mi">57</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== RTM; </span><span class="si">{}</span><span class="s2"> ==&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg_tasktitle</span><span class="p">))</span>
+<span class="mi">58</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">setJointAnglesOfGroup</span><span class="p">(</span>
+<span class="mi">59</span>                          <span class="n">joint_group</span><span class="p">,</span> <span class="n">joint_angles</span><span class="p">,</span> <span class="n">task_duration</span><span class="p">,</span> <span class="n">do_wait</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>こちらも簡潔に HIRONX のメソッドを呼び出すだけで、
+多くのことがすでに HIRONX 内で処理されているので、
+このような簡単な方法でコードを書くことができます。</p>
+</section>
+<section id="sample-code-execution">
+<h5>サンプルコードの実行<!--Sample code execution--><a class="headerlink" href="#sample-code-execution" title="この見出しへのパーマリンク"></a></h5>
+<p>新しい iPython ターミナルを開きます。
+少なくとも3つのターミナルが開いた状態になっています。
+次のように iPython ターミナルを起動します。
+シミュレーション環境の場合はそれに合わせて起動してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython -i `rospack find hironx_ros_bridge`/scripts/acceptancetest_hironx.py -- --host %HOSTNAME%
+</pre></div>
+</div>
+<p>次のコマンドで RTM インタフェースを通じてタスクが実行されます。</p>
+<ul class="simple">
+<li><p>注意: <strong>ロボットが動きます。</strong></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">acceptance</span><span class="o">.</span><span class="n">run_tests_rtm</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>次のように記述することでタスクの逐次実行もできます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">acceptance</span><span class="o">.</span><span class="n">run_tests_rtm</span><span class="p">(</span><span class="n">do_wait_input</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>iPython インタフェースを終了するときは <code class="docutils literal notranslate"><span class="pre">Ctrl-d</span></code> にてエスケープします。</p>
+</section>
+</section>
+<section id="sample-code-draw-a-circle">
+<h4>サンプルコード - 円を描く<!--Sample code-draw a circle--><a class="headerlink" href="#sample-code-draw-a-circle" title="この見出しへのパーマリンク"></a></h4>
+<p>ロボットのエンドエフェクタで円を描くサンプルコードを下記に示します。</p>
+<ul class="simple">
+<li><p>注意: <strong>本コードを改変する場合はまずシミュレーションでその動作を確認してから実機で動作させてください。</strong></p></li>
+</ul>
+<p>旧モデルによるシミュレーション動画：
+[NEXTAGE OPEN] Robots hands drawing circles: <a class="reference external" href="https://www.youtube.com/watch?v=OVae1xa5Rak">https://www.youtube.com/watch?v=OVae1xa5Rak</a></p>
+<!-- 変数 `robot` は何らかの方法でユーザの NextageAClient クラスのインスタンスに置き換える必要があります。 --><p>以下のコマンドで実行してください。ここで、%HOST%はロボットのIPアドレスを指します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython -i `rospack find nextage_fillie_open_ros_bridge`/script/nextage_fillie_open.py -- --host %HOST% (実機)
+$ ipython -i `rospack find nextage_fillie_open_ros_bridge`/script/nextage_fillie_open.py (シミュレーション)
+In [0] : execfile(&#39;/home/nxouser/catkin_ws/src/nextage_fillie_open_ros_bridge/script/circle.py&#39;)
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">circle_eef</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">eef</span><span class="o">=</span><span class="s1">&#39;larm&#39;</span><span class="p">,</span> <span class="n">step_degree</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ccw</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Moves the designated eef point-by-point so that the trajectory as a whole draws a circle.</span>
+
+<span class="sd">    Currently this only works on the Y-Z plane of *ARM_JOINT5 joint.</span>
+<span class="sd">    And it&#39;s the most intuitive when eef maintains a &quot;goInitial&quot; pose where circle gets drawn on robot&#39;s X-Y plane</span>
+<span class="sd">    (see the wiki for the robot&#39;s coordinate if you&#39;re confused http://wiki.ros.org/rtmros_nextage/Tutorials/Programming#HiroNXO_3D_model_coordination).</span>
+
+<span class="sd">    Points on the circular trajectory is based on a standard equation https://en.wikipedia.org/wiki/Circle#Equations</span>
+
+<span class="sd">    @param radius: (Unit: meter) Radius of the circle to be drawn.</span>
+<span class="sd">    @param step_degree: Angle in degree each iteration increments.</span>
+<span class="sd">    @param ccw: counter clock-wise.</span>
+<span class="sd">    @param duration: Time for each iteration to be completed.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">goal_deg</span> <span class="o">=</span> <span class="n">GOAL_DEGREE</span> <span class="o">=</span> <span class="mi">360</span>
+    <span class="n">start_deg</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">eef</span> <span class="o">==</span> <span class="s1">&#39;larm&#39;</span><span class="p">:</span>
+        <span class="n">joint_eef</span> <span class="o">=</span> <span class="s1">&#39;LARM_JOINT5&#39;</span>
+    <span class="k">elif</span> <span class="n">eef</span> <span class="o">==</span> <span class="s1">&#39;rarm&#39;</span><span class="p">:</span>
+        <span class="n">joint_eef</span> <span class="o">=</span> <span class="s1">&#39;RARM_JOINT5&#39;</span>
+    <span class="n">eef_pos</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentPosition</span><span class="p">(</span><span class="n">joint_eef</span><span class="p">)</span>
+    <span class="n">eef_rpy</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">getCurrentRPY</span><span class="p">(</span><span class="n">joint_eef</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eef_pos=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eef_pos</span><span class="p">))</span>
+    <span class="n">X0</span> <span class="o">=</span> <span class="n">eef_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Y0</span> <span class="o">=</span> <span class="n">eef_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ORIGIN_x</span> <span class="o">=</span> <span class="n">X0</span>
+    <span class="n">ORIGIN_y</span> <span class="o">=</span> <span class="n">Y0</span> <span class="o">-</span> <span class="n">radius</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ORIGIN_x=</span><span class="si">{}</span><span class="s1"> ORIGIN_y=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ORIGIN_x</span><span class="p">,</span> <span class="n">ORIGIN_y</span><span class="p">))</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_deg</span><span class="p">,</span> <span class="n">goal_deg</span><span class="p">,</span> <span class="n">step_degree</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ccw</span><span class="p">:</span>
+            <span class="n">theta</span> <span class="o">=</span> <span class="o">-</span><span class="n">theta</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">ORIGIN_x</span> <span class="o">+</span> <span class="n">radius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>  <span class="c1"># x-axis in robot&#39;s eef space is y in x-y graph</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">ORIGIN_y</span> <span class="o">+</span> <span class="n">radius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+        <span class="n">eef_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">eef_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#</span><span class="si">{}</span><span class="s1">th theta=</span><span class="si">{}</span><span class="s1"> x=</span><span class="si">{}</span><span class="s1"> y=</span><span class="si">{}</span><span class="s1"> X0=</span><span class="si">{}</span><span class="s1"> Y0=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">Y0</span><span class="p">))</span>
+        <span class="n">robot</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="n">eef</span><span class="p">,</span> <span class="n">eef_pos</span><span class="p">,</span> <span class="n">eef_rpy</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+        <span class="n">robot</span><span class="o">.</span><span class="n">waitInterpolation</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="programming-according-to-the-situation-of-use">
+<h4>使用場面に応じたプログラミング<!--Programming according to the situation of use--><a class="headerlink" href="#programming-according-to-the-situation-of-use" title="この見出しへのパーマリンク"></a></h4>
+<p>デフォルトではいくつかの HIRONX / NextageFillieOpenClient クラスのコマンドは
+動作終了を待ってから次の動作を開始します。
+またいくつかのコマンドは待たないものもあります。
+それは各メソッドが受け取る引数から明確になる実装に依存します。
+<code class="docutils literal notranslate"><span class="pre">wait</span></code> 引数を持つメソッドは待機するかどうかを指定できます。
+それ以外のものは特に API ドキュメントに記述の無いかぎり待機の可否を指定できません。</p>
+<p>次は &quot;待機&quot; の特性を持つメソッドの例です。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">70</span>     <span class="k">def</span> <span class="nf">set_pose_relative</span><span class="p">(</span>
+<span class="mi">71</span>                         <span class="bp">self</span><span class="p">,</span> <span class="n">joint_group</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dz</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="mi">72</span>                         <span class="n">msg_tasktitle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">task_duration</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">do_wait</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="mi">73</span>         <span class="k">if</span> <span class="n">joint_group</span> <span class="o">==</span> <span class="n">Constant</span><span class="o">.</span><span class="n">GRNAME_LEFT_ARM</span><span class="p">:</span>
+<span class="mi">74</span>             <span class="n">eef</span> <span class="o">=</span> <span class="s1">&#39;LARM_JOINT5&#39;</span>
+<span class="mi">75</span>         <span class="k">elif</span> <span class="n">joint_group</span> <span class="o">==</span> <span class="n">Constant</span><span class="o">.</span><span class="n">GRNAME_RIGHT_ARM</span><span class="p">:</span>
+<span class="mi">76</span>             <span class="n">eef</span> <span class="o">=</span> <span class="s1">&#39;RARM_JOINT5&#39;</span>
+<span class="mi">77</span>
+<span class="mi">78</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== RTM; </span><span class="si">{}</span><span class="s2"> ==&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg_tasktitle</span><span class="p">))</span>
+<span class="mi">79</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span>
+<span class="mi">80</span>                                     <span class="n">joint_group</span><span class="p">,</span> <span class="n">eef</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">dz</span><span class="p">,</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span>
+<span class="mi">81</span>                                     <span class="n">task_duration</span><span class="p">,</span> <span class="n">do_wait</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>一般にはデフォルトでは <code class="docutils literal notranslate"><span class="pre">wait=True</span></code> とした方が安全となるでしょう。</p>
+<p>次の <code class="docutils literal notranslate"><span class="pre">setTargetPose</span></code> は待機・中断の信号は受け取りません。
+この場合 <code class="docutils literal notranslate"><span class="pre">HrpsysConfigurator</span></code> の <code class="docutils literal notranslate"><span class="pre">waitInterpolationOfGroup()</span></code> を呼び出して対処することができます。
+<code class="docutils literal notranslate"><span class="pre">HrpSysConfigurator</span></code> は <code class="docutils literal notranslate"><span class="pre">HIRONX</span></code> の親クラスです。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">61</span>     <span class="k">def</span> <span class="nf">set_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_group</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">rpy</span><span class="p">,</span> <span class="n">msg_tasktitle</span><span class="p">,</span>
+<span class="mi">62</span>                       <span class="n">task_duration</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">do_wait</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ref_frame_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="mi">63</span>
+<span class="mi">64</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== RTM; </span><span class="si">{}</span><span class="s2"> ==&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg_tasktitle</span><span class="p">))</span>
+<span class="mi">65</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">setTargetPose</span><span class="p">(</span><span class="n">joint_group</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">rpy</span><span class="p">,</span> <span class="n">task_duration</span><span class="p">,</span>
+<span class="mi">66</span>                                         <span class="n">ref_frame_name</span><span class="p">)</span>
+<span class="mi">67</span>         <span class="k">if</span> <span class="n">do_wait</span><span class="p">:</span>
+<span class="mi">68</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_robotclient</span><span class="o">.</span><span class="n">waitInterpolationOfGroup</span><span class="p">(</span><span class="n">joint_group</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="motion-with-continuous-trajectory-coordinate-designation">
+<h4>連続した軌道座標指示による動作<!--Motion with continuous trajectory coordinate designation--><a class="headerlink" href="#motion-with-continuous-trajectory-coordinate-designation" title="この見出しへのパーマリンク"></a></h4>
+<p>次のようにすることで連続した軌道座標指示による動作を行うことができます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hcf</span><span class="o">.</span><span class="n">playPatternOfGroup</span><span class="p">(</span><span class="s1">&#39;LARM&#39;</span><span class="p">,</span>
+                        <span class="p">[[</span><span class="mf">0.010</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.265</span><span class="p">,</span><span class="mf">0.164</span><span class="p">,</span><span class="mf">0.06</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mf">0.010</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="o">-</span><span class="mf">0.265</span><span class="p">,</span><span class="mf">0.164</span><span class="p">,</span><span class="mf">0.06</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mf">0.010</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="o">-</span><span class="mf">0.265</span><span class="p">,</span><span class="mf">0.164</span><span class="p">,</span><span class="mf">0.06</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mf">0.010</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span><span class="o">-</span><span class="mf">0.265</span><span class="p">,</span><span class="mf">0.164</span><span class="p">,</span><span class="mf">0.06</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mf">0.010</span><span class="p">,</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span><span class="o">-</span><span class="mf">0.265</span><span class="p">,</span><span class="mf">0.164</span><span class="p">,</span><span class="mf">0.06</span><span class="p">]],</span>
+                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>一時停止から復帰直後に<code class="docutils literal notranslate"><span class="pre">playPatternOfGroup</span></code>を実行すると急激にロボットが動作することがあります。一つ目の通過点として移動目標に現在の関節角度、動作時間に0.001を指定すると安全に動作させることができます。<br /><code class="docutils literal notranslate"><span class="pre">hcf</span></code> は <code class="docutils literal notranslate"><span class="pre">robot</span></code> など Python インタフェースを起動した状況に応じて変更してください。</p>
+<p>hrpsys 315.6.0 以降では <code class="docutils literal notranslate"><span class="pre">setJointAnglesSequenceOfGroup</span></code> も利用することができます。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fkanehiro/hrpsys-base/blob/3eab14b836dea11386dbdb7d0ab90a0ed9521237/python/hrpsys_config.py#L1018">https://github.com/fkanehiro/hrpsys-base/blob/<br />3eab14b836dea11386dbdb7d0ab90a0ed9521237/python/hrpsys_config.py<br />#L1018</a></p></li>
+</ul>
+</section>
+<section id="relative-attitude-indication">
+<h4>相対姿勢指示による動作<!--Relative attitude indication--><a class="headerlink" href="#relative-attitude-indication" title="この見出しへのパーマリンク"></a></h4>
+<p>エンドエフェクタのフレームや関節を現在の姿勢からの相対姿勢動作は、
+NextageFillieOpenClient インタフェースの <code class="docutils literal notranslate"><span class="pre">setTargetPoseRelative</span></code> を用いることで簡単に行うことができます。<br />注）実機において条件によっては想定と異なる姿勢に到達する場合を確認しています。</p>
+<p>下記の <code class="docutils literal notranslate"><span class="pre">[1]</span></code> では <code class="docutils literal notranslate"><span class="pre">torso</span></code> を 3[s] かけて 0.1[rad] 回転させます。
+<code class="docutils literal notranslate"><span class="pre">[2]</span></code> では右腕のエンドエフェクタフレームを 3[s] かけて前方に 0.1[m] 移動させます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">robot</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span><span class="s1">&#39;torso&#39;</span><span class="p">,</span> <span class="s1">&#39;CHEST_JOINT0&#39;</span><span class="p">,</span> <span class="n">dw</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">tm</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">robot</span><span class="o">.</span><span class="n">setTargetPoseRelative</span><span class="p">(</span><span class="s1">&#39;rarm&#39;</span><span class="p">,</span> <span class="s1">&#39;RARM_JOINT5&#39;</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">tm</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="python-creating-user-python-codes">
+<h4>ユーザ Python コードの作成<!--Creating User Python Codes--><a class="headerlink" href="#python-creating-user-python-codes" title="この見出しへのパーマリンク"></a></h4>
+<p>ここまでの RTM Python インタフェースのチュートリアルでは <code class="docutils literal notranslate"><span class="pre">hironx.py</span></code> や <code class="docutils literal notranslate"><span class="pre">nextage_fillie_open.py</span></code> といったスクリプトを実行していました。</p>
+<p>クライアントインタフェースクラスのメソッドを利用して
+アプリケーションモジュールを作成する方法を考えてみます。
+そのモジュール名を <code class="docutils literal notranslate"><span class="pre">your_nxo_sample.py</span></code> とし、
+シミュレーションや実機で動作させるものとします。</p>
+<ol class="simple">
+<li><p>まず1つの方法として <code class="docutils literal notranslate"><span class="pre">nextage_fillie_open.py</span></code> を複製して <code class="docutils literal notranslate"><span class="pre">NextageFillieOpenClient</span></code> クラスがインスタンス化される行を書き換えます。
+他の <code class="docutils literal notranslate"><span class="pre">NextageFillieOpenClient</span></code> クラスがアクセスする部分も削除や書き換えを行います。</p></li>
+<li><p>上記の方法はあまりスマートで簡潔ではありません。
+それは大部分のコードを複製するというのはソフトウェア開発においては悪い実践法であるからです。
+例えば <a class="reference external" href="https://github.com/start-jsk/rtmros_common/blob/master/hrpsys_tools/scripts/hrpsys_tools_config.py">hrpsys_tools/hrpsys_tools_config.py</a> は
+この目的に役立つことを意図して作られています。</p></li>
+</ol>
+<ul class="simple">
+<li><p>参考: 作成時のディスカッション - <a class="reference external" href="https://github.com/start-jsk/rtmros_common/issues/340">https://github.com/start-jsk/rtmros_common/issues/340</a></p></li>
+</ul>
+</section>
+</section>
+<section id="i-o-nextage-fillie-open-use-of-digital-i-o-nextage-fillie-open">
+<h3>デジタルI/O の利用（NEXTAGE Fillie OPEN）<!--Use of digital I/O (NEXTAGE Fillie OPEN)--><a class="headerlink" href="#i-o-nextage-fillie-open-use-of-digital-i-o-nextage-fillie-open" title="この見出しへのパーマリンク"></a></h3>
+<p>本項はデジタルI/O（DIO）が備わっている NEXTAGE Fillie OPEN でのみ有効です。</p>
+<p>DIO 操作で利用できるメソッドについては、特にデフォルトで利用可能なメソッドが集められている <code class="docutils literal notranslate"><span class="pre">NextageFillieOpenClient</span></code> クラスのコードを参照してください。</p>
+<ul class="simple">
+<li><p>コード: ~/catkin_ws/src/nextage_fillie_open_ros_bridge/src/nextage_fillie_open_ros_bridge/nextage_fillie_open_client.py</p></li>
+<li><p>参考: 旧式NEXTAGE OPENのドキュメント<br />※ パッケージ名やクラス名などが異なりますが基本構造は変わりません。</p>
+<ul>
+<li><p>APIドキュメント:
+<a class="reference external" href="http://docs.ros.org/en/melodic/api/nextage_ros_bridge/html/annotated.html">http://docs.ros.org/en/melodic/api/nextage_ros_bridge/html/annotated.html</a></p></li>
+<li><p>NextageClient: <a class="reference external" href="http://docs.ros.org/en/melodic/api/nextage_ros_bridge/html/classnextage__ros__bridge_1_1nextage__client_1_1NextageClient.html">http://docs.ros.org/en/melodic/api/nextage_ros_bridge/html/<br />classnextage__ros__bridge_1_1nextage__client_1_1NextageClient.html</a></p></li>
+</ul>
+</li>
+</ul>
+<section id="rtm-interactive-operations-from-rtm-clients">
+<h4>RTM クライアントからのインタラクティブな操作<!-- Interactive Operations from RTM Clients--><a class="headerlink" href="#rtm-interactive-operations-from-rtm-clients" title="この見出しへのパーマリンク"></a></h4>
+<p>まず RTM クライアントを実行し、ネームサーバー内部（つまりコントローラのQNX上）のロボットに接続する必要があります。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython -i `rospack find nextage_fillie_open_ros_bridge`/script/nextage_fillie_open.py -- --host %HOST%
+</pre></div>
+</div>
+<p>上記により、 <code class="docutils literal notranslate"><span class="pre">_hands</span></code> オブジェクトから全ての DIO メソッドにアクセスすることができます。
+iPython ターミナルで表示させると次のようになります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">h</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">handlight_both</span>  <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">handtool_l_attach</span>  <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">handtool_r_eject</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">handlight_l</span>     <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">handtool_l_eject</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">handlight_r</span>     <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">handtool_r_attach</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">g</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">gripper_l_close</span>  <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">gripper_r_close</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">gripper_l_open</span>   <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">gripper_r_open</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">a</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">airhand_l_drawin</span>  <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">airhand_l_release</span>  <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">airhand_r_keep</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">airhand_l_keep</span>    <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">airhand_r_drawin</span>   <span class="n">robot</span><span class="o">.</span><span class="n">_hands</span><span class="o">.</span><span class="n">airhand_r_release</span>
+</pre></div>
+</div>
+<p>※ デフォルトで<code class="docutils literal notranslate"><span class="pre">_hands</span></code>オブジェクトの機能は無効化されています。有効化する場合には、関数<code class="docutils literal notranslate"><span class="pre">__init__</span></code>内にある<code class="docutils literal notranslate"><span class="pre">set_hand_version</span></code>の引数を変更してください。<code class="docutils literal notranslate"><span class="pre">BaseHands</span></code>を継承したクラスを作成し、<code class="docutils literal notranslate"><span class="pre">set_hand_version</span></code>に追加することで任意のハンドに対応できます。</p>
+<p>ハンドツールを接続・取り外しする場合は次のように行います。<br />※ 参照ドキュメントは旧式NEXTAGE OPENのものですが、パッケージ名やクラス名などが異なるのみで基本構造は変わりません。</p>
+<ul class="simple">
+<li><p>ハンドへのツールの接続</p>
+<ul>
+<li><p>ツールチェンジャの先端にあるソレノイドバルブが閉じている必要があります。</p>
+<ul>
+<li><p>イジェクトツールコマンドでバルブを閉じることができます。</p></li>
+<li><p><a class="reference external" href="http://docs.ros.org/hydro/api/nextage_ros_bridge/html/classnextage__ros__bridge_1_1nextage__client_1_1NextageClient.html#a1702a5edb90cf8d6e67164760e2d6e91">http://docs.ros.org/hydro/api/nextage_ros_bridge/html/
+classnextage__ros__bridge_1_1nextage__client_1_1NextageClient.html
+#a1702a5edb90cf8d6e67164760e2d6e91</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ハンドからツールの取り外し</p>
+<ul>
+<li><p><strong>ツールが落ちてきますのでご注意ください。</strong></p>
+<ul>
+<li><p><a class="reference external" href="http://docs.ros.org/hydro/api/nextage_ros_bridge/html/classnextage__ros__bridge_1_1nextage__client_1_1NextageClient.html#ac562d5f65e6e994692e17c499d0ff745">http://docs.ros.org/hydro/api/nextage_ros_bridge/html/
+classnextage__ros__bridge_1_1nextage__client_1_1NextageClient.html
+#ac562d5f65e6e994692e17c499d0ff745</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>他のよく使われるメソッドについては以下のようになります。</p>
+<ul class="simple">
+<li><p>グリッパの開閉: <code class="docutils literal notranslate"><span class="pre">gripper_l_open</span></code>, <code class="docutils literal notranslate"><span class="pre">gripper_r_open</span></code>, <code class="docutils literal notranslate"><span class="pre">gripper_l_close</span></code>, <code class="docutils literal notranslate"><span class="pre">gripper_r_close</span></code></p></li>
+<li><p>ライトの点灯等: <code class="docutils literal notranslate"><span class="pre">handlight_both</span></code>, <code class="docutils literal notranslate"><span class="pre">handlight_l</span></code>, <code class="docutils literal notranslate"><span class="pre">handlight_r</span></code> (現在のモデルだと対応していません)</p></li>
+</ul>
+<p>サンプルとしてハンドDIOのシステムテストツールも参考にしてください。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/tork-a/rtmros_nextage/blob/7cf7d3ef1c1d24cd496dfc646c70e83565e8e854/nextage_ros_bridge/test/test_gripper.py">https://github.com/tork-a/rtmros_nextage/blob/
+7cf7d3ef1c1d24cd496dfc646c70e83565e8e854/nextage_ros_bridge/test/test_gripper.py</a></p></li>
+</ul>
+<!-- #### 2014年8月よりも前に出荷された NEXTAGE OPEN での DIO の利用 --><!-- 2014年8月よりも前に出荷された NEXTAGE OPEN で DIO を利用する場合は --><!-- DIO のバージョンを指定する必要があります。 --><!-- ``` --><!-- $ ipython -i `rospack find nextage_ros_bridge`/script/nextage.py -- --host %HOST% --dio_ver 0.4.2 --><!-- ``` --><!-- `NextageClient` インスタンスに DIO を指定する場合には --><!-- `set_hand_version` メソッドにて引数 `0.4.2` を与えて指定してください。 --><!-- このバージョン番号は固定で、変更する必要はありません。 --><!-- - set_hand_version: [http://docs.ros.org/indigo/api/nextage_ros_bridge/html/classnextage__ros__bridge_1_1nextage__client_1_1NextageClient.html#a670568692e46cfc3f10633ad962b8616](http://docs.ros.org/indigo/api/nextage_ros_bridge/html/classnextage__ros__bridge_1_1nextage__client_1_1NextageClient.html#a670568692e46cfc3f10633ad962b8616) --><!-- ## ROS Python インタフェース --><!-- ### インタラクティブモードでの操作 --><!-- #### rtm_ros_bridge の起動 --><!-- rtm_ros_bridge を起動します。シミュレーションンの場合は不要です。 --><!-- ``` --><!-- $ roslaunch nextagea_ros_bridge nextagea_ros_bridge_real.launch nameserver:=%HOSTNAME%  (NEXTAGE OPEN) --><!-- ``` --><!-- ROSのノードが動作しているかを確認してみます。 --><!-- ``` --><!-- $ rosnode list --><!-- /diagnostic_aggregator --><!-- /hrpsys_profile --><!-- /hrpsys_ros_diagnostics --><!-- /hrpsys_state_publisher --><!-- /rosout --><!-- ``` --><!-- #### iPython ターミナルの実行 --><!-- インタラクティブにロボットを操作できるように iPython インタラクティブコンソールを実行します。 --><!-- ``` --><!-- $ ipython -i `rospack find nextagea_ros_bridge`/script/nextagea.py -- --host nextagea --><!-- :  (same initialization step as simulation) --><!-- [hrpsys.py]  initialized successfully --><!-- ``` --><!-- シミュレーションの場合は引数は不要です。 --><!-- ``` --><!-- $ ipython -i `rospack find hironx_ros_bridge`/scripts/hironx.py --><!-- $ ipython -i `rospack find nextage_ros_bridge`/script/nextage.py --><!-- ``` --><!-- これらは RTM インタフェースの時と同じです。 --><!-- つまり `hironx.py` や `nextagea.py` を実行したときに --><!-- それらが RTM クライアントと ROS クライアントの両方を起動るということです。 --><!-- iPython コンソールを起動したときに次のようなエラーが出ることがあります。 --><!-- これは MoveIt! のサービスが起動していないという内容のエラーです。 --><!-- ROS クライアントメソッドのいくつかは MoveIt! が無くても動作しますので --><!-- ここではこのエラーを無視しても大丈夫です。 --><!-- ``` --><!-- : --><!-- [hrpsys.py]  initialized successfully --><!-- [INFO] [WallTime: 1410918126.749067] [206.795000] Joint names; Torso: ['CHEST_JOINT0'] --><!--         Head: ['HEAD_JOINT0', 'HEAD_JOINT1'] --><!--         L-Arm: ['LARM_JOINT0', 'LARM_JOINT1', 'LARM_JOINT2', 'LARM_JOINT3', 'LARM_JOINT4', 'LARM_JOINT5'] --><!--         R-Arm: ['RARM_JOINT0', 'RARM_JOINT1', 'RARM_JOINT2', 'RARM_JOINT3', 'RARM_JOINT4', 'RARM_JOINT5'] --><!-- [ERROR] [1410918130.900627643, 210.289999999]: Robot semantic description not found. Did you forget to define or remap '/robot_description_semantic'? --><!-- [ INFO] [1410918130.900757547, 210.289999999]: Loading robot model 'HiroNX'... --><!-- [ INFO] [1410918130.900794422, 210.289999999]: No root joint specified. Assuming fixed joint --><!-- [FATAL] [1410918131.991522557, 211.249999999]: Group 'left_arm' was not found. --><!-- [ERROR] [WallTime: 1410918132.006310] [211.285000] Group 'left_arm' was not found. --><!-- Make sure you've launched MoveGroup (e.g. by launching moveit_planning_execution.launch) --><!-- ``` --><!-- #### ROS Python インタフェースコマンド<TODO goInitできません.結局これサポートするの？> --><!-- 実行している iPython コンソールから ROS Python インタフェースのコマンドを見てみます。 --><!-- 次のように `ros.` と入力し TAB キーを押します。 --><!-- ```python --><!-- In [0]: ros. --><!-- ros.Joint                        ros.get_joint                    ros.go_init --><!-- ros.Link                         ros.get_joint_names              ros.go_offpose --><!-- ros.get_current_state            ros.get_link                     ros.has_group --><!-- ros.get_current_variable_values  ros.get_link_names               ros.set_joint_angles_deg --><!-- ros.get_default_owner_group      ros.get_planning_frame           ros.set_joint_angles_rad --><!-- ros.get_group                    ros.get_root_link                ros.set_pose --><!-- ros.get_group_names              ros.goInitial              --><!-- ``` --><!-- `ROS_Client` は `ros` というオブジェクトから利用することができます。 --><!-- `ROS_Client` は MoveIt! から RobotCommander を継承するしていて、 --><!-- その派生クラスから多くのメソッドが上記のように見えているのです。 --><!-- 加えて `goInitial`,`go_init`, `go_offpose`, `set_pose` などの `ROS_Client` 用にいくつかのメソッドが実装されています。 --><!-- これらのメソッドはすべて RTM バージョン の Hironx/NEXTAGE OPEN Python インターフェイスと同等のものです。 --><!-- 次のコマンドでロボットの全関節が初期姿勢に移行します。 --><!-- - 注意-1: コマンドを実行するとロボットが動きます。 --><!-- - 注意-2: 緊急停止スイッチをいつでも押せる状態にしておいてください。 --><!-- ```python --><!-- In [0]: ros.go_init() --><!-- [INFO] [WallTime: 1410918153.591171] [226.790000] *** go_init begins *** --><!-- [INFO] [WallTime: 1410918165.419528] [233.825000] wait_for_result for the joint group rarm = True --><!-- [INFO] [WallTime: 1410918165.423372] [233.825000] [positions: [0.010471975511965976, 0.0, -1.7453292519943295, -0.26529004630313807, 0.16406094968746698, -0.05585053606381855] --><!-- velocities: [] --><!-- accelerations: [] --><!-- effort: [] --><!-- time_from_start: --><!--   secs: 7 --><!--   nsecs: 0] --><!-- ``` --><!-- iPython の機能を使うと RTM の場合と同様に各 ROS Python インタフェースコマンドのAPIドキュメントを見ることができます。 --><!-- ```python --><!-- In [0]: ros.go_init? --><!-- Type:       instancemethod --><!-- Base Class: <type 'instancemethod'> --><!-- String Form:<bound method ROS_Client.go_init of <hironx_ros_bridge.ros_client.ROS_Client object at 0x49b7210>> --><!-- Namespace:  Interactive --><!-- File:       /home/rosnoodle/cws_hiro_nxo/src/start-jsk/rtmros_hironx/hironx_ros_bridge/src/hironx_ros_bridge/ros_client.py --><!-- Definition: ros.go_init(self, task_duration=7.0) --><!-- Docstring: --><!-- Init positions are taken from HIRONX. --><!-- TODO: Need to add factory position too that's so convenient when --><!--       working with the manufacturer. --><!-- @type task_duration: float --><!-- ``` --><!-- RTM Python インタフェースとの互換性により、 --><!-- 同等の機能を持つメソッドの名前が違っていても（`goInitial`）同じでもどちらでも利用することができます。 --><!-- ```python --><!-- In [0]: ros.goInitial? --><!-- Type:       instancemethod --><!-- String Form:<bound method ROS_Client.goInitial of <hironx_ros_bridge.ros_client.ROS_Client object at 0x7f23458f0c50>> --><!-- File:       /home/n130s/link/ROS/indigo_trusty/cws_hironxo/src/start-jsk/rtmros_hironx/hironx_ros_bridge/src/hironx_ros_bridge/ros_client.py --><!-- Definition: ros.goInitial(self, init_pose_type=0, task_duration=7.0) --><!-- Docstring: --><!-- This method internally calls self.go_init. --><!-- This method exists solely because of compatibility purpose with --><!-- hironx_ros_bridge.hironx_client.HIRONX.goInitial, which --><!-- holds a method "goInitial". --><!-- @param init_pose_type: --><!--        0: default init pose (specified as _InitialPose) --><!--        1: factory init pose (specified as _InitialPose_Factory) --><!-- ``` --><!-- ### ROS Python インタフェースプログラミング --><!-- #### サンプルコード - Acceptance Test (ROS) --><!-- "RTM Python インタフェースプログラミング" の --><!-- "サンプルコード - Acceptance Test (RTM)" におけるプログラムと同様のサンプルコードを見てみます。 --><!-- このプログラムは RTM クライアントで行ったことと同じタスクを ROS クライアントで行っています。 --><!-- ##### acceptancetest_ros.py --><!-- ROS の Python サンプルコード acceptancetest_ros.py は次のようになっています。 --><!-- - [https://raw.githubusercontent.com/start-jsk/rtmros_hironx/9d7c2b1d801450b09e814b12093e1cf1986b5565/hironx_ros_bridge/src/hironx_ros_bridge/testutil/acceptancetest_ros.py](https://raw.githubusercontent.com/start-jsk/rtmros_hironx/9d7c2b1d801450b09e814b12093e1cf1986b5565/hironx_ros_bridge/src/hironx_ros_bridge/testutil/acceptancetest_ros.py) --><!-- ```python --><!-- 1 # -*- coding: utf-8 -*- --><!-- 2 --><!-- 3 # Software License Agreement (BSD License) --><!-- 4 # --><!-- 5 # Copyright (c) 2014, TORK (Tokyo Opensource Robotics Kyokai Association) --><!-- 6 # All rights reserved. --><!-- 7 # --><!-- 8 # Redistribution and use in source and binary forms, with or without --><!-- 9 # modification, are permitted provided that the following conditions --><!-- 10 # are met: --><!-- 11 # --><!-- 12 #  * Redistributions of source code must retain the above copyright --><!-- 13 #    notice, this list of conditions and the following disclaimer. --><!-- 14 #  * Redistributions in binary form must reproduce the above --><!-- 15 #    copyright notice, this list of conditions and the following --><!-- 16 #    disclaimer in the documentation and/or other materials provided --><!-- 17 #    with the distribution. --><!-- 18 #  * Neither the name of TORK. nor the --><!-- 19 #    names of its contributors may be used to endorse or promote products --><!-- 20 #    derived from this software without specific prior written permission. --><!-- 21 # --><!-- 22 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS --><!-- 23 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT --><!-- 24 # LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS --><!-- 25 # FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE --><!-- 26 # COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, --><!-- 27 # INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, --><!-- 28 # BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; --><!-- 29 # LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER --><!-- 30 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT --><!-- 31 # LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN --><!-- 32 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE --><!-- 33 # POSSIBILITY OF SUCH DAMAGE. --><!-- 34 --><!-- 35 import rospy --><!-- 36 --><!-- 37 from hironx_ros_bridge.testutil.abst_acceptancetest import AbstAcceptanceTest --><!-- 38 --><!-- 39 --><!-- 40 class AcceptanceTestROS(AbstAcceptanceTest): --><!-- 41 --><!-- 42     def __init__(self, robot_client): --><!-- 43         ''' --><!-- 44         @type robot_client: hironx_ros_bridge.ros_client.ROS_Client --><!-- 45         ''' --><!-- 46         self._robotclient = robot_client --><!-- 47 --><!-- 48     def go_initpos(self, default_task_duration=7.0): --><!-- 49         self._robotclient.go_init(default_task_duration) --><!-- 50 --><!-- 51     def set_joint_angles(self, joint_group, joint_angles, msg_tasktitle=None, --><!-- 52                          task_duration=7.0, do_wait=True): --><!-- 53         ''' --><!-- 54         @see: AbstAcceptanceTest.move_armbyarm_impl --><!-- 55         ''' --><!-- 56         rospy.loginfo("'''{}'''".format(msg_tasktitle)) --><!-- 57         self._robotclient.set_joint_angles_deg( --><!-- 58                          joint_group, joint_angles, task_duration, do_wait) --><!-- 59 --><!-- 60     def set_pose(self, joint_group, posision, rpy, msg_tasktitle=None, --><!-- 61                  task_duration=7.0, do_wait=True, ref_frame_name=None): --><!-- 62         ''' --><!-- 63         @see: AbstAcceptanceTest.set_pose --><!-- 64         ''' --><!-- 65         rospy.loginfo('ROS {}'.format(msg_tasktitle)) --><!-- 66         self._robotclient.set_pose(joint_group, posision, rpy, task_duration, --><!-- 67                                    do_wait, ref_frame_name) --><!-- 68 --><!-- 69     def set_pose_relative( --><!-- 70                         self, joint_group, dx=0, dy=0, dz=0, dr=0, dp=0, dw=0, --><!-- 71                         msg_tasktitle=None, task_duration=7.0, do_wait=True): --><!-- 72         rospy.logerr('AcceptanceTestROS; set_pose_relative is not implemented yet') --><!-- 73         pass --><!-- ``` --><!-- 最初に ROS_Client クラスのインスタンス化が必要ですが、 --><!-- それは上記のコードの外側、[acceptancetest_hironx.py 内]([https://github.com/start-jsk/rtmros_hironx/blob/be5fb8d5a5b8339d9507f3c287edb406ca48c9c9/hironx_ros_bridge/scripts/acceptancetest_hironx.py#L103](https://github.com/start-jsk/rtmros_hironx/blob/be5fb8d5a5b8339d9507f3c287edb406ca48c9c9/hironx_ros_bridge/scripts/acceptancetest_hironx.py#L103))で次のように行われています。 --><!-- ```python --><!-- self._robotclient = ROS_Client() --><!-- ``` --><!-- 上記のコードに戻ります。 --><!-- 初期姿勢へ動くのは簡潔に1行で書かれています。 --><!-- ```python --><!-- 48     def go_initpos(self, default_task_duration=7.0): --><!-- 49         self._robotclient.go_init(default_task_duration) --><!-- ``` --><!-- 各関節を角度指示を与えるのも1行で書かれています。 --><!-- ```python --><!-- 51 def set_joint_angles(self, joint_group, joint_angles, msg_tasktitle=None, task_duration=7.0, do_wait=True): --><!-- : --><!-- 57    self._robotclient.set_joint_angles_deg(joint_group, joint_angles, task_duration, do_wait) --><!-- ``` --><!-- 直交座標系における姿勢指示も行うことができます。 --><!-- （このコマンドでは MoveIt! サービスを利用しています） --><!-- ```python --><!-- 60 def set_pose(self, joint_group, posision, rpy, msg_tasktitle=None, task_duration=7.0, do_wait=True, ref_frame_name=None): --><!-- : --><!-- 66     self._robotclient.set_pose(joint_group, posision, rpy, task_duration, do_wait, ref_frame_name) --><!-- ``` --><!-- ##### サンプルコードの実行 --><!-- iPython コンソールから ROS クライアントを利用した `acceptance.run_tests_ros()` を実行して --><!-- どのように動作しているかを確認してみます。 --><!-- - 注意: ロボットが動きます。 --><!-- ``` --><!-- $ ipython -i `rospack find hironx_ros_bridge`/scripts/acceptancetest_hironx.py -- --host %HOSTNAME% --><!-- : --><!-- In [0]: acceptance.run_tests_ros() --><!-- ``` --><!-- EOF --></section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_ja_trouble-shooting.html" class="btn btn-neutral float-left" title="トラブルシューティング" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_ja_tutorial_moveit-gui.html" class="btn btn-neutral float-right" title="チュートリアル: MoveIt! GUI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

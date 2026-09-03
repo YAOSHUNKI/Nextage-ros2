@@ -22,7 +22,7 @@ COPY ./pip/requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 # ===============================================
-# MELDOIC（ROS1）
+# MELODIC (ROS1)
 # ===============================================
 
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" \
@@ -72,13 +72,13 @@ RUN apt-get update && apt-get install -y iputils-ping \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # ===============================================
-# Dashing（ROS2）
+# Dashing (ROS2)
 # ===============================================
 
 RUN apt-get update && apt-get install -y \
-    curl gnupg2 lsb-release 
+    curl gnupg2 lsb-release
 
-# ROS2 apt 
+# ROS2 apt
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | apt-key add -
 RUN sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
 RUN apt update
@@ -88,18 +88,20 @@ RUN apt-get update && apt-get install -y \
     ros-dashing-desktop \
     python3-colcon-common-extensions \
     python3-argcomplete
-    
+
 RUN echo "source /opt/ros/dashing/setup.bash" >> /root/.bashrc
 
 # ===============================================
-# ros1_bridge
+# workspace 配置
+#   /ws/melodic_ws : ホストからマウント (ROS1 用)
+#   /ws/dashing_ws : コンテナ内のみ、ros1_bridge を含む (ROS2 用)
 # ===============================================
-RUN mkdir -p /ros1_bridge_ws/src
-WORKDIR /ros1_bridge_ws/src
+RUN mkdir -p /ws/melodic_ws/src /ws/dashing_ws/src
 
+WORKDIR /ws/dashing_ws/src
 RUN git clone -b dashing https://github.com/ros2/ros1_bridge.git
 
-WORKDIR /ros1_bridge_ws
+WORKDIR /ws/dashing_ws
 RUN bash -c " \
     source /opt/ros/melodic/setup.bash && \
     source /opt/ros/dashing/setup.bash && \
@@ -110,7 +112,9 @@ RUN bash -c " \
       --cmake-args -DBUILD_TESTING=OFF \
 "
 
-RUN echo "source /ros1_bridge_ws/install/setup.bash" >> /root/.bashrc
+RUN echo "source /ws/dashing_ws/install/setup.bash" >> /root/.bashrc
+
+WORKDIR /ws
 
 # ===============================================
 # RUN scripts

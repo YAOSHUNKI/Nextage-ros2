@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>はじめに &mdash; rtmros_nextage 0.1 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="ロボットハードウェアの概要" href="manual_ja_reference.html" />
+    <link rel="prev" title="NEXTAGE OPEN チュートリアル" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">はじめに</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">クイックスタート<!--quick-start--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-computer">コンピュータの起動<!--starting-the-computer--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ros-starting-ros-servers">ROS サーバの起動<!--starting-ros-servers--></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rtm-ros-bridge">rtm_ros_bridge の実行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ros">ROS プロセスの確認</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#diagnosisui-manipulation-of-robots-by-diagnosisui">DiagnosisUI によるロボットの操作<!--manipulation-of-robots-by-diagnosisui--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moveit-running-operations-inmoveit">MoveIt! での動作の実行<!--running-operations-inmoveit--></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#moveit">MoveIt! の起動</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">MoveIt! での動作計画と実行</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#robot-shutdown-process">ロボットのシャットダウン処理<!--robot-shutdown-process--></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#shutdown-all-program">全プログラムの終了<!--Shutdown-all-program--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qnx-stop-qnx">QNX の停止<!--Stop-QNX--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ubuntu-shutdown-ubuntu">Ubuntu の終了<!--Shutdown-Ubuntu--></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#operational-precautions">注意事項<!--Operational Precautions--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kinetics-simulation">動力学シミュレーション<!--Kinetics simulation--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rtm-hrpsys-simulator-dynamic-simulations-of-rtm-hrpsys-simulator">RTM の動力学シミュレーション - hrpsys-simulator<!--Dynamic Simulations of RTM-hrpsys-simulator--></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#execute-sim">シミュレータの実行<!--Execute-sim--></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">MoveIt! の起動とシミュレーションロボットの操作</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html">ロボットハードウェアの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#computer-and-software-overview">コンピュータとソフトウェアの概要<!--computer-and-software-overview--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#maintenance-and-management">保守・管理<!--Maintenance and management--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_development-pc-setup.html">開発用PCのセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_trouble-shooting.html">トラブルシューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_python-if.html">チュートリアル: Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html">チュートリアル: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html">チュートリアル: MoveIt! Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_gui.html">DiagnosisUIの使い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html">チュートリアル: 3次元認識</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">はじめに</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_ja_start.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>はじめに<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h1>
+<section id="quick-start">
+<h2>クイックスタート<!--quick-start--><a class="headerlink" href="#quick-start" title="この見出しへのパーマリンク"></a></h2>
+<section id="starting-the-computer">
+<h3>コンピュータの起動<!--starting-the-computer--><a class="headerlink" href="#starting-the-computer" title="この見出しへのパーマリンク"></a></h3>
+<ul class="simple">
+<li><p>取扱説明書を参照し、コントローラの電源ボタンを押してください。</p></li>
+<li><p>コントローラの電源投入後、開発用PCの電源を入れてください。コントローラの電源投入を後に行うと開発用PCでカメラを認識しない恐れがあります。</p></li>
+<li><p>ロボットのLEDライトが青色点灯になったらスイッチボックスのresetボタンを押してください。
+ロボットの動作準備が整った場合、
+LEDが緑色点灯となります。</p></li>
+</ul>
+</section>
+<section id="ros-starting-ros-servers">
+<h3>ROS サーバの起動<!--starting-ros-servers--><a class="headerlink" href="#ros-starting-ros-servers" title="この見出しへのパーマリンク"></a></h3>
+<section id="rtm-ros-bridge">
+<h4>rtm_ros_bridge の実行<a class="headerlink" href="#rtm-ros-bridge" title="この見出しへのパーマリンク"></a></h4>
+<p>開発用PCのターミナルで下記のコマンドを実行してROS ソフトウェアを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_ros_bridge nextage_fillie_open_ros_bridge_real.launch
+</pre></div>
+</div>
+<p>出荷時ではホスト名 <code class="docutils literal notranslate"><span class="pre">nextage</span></code> でアクセスすることができ，
+それは <code class="docutils literal notranslate"><span class="pre">nextage_fillie_open_ros_bridge_real.launch</span></code> 内に既に記述されています。</p>
+<p>ホスト名を変更した場合には下記コマンドの<code class="docutils literal notranslate"><span class="pre">%HOSTNAME%</span></code> の部分を変更したホスト名に置き換え，明示的にコマンドを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_ros_bridge nextage_fillie_open_ros_bridge_real.launch nameserver:=%HOSTNAME%
+</pre></div>
+</div>
+<p>このプログラムはロボットを操作するときには実行されている必要があります。</p>
+</section>
+<section id="ros">
+<h4>ROS プロセスの確認<a class="headerlink" href="#ros" title="この見出しへのパーマリンク"></a></h4>
+<p>rtm_ros_bridge を実行しているターミナルとは別のターミナルを開いてください。
+新しいターミナルで次のコマンドを実行することで動作しているROSノードを確認することができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosnode list
+/diagnostic_aggregator
+/hrpsys_profile
+/hrpsys_ros_diagnostics
+/hrpsys_state_publisher
+/rosout
+...
+</pre></div>
+</div>
+</section>
+</section>
+<section id="diagnosisui-manipulation-of-robots-by-diagnosisui">
+<h3>DiagnosisUI によるロボットの操作<!--manipulation-of-robots-by-diagnosisui--><a class="headerlink" href="#diagnosisui-manipulation-of-robots-by-diagnosisui" title="この見出しへのパーマリンク"></a></h3>
+<p>ロボットの一部の機能を簡易GUIである、
+DiagnosisUIから以下の機能を実行できます。</p>
+<ul class="simple">
+<li><p>ジョイントキャリブレーション</p></li>
+<li><p>Digital I/O の確認、制御</p></li>
+<li><p>Servo ON/OFF</p></li>
+<li><p>Brake ON/OFF</p></li>
+<li><p>一時停止の解除</p></li>
+<li><p>診断レポートとログの取得</p></li>
+<li><p>コントローラのシャットダウン</p></li>
+<li><p>uEyeDemoの起動</p></li>
+</ul>
+<p>使用方法については<a class="reference external" href="manual_ja_tutorial_gui.html">DiagnosisUIの使い方</a> を参照してください。
+DiagnosisUIはターミナルから 以下のコマンドで起動します.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/
+$ ./DiagnosisUI
+</pre></div>
+</div>
+<p>はじめに、ロボットのIPを入力し、connectボタンを押してください。
+UIに配置される各ボタンが使用可能状態になり、各操作を行えます。</p>
+</section>
+<section id="moveit-running-operations-inmoveit">
+<h3>MoveIt! での動作の実行<!--running-operations-inmoveit--><a class="headerlink" href="#moveit-running-operations-inmoveit" title="この見出しへのパーマリンク"></a></h3>
+<p>ROS の GUI も備えたモーションプランニングフレームワークの MoveIt! を用いてロボットを動かしてみます。</p>
+<section id="moveit">
+<h4>MoveIt! の起動<a class="headerlink" href="#moveit" title="この見出しへのパーマリンク"></a></h4>
+<p>MoveIt! を起動します。新しくターミナルを開いて次のコマンドを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_moveit_config moveit_planning_execution.launch
+</pre></div>
+</div>
+<!-- ![MoveIt! Window](http://wiki.ros.org/hironx_moveit_config?action=AttachFile&do=get&target=snap_tutorial_hironx_moveitRvizPlugin.png) --></section>
+<section id="id2">
+<h4>MoveIt! での動作計画と実行<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h4>
+<p>MoveIt! 内に表示されているロボットモデルの手先に矢印や球で表現されているマーカがあります。
+これは InteractiveMarker と呼ばれるもので、手先の位置と姿勢を指定します。
+MoveIt!の使い方はについては公式サイトを参照してください。<a class="reference external" href="https://moveit.ros.org/">MoviIt公式サイト</a></p>
+<p>手先姿勢を変更する前に次の準備を実行してください。</p>
+<ol class="simple">
+<li><p>Planning タブ Query の Select Start State を &lt; current &gt; とする。</p></li>
+<li><p>Planning タブ Query の Select Goal State を &lt; current &gt; とする。</p></li>
+</ol>
+<p>InteractiveMarker をマウスでドラッグして少し移動させます。
+色違いの腕が表示されるようになります。
+現在のロボットの姿勢と InteractiveMarker で指定した目標姿勢が表示されます。</p>
+<p><img alt="MoveIt! InteractiveMarker" src="_images/nxo_moveit_plan-and-execute.png" /></p>
+<p>Planning タブ内の [ Plan ] ボタンをクリックしてください。
+MoveIt! 内においてアニメーションで腕が目標姿勢になるように動作計画が表示されます。</p>
+<p>アニメーション表示された動作計画で実機ロボットの周辺環境を含めて干渉など問題がなければ、
+実際にロボットを目標姿勢になるように動かしてみます。</p>
+<ul class="simple">
+<li><p>注意: <strong>サーボオン状態の場合はロボットが実際に動きます。</strong></p></li>
+</ul>
+<p>Planning タブ内の [ Plan and Execute ] ボタンをクリックしてください。</p>
+<p><img alt="MoveIt! Plan and Execute Done" src="_images/nxo_moveit_plan-and-execute_done.png" /></p>
+<p>MoveIt! で動作計画したように実際にロボットが動きます。</p>
+<p>他の目標姿勢にも動かします。
+ここでは MoveIt! にランダムな姿勢を生成させます。</p>
+<ul class="simple">
+<li><p>注意: 生成された目標姿勢に対するロボットの周辺環境を確認しながら下記の手順を進めてください。</p></li>
+</ul>
+<ol class="simple">
+<li><p>Planning タブ Query の Goal State で &lt; random valid &gt; を選択</p></li>
+<li><p>Goal State の &lt; random valid &gt; ボタンをクリック（再クリックで再生成）</p></li>
+<li><p>Commands の [ Plan ] ボタンをクリック → 動作計画の確認</p></li>
+<li><p>ロボット動作環境などの安全確認</p></li>
+<li><p>Commands の [ Plan and Execute ] ボタンをクリック → 動作の実行</p></li>
+</ol>
+<p><img alt="MoveIt! - Selecto Goal Random Valid" src="_images/nxo_moveit_select-goal-random.png" /></p>
+<blockquote>
+<div><p>MoveIt! での動作計画と実行の手順まとめ</p>
+<ol class="simple">
+<li><p>Planning タブ Query の Start State を &lt; current &gt; にする</p></li>
+<li><p>Planning タブ Query の Goal State を &lt; current &gt; にする</p></li>
+<li><p>MoveIt! 上の InteractiveMarker でロボットの手をドラックして目標姿勢に移動</p></li>
+<li><p>Planning タブ Commands の [ Plan ] ボタンをクリックして動作計画を確認</p></li>
+<li><p>ロボットの動作による周辺環境との干渉などの問題がないことを確認</p></li>
+<li><p>Planning タブ Commands の [ Plan and Execute ] ボタンをクリック</p></li>
+</ol>
+</div></blockquote>
+</section>
+</section>
+<section id="robot-shutdown-process">
+<h3>ロボットのシャットダウン処理<!--robot-shutdown-process--><a class="headerlink" href="#robot-shutdown-process" title="この見出しへのパーマリンク"></a></h3>
+<!-- #### ロボットをサーボオフ姿勢にする --><!-- ロボットの各関節をサーボオフ姿勢にしてサーボ切ります。 --><!-- - 注意: **ロボットが動きます．** --><!-- Hironx Dahsboard の [ Goto init pose ] ボタンを押してください． --><!-- これによりロボットの各関節がサーボオフ姿勢になり、サーボが切れます． --><section id="shutdown-all-program">
+<h4>全プログラムの終了<!--Shutdown-all-program--><a class="headerlink" href="#shutdown-all-program" title="この見出しへのパーマリンク"></a></h4>
+<p>実行しているDiagnosisUI以外のプログラムを全て終了します。
+DiagnosisUIを実行中のものを除いた全てのターミナルで <code class="docutils literal notranslate"><span class="pre">Ctrl-c</span></code> により終了してください。<br />このとき、エラー「残念ながら、アプリケーション○○○が予期せず停止しました。」が発生する場合があります。停止したアプリケーションがhrpsys_ros_bridgeの関連のものである場合、それらは終了予定のアプリケーションであるため問題ありません。</p>
+</section>
+<section id="qnx-stop-qnx">
+<h4>QNX の停止<!--Stop-QNX--><a class="headerlink" href="#qnx-stop-qnx" title="この見出しへのパーマリンク"></a></h4>
+<p>DiagnosisUIの[Shutdown QNX] ボタンを押してコンピュータのシャットダウンを行ってください。</p>
+</section>
+<section id="ubuntu-shutdown-ubuntu">
+<h4>Ubuntu の終了<!--Shutdown-Ubuntu--><a class="headerlink" href="#ubuntu-shutdown-ubuntu" title="この見出しへのパーマリンク"></a></h4>
+<p>コマンド <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">shutdown</span> <span class="pre">now</span></code> などで Ubuntu を終了します。</p>
+</section>
+</section>
+</section>
+<section id="operational-precautions">
+<h2>注意事項<!--Operational Precautions--><a class="headerlink" href="#operational-precautions" title="この見出しへのパーマリンク"></a></h2>
+<p>現在の関節角度と最後の指示角度に差異がある場合、以下の方法で動作指令を実行すると差異がある関節で意図しない急激な動作が発生する場合があります。</p>
+<ul class="simple">
+<li><p>iPython</p>
+<ul>
+<li><p>robot.goInitial</p></li>
+<li><p>robot.goOffPose</p></li>
+<li><p>robot.setJointAnglesOfGroup</p></li>
+<li><p>robot.playPatternOfGroup</p></li>
+</ul>
+</li>
+<li><p>MoveIt</p></li>
+</ul>
+<p>現在の関節角度と最後の指示角度に差異は以下の要因で発生します。</p>
+<ul class="simple">
+<li><p>動作中の一旦停止</p></li>
+<li><p>直接手によって姿勢を変更</p></li>
+<li><p>サーボオフ時のハンドなどの自重による姿勢の変化</p></li>
+</ul>
+<p>現在の関節角度と最後の指示角度に差異がある関節に対してあらかじめ現在角度への動作を実行することで、意図しない急激な動作を回避できます。iPythonの場合は、<code class="docutils literal notranslate"><span class="pre">setJointAnglesOfGroup</span></code>または<code class="docutils literal notranslate"><span class="pre">playPatternOfGroup</span></code>に対して移動目標に現在の関節角度、動作時間に0.001を指定して実行します。上記以外の動作コマンド（<code class="docutils literal notranslate"><span class="pre">setTargerPose</span></code>など）を事前に実行しても回避できます。MoveItの場合は、現在の関節角度と最後の指示角度に差異がある部位を指定して現在の角度へ動作を実行（[ Plan and Execute ]ボタンをクリック）すると回避できます。</p>
+</section>
+<section id="kinetics-simulation">
+<h2>動力学シミュレーション<!--Kinetics simulation--><a class="headerlink" href="#kinetics-simulation" title="この見出しへのパーマリンク"></a></h2>
+<section id="rtm-hrpsys-simulator-dynamic-simulations-of-rtm-hrpsys-simulator">
+<h3>RTM の動力学シミュレーション - hrpsys-simulator<!--Dynamic Simulations of RTM-hrpsys-simulator--><a class="headerlink" href="#rtm-hrpsys-simulator-dynamic-simulations-of-rtm-hrpsys-simulator" title="この見出しへのパーマリンク"></a></h3>
+<p>ロボットの核となる機能は OpenRTM というフレームワーク上で動いています。
+この OpenRTM をベースとした hrpsys-simulator と呼ばれるシミュレータでロボットの機能を仮想的に実現することができます。
+このシミュレータは ROS が提供する高層レイヤを使用しなくても利用できます。</p>
+<p>特別な目的ではないプログラムを実行する多くの場合においてこのシミュレータで十分です。</p>
+<section id="execute-sim">
+<h4>シミュレータの実行<!--Execute-sim--><a class="headerlink" href="#execute-sim" title="この見出しへのパーマリンク"></a></h4>
+<p>実際のロボットを「模倣する」シミュレータを起動します。
+<code class="docutils literal notranslate"><span class="pre">roslaunch</span></code> ではなく <code class="docutils literal notranslate"><span class="pre">rtmlaunch</span></code> であることに注意して次のコマンドを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rtmlaunch nextage_fillie_open_ros_bridge nextage_fillie_open_ros_bridge_simulation.launch
+</pre></div>
+</div>
+<blockquote>
+<div><p>この launch ファイルは主に次の2つを実行します。</p>
+<p>まずはシミュレータに仮想ロボットを読み込みます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rtmlaunch nextage_fillie_open_ros_bridge nextage_fillie_open_startup.launch
+</pre></div>
+</div>
+<p>このシミュレーションのロボットは OpenRTM ベースのソフトウェア上のみで実行されています。</p>
+<p>次に ROS 経由でこのロボットを動作させるために ROS と OpenRTM の2つの空間を結ぶ「橋」をつくります。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_ros_bridge  hironx_ros_bridge.launch
+</pre></div>
+</div>
+</div></blockquote>
+<p>ターミナルに次のような表示がされていれば、シミュレーションが正常に動作しています。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="n">INFO</span><span class="p">]</span> <span class="p">[</span><span class="mf">1375160303.399785831</span><span class="p">,</span> <span class="mf">483.554999999</span><span class="p">]:</span> <span class="p">[</span><span class="n">HrpsysSeqStateROSBridge0</span><span class="p">]</span> <span class="nd">@onExecutece</span> <span class="mi">0</span> <span class="ow">is</span> <span class="n">working</span> <span class="n">at</span> <span class="mi">201</span><span class="p">[</span><span class="n">Hz</span><span class="p">]</span>
+<span class="p">[</span> <span class="n">INFO</span><span class="p">]</span> <span class="p">[</span><span class="mf">1375160304.408500642</span><span class="p">,</span> <span class="mf">484.544999999</span><span class="p">]:</span> <span class="p">[</span><span class="n">HrpsysSeqStateROSBridge0</span><span class="p">]</span> <span class="nd">@onExecutece</span> <span class="mi">0</span> <span class="ow">is</span> <span class="n">working</span> <span class="n">at</span> <span class="mi">198</span><span class="p">[</span><span class="n">Hz</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>また、 hrpsys simulator viewer が次のように表示されます。</p>
+<!-- ![hrpsys viewer](http://wiki.ros.org/hrpsys?action=AttachFile&do=get&target=snap_tutorial_hrpsysViewer.png) --><p><img alt="hrpsys_viewer" src="_images/snap_tutorial_hrpsysViewer.png" /></p>
+<p>hrpsys-simulatorをターミナルから<code class="docutils literal notranslate"><span class="pre">Ctrl-c</span></code>で終了したとき、エラー「残念ながら、アプリケーション○○○が予期せず停止しました。」が発生する場合があります。停止したアプリケーションがhrpsys_ros_bridgeまたはhrpsys-baseの関連のものである場合、それらは終了予定のアプリケーションであるため問題ありません。</p>
+</section>
+<section id="id3">
+<h4>MoveIt! の起動とシミュレーションロボットの操作<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h4>
+<p>ロボット実機と同じように MoveIt! を起動してシミュレーション上のロボットを操作することができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_moveit_config moveit_planning_execution.launch
+</pre></div>
+</div>
+<p>MoveIt! 内での操作も実機のロボットとシミュレーション上のロボットでは同じです。
+InteractiveMarker を動かし、動作計画を行い実行します。</p>
+<!-- ### ROS の動力学シミュレーション - Gazebo --><!-- NEXTAGE OPEN の Gazebo シミュレーションを起動します。 --><!-- - メモ: ROS / Gazebo でのシミュレーションのため rtm_ros_bridge は不要 --><!-- ``` --><!-- $ roslaunch nextagea_gazebo nextagea_world.launch --><!-- ``` --><!-- Gazebo nextage_world に --><!-- セスナ機、カフェのテーブル、建設用のバレル、HUSKYロボットオブジェクトをインサートした図 --><!-- ![Gazebo - nextage_world with inserting lots of objects](http://wiki.ros.org/rtmros_nextage/Tutorials/Run%20simulation?action=AttachFile&do=get&target=nxo_gz_cesna.png) --><!-- <\!-- EOF -\-> --></section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="NEXTAGE OPEN チュートリアル" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_ja_reference.html" class="btn btn-neutral float-right" title="ロボットハードウェアの概要" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

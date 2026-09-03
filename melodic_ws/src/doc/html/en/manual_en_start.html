@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; rtmros_nextage 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Overview of robot hardware" href="manual_en_reference.html" />
+    <link rel="prev" title="NEXTAGE OPEN Tutorial" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-computer">Starting the computer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-ros-servers">Starting ROS Servers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#running-rtm-ros-bridge">Running rtm_ros_bridge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#checking-ros-processes">Checking ROS Processes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#manipulation-of-robots-by-diagnosisui">Manipulation of robots by DiagnosisUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-operations-in-moveit">Running Operations in MoveIt!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#starting-the-moveit">Starting the MoveIt!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#planning-and-implementing-operations-in-the-moveit">Planning and Implementing Operations in the MoveIt!</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#robot-shutdown-process">Robot shutdown process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#completion-of-all-programs">Completion of all programs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stopping-the-qnx">Stopping the QNX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#termination-of-ubuntu">Termination of Ubuntu</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#precautions">Precautions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kinetics-simulation">Kinetics simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-simulations-of-rtm-hrpsys-simulator">Dynamic Simulations of RTM-hrpsys-simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#execution-of-the-simulator">Execution of the simulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#starting-the-moveit-and-handling-simulation-robots">Starting the MoveIt! and Handling Simulation Robots</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html">Overview of robot hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#computer-and-software-overview">Computer and Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#maintenance-and-management">Maintenance and management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_development-pc-setup.html">Setting up the development PC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_trouble-shooting.html">Trouble shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_python-if.html">Tutorial: Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html">Tutorial: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-python.html">Tutorial: MoveIt! Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_gui.html">Use of DiagnosisUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_3d-perception.html">Tutorial: Three-Dimensional Recognition</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_en_start.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading"></a></h2>
+<section id="starting-the-computer">
+<h3>Starting the computer<a class="headerlink" href="#starting-the-computer" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Refer to the instruction manual and press the power button on the controller.</p></li>
+<li><p>After turning on the controller, turn on the development PC. If the controller is turned on later, the development PC may not recognize the cameras.</p></li>
+<li><p>Press the reset button on the switchbox.
+If the robot LED light is green,
+The robot is ready for operation.</p></li>
+</ul>
+</section>
+<section id="starting-ros-servers">
+<h3>Starting ROS Servers<a class="headerlink" href="#starting-ros-servers" title="Permalink to this heading"></a></h3>
+<section id="running-rtm-ros-bridge">
+<h4>Running rtm_ros_bridge<a class="headerlink" href="#running-rtm-ros-bridge" title="Permalink to this heading"></a></h4>
+<p>Execute the following command on the development PC terminals to execute the ROS.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_ros_bridge nextage_fillie_open_ros_bridge_real.launch
+</pre></div>
+</div>
+<p>NEXTAGE OPEN defaults can be accessed by hostname <code class="docutils literal notranslate"><span class="pre">nextage</span></code>,
+It has been described in <code class="docutils literal notranslate"><span class="pre">nextage_fillie_open_ros_bridge_real.launch</span></code>.</p>
+<p>If you change the host name, replace the <code class="docutils literal notranslate"><span class="pre">%HOSTNAME%</span></code> part of the command below with the desired host name and execute the command explicitly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_ros_bridge nextage_fillie_open_ros_bridge_real.launch nameserver:=%HOSTNAME%
+</pre></div>
+</div>
+<p>This program must be running when you operate the robot..</p>
+</section>
+<section id="checking-ros-processes">
+<h4>Checking ROS Processes<a class="headerlink" href="#checking-ros-processes" title="Permalink to this heading"></a></h4>
+<p>Open a terminal different from the terminal running rtm_ros_bridge.
+You can identify the ROS node that is running by running the following command on the new terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosnode list
+/diagnostic_aggregator
+/hrpsys_profile
+/hrpsys_ros_diagnostics
+/hrpsys_state_publisher
+/rosout
+...
+</pre></div>
+</div>
+</section>
+</section>
+<section id="manipulation-of-robots-by-diagnosisui">
+<h3>Manipulation of robots by DiagnosisUI<a class="headerlink" href="#manipulation-of-robots-by-diagnosisui" title="Permalink to this heading"></a></h3>
+<p>Part of the robot’s functions is a simple GUI,
+You can perform the following functions from the DiagnosisUI:</p>
+<ul class="simple">
+<li><p>Joint calibration</p></li>
+<li><p>Releace momentary stop</p></li>
+<li><p>Confirmation of digital input/output, operation of digital output</p></li>
+<li><p>Servo ON/OFF</p></li>
+<li><p>Brake ON/OFF</p></li>
+<li><p>Acquisition of diagnostic reports and logs</p></li>
+<li><p>Starting uEyeDemo</p></li>
+<li><p>Shutdown controller</p></li>
+</ul>
+<p>Please refer to <a class="reference external" href="manual_en_tutorial_gui.html">Use of DiagnosisUI</a> for details.
+The DiagnosisUI is started by the following commands from the terminals.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/
+$ ./DiagnosisUI
+</pre></div>
+</div>
+<p>First, enter the robot IP and press connect.
+Each button located on the UI is enabled and can be operated.</p>
+</section>
+<section id="running-operations-in-moveit">
+<h3>Running Operations in MoveIt!<a class="headerlink" href="#running-operations-in-moveit" title="Permalink to this heading"></a></h3>
+<p>Move the robots using the MoveIt! of the motion planning framework, which also includes the GUI of the ROS.</p>
+<section id="starting-the-moveit">
+<h4>Starting the MoveIt!<a class="headerlink" href="#starting-the-moveit" title="Permalink to this heading"></a></h4>
+<p>Start MoveIt!.
+Open the new terminal and execute the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$  roslaunch nextage_fillie_open_moveit_config moveit_planning_execution.launch
+</pre></div>
+</div>
+<!-- ![MoveIt! Window](http://wiki.ros.org/hironx_MoveIt!_config?action=AttachFile&do=get&target=snap_tutorial_hironx_MoveIt!RvizPlugin.png) --></section>
+<section id="planning-and-implementing-operations-in-the-moveit">
+<h4>Planning and Implementing Operations in the MoveIt!<a class="headerlink" href="#planning-and-implementing-operations-in-the-moveit" title="Permalink to this heading"></a></h4>
+<p>A marker represented by an arrow or a sphere is located at the tip of the robotic model displayed in the MoveIt!.
+This is called an InteractiveMarker, which specifies the position and orientation of the hand tip.</p>
+<p>Perform the following preparations before changing the hand position.</p>
+<ol class="simple">
+<li><p>Turn Start State to &lt; current &gt; at the Planning tabs Query.</p></li>
+<li><p>Turn Goal State to &lt; current &gt; at the Planning tabs Query.</p></li>
+</ol>
+<p>Drag the InteractiveMarker slightly.
+The wrist with different colors will be displayed.
+The present robotic posture and the target posture specified in the InteractiveMarker are displayed.</p>
+<p><img alt="MoveIt! InteractiveMarker" src="_images/nxo_moveit_plan-and-execute.png" /></p>
+<p>Click plan in the Planning tabs.
+The motion plans are displayed so that the arms are animated to the target position in the MoveIt!.</p>
+<p>If the animated motion plan does not seem to have any problems, such as interference, including the situation around the real robot,
+actually move the robot to the target posture.</p>
+<ul class="simple">
+<li><p>Note: <strong>If servo is On ,robot moves.</strong></p></li>
+</ul>
+<p>Click [Plan and Execute] in the Planning tabs.</p>
+<p><img alt="MoveIt! Plan and Execute Done" src="_images/nxo_moveit_plan-and-execute_done.png" /></p>
+<p>The robots actually move as planned in the MoveIt!.</p>
+<p>We will also move to other target postures.
+In this case, the MoveIt! generates a random posture.</p>
+<ul class="simple">
+<li><p>Note: Proceed with the following steps while Checking the situation around the robot with respect to the generated target posture.</p></li>
+</ul>
+<ol class="simple">
+<li><p>Select &lt; random valid &gt; in the Goal State of the Planning tabs Query:</p></li>
+<li><p>Click &lt; random valid &gt; in the Goal State (Reclick to recreate)</p></li>
+<li><p>Click [Plan] on the Commands → Check the operation Planning.</p></li>
+<li><p>Safety check of robot operating environment, etc.</p></li>
+<li><p>Click [Plan andExecute] on the Commands → Perform the action.</p></li>
+</ol>
+<p><img alt="MoveIt! - Select to Goal Random Valid" src="_images/nxo_moveit_select-goal-random.png" /></p>
+<blockquote>
+<div><p>Summary of Operation Planning and Execution Procedures in &gt;MoveIt!</p>
+<ol class="simple">
+<li><p>Turn the Start State to &lt; current &gt; at the Planning tabs Query.</p></li>
+<li><p>Turn the Goal State to &lt; current &gt; at the Planning tabs Query.</p></li>
+<li><p>Drag the robot’s hands with the InteractiveMarker on the MoveIt! and move to the target posture.</p></li>
+<li><p>Click [Plan] on the Planning tab Commands to check the operation plan.</p></li>
+<li><p>Check that there are no problems such as interference with the surrounding environment due to robot operation.</p></li>
+<li><p>Click [Plan and Execute] on the Planning tab Commands.</p></li>
+</ol>
+</div></blockquote>
+</section>
+</section>
+<section id="robot-shutdown-process">
+<h3>Robot shutdown process<a class="headerlink" href="#robot-shutdown-process" title="Permalink to this heading"></a></h3>
+<!-- #### ロボットをサーボオフ姿勢にする --><!-- ロボットの各関節をサーボオフ姿勢にしてサーボ切ります。 --><!-- - 注意: **ロボットが動きます．** --><!-- Hironx Dahsboard の [ Goto init pose ] ボタンを押してください． --><!-- これによりロボットの各関節がサーボオフ姿勢になり、サーボが切れます． --><section id="completion-of-all-programs">
+<h4>Completion of all programs<a class="headerlink" href="#completion-of-all-programs" title="Permalink to this heading"></a></h4>
+<p>Exit all programs except the one running DiagnosisUI.
+Terminate all terminals except the one running DiagnosisUI by <code class="docutils literal notranslate"><span class="pre">Ctrl-c</span></code>.
+At this time, you exit hrpsys-simulator from the terminal with Ctrl-c, you may get the error “Sorry, the application XXX has stopped unexpectedly.”. If the stopped applications are related to hrpsys_ros_bridge, this is not a problem because they are applications that are scheduled to be terminated.</p>
+</section>
+<section id="stopping-the-qnx">
+<h4>Stopping the QNX<a class="headerlink" href="#stopping-the-qnx" title="Permalink to this heading"></a></h4>
+<p>Press the [Shutdown QNX] button on the DiagnosisUI to shut down the computer.</p>
+</section>
+<section id="termination-of-ubuntu">
+<h4>Termination of Ubuntu<a class="headerlink" href="#termination-of-ubuntu" title="Permalink to this heading"></a></h4>
+<p>Terminates the Ubuntu with commands such as <code class="docutils literal notranslate"><span class="pre">$sudo</span> <span class="pre">shutdown</span> <span class="pre">now</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="precautions">
+<h2>Precautions<a class="headerlink" href="#precautions" title="Permalink to this heading"></a></h2>
+<p>If there is a difference between the current joint angle and the last command angle, an unintended sudden movement may occur at the joint with the difference when executing a movement command in the following manner.</p>
+<ul class="simple">
+<li><p>iPython</p>
+<ul>
+<li><p>robot.goInitial</p></li>
+<li><p>robot.goOffPose</p></li>
+<li><p>robot.setJointAnglesOfGroup</p></li>
+<li><p>robot.playPatternOfGroup</p></li>
+</ul>
+</li>
+<li><p>MoveIt</p></li>
+</ul>
+<p>Differences between the current joint angle and the last command angle can be caused by the following factors</p>
+<ul class="simple">
+<li><p>Pause during the movement</p></li>
+<li><p>Direct posture change by hand</p></li>
+<li><p>Posture change due to the weight of the hand or other parts when the servo is off</p></li>
+</ul>
+<p>Unintended sudden movement can be avoided by executing a movement to the current angle in advance for joints where there is a difference between the current joint angle and the last command angle.
+In iPython, for <code class="docutils literal notranslate"><span class="pre">setJointAnglesOfGroup</span></code> or <code class="docutils literal notranslate"><span class="pre">playPatternOfGroup</span></code>, specify the current joint angle for the movement target and 0.001 for the movement time. You can also avoid this by pre-executing movement commands other than the above (such as <code class="docutils literal notranslate"><span class="pre">setTargerPose</span></code>). In the case of MoveIt, you can avoid this by executing the movement to the current angle (by clicking the [ Plan and Execute ] button) for the part where there is a difference between the current joint angle and the last command angle.</p>
+</section>
+<section id="kinetics-simulation">
+<h2>Kinetics simulation<a class="headerlink" href="#kinetics-simulation" title="Permalink to this heading"></a></h2>
+<section id="dynamic-simulations-of-rtm-hrpsys-simulator">
+<h3>Dynamic Simulations of RTM-hrpsys-simulator<a class="headerlink" href="#dynamic-simulations-of-rtm-hrpsys-simulator" title="Permalink to this heading"></a></h3>
+<p>The core functions of robots run on the OpenRTM framework.
+The functions of robots can be virtually realized by a simulator called a hrpsys-simulator based on this OpenRTM.
+This manikin can be used without using the higher layers provided by the ROS.</p>
+<p>This simulator is sufficient in many cases to run programs that are not specially-purposed .</p>
+<section id="execution-of-the-simulator">
+<h4>Execution of the simulator<a class="headerlink" href="#execution-of-the-simulator" title="Permalink to this heading"></a></h4>
+<p>Start the simulator to “mimic” the actual robot.
+Note that <code class="docutils literal notranslate"><span class="pre">rtmlaunch</span></code> is used instead of <code class="docutils literal notranslate"><span class="pre">roslaunch</span></code> and execute the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rtmlaunch nextage_fillie_open_ros_bridge nextage_fillie_open_ros_bridge_simulation.launch
+</pre></div>
+</div>
+<blockquote>
+<div><p>The launch files perform two main tasks:</p>
+<p>First, load the virtual robot into the manikin.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rtmlaunch nextage_fillie_open_ros_bridge nextage_fillie_open_startup.launch
+</pre></div>
+</div>
+<p>The simulated robots run only on OpenRTM based software.</p>
+<p>Second, create a “bridge” that connects the two spaces of the ROS and the OpenRTM in order to operate the robots via the ROS.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch nextage_fillie_open_ros_bridge  hironx_ros_bridge.launch
+</pre></div>
+</div>
+</div></blockquote>
+<p>When the following command prompt appears, the simulation is working properly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="n">INFO</span><span class="p">]</span> <span class="p">[</span><span class="mf">1375160303.399785831</span><span class="p">,</span> <span class="mf">483.554999999</span><span class="p">]:</span> <span class="p">[</span><span class="n">HrpsysSeqStateROSBridge0</span><span class="p">]</span> <span class="nd">@onExecutece</span> <span class="mi">0</span> <span class="ow">is</span> <span class="n">working</span> <span class="n">at</span> <span class="mi">201</span><span class="p">[</span><span class="n">Hz</span><span class="p">]</span>
+<span class="p">[</span> <span class="n">INFO</span><span class="p">]</span> <span class="p">[</span><span class="mf">1375160304.408500642</span><span class="p">,</span> <span class="mf">484.544999999</span><span class="p">]:</span> <span class="p">[</span><span class="n">HrpsysSeqStateROSBridge0</span><span class="p">]</span> <span class="nd">@onExecutece</span> <span class="mi">0</span> <span class="ow">is</span> <span class="n">working</span> <span class="n">at</span> <span class="mi">198</span><span class="p">[</span><span class="n">Hz</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The hrpsys simulator viewer is displayed as follows.</p>
+<!-- ![hrpsys viewer](http://wiki.ros.org/hrpsys?action=AttachFile&do=get&target=snap_tutorial_hrpsysViewer.png) --><p><img alt="hrpsys_viewer" src="_images/snap_tutorial_hrpsysViewer.png" /></p>
+<p>When exiting hrpsys-simulator from the terminal with Ctrl-c, the error “Sorry, the application XXX has stopped unexpectedly.”. may occur. If the stopped application is related to hrpsys_ros_bridge or hrpsys-base, there is no problem because they are applications that are scheduled to be terminated.</p>
+</section>
+<section id="starting-the-moveit-and-handling-simulation-robots">
+<h4>Starting the MoveIt! and Handling Simulation Robots<a class="headerlink" href="#starting-the-moveit-and-handling-simulation-robots" title="Permalink to this heading"></a></h4>
+<p>Similar to the actual robot, you can start the MoveIt! to operate the simulated robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$  roslaunch nextage_fillie_open_moveit_config moveit_planning_execution.launch
+</pre></div>
+</div>
+<p>Operations within the MoveIt! are the same for the real robot and the simulated robot.
+Run the InteractiveMarker, plan and execute the operation.</p>
+<!-- ### ROS の動力学シミュレーション - Gazebo --><!-- NEXTAGE OPEN の Gazebo シミュレーションを起動します。 --><!-- - メモ: ROS / Gazebo でのシミュレーションのため rtm_ros_bridge は不要 --><!-- ``` --><!-- $ roslaunch nextagea_gazebo nextagea_world.launch --><!-- ``` --><!-- Gazebo nextage_world に --><!-- セスナ機、カフェのテーブル、建設用のバレル、HUSKYロボットオブジェクトをインサートした図 --><!-- ![Gazebo - nextage_world with inserting lots of objects](http://wiki.ros.org/rtmros_nextage/Tutorials/Run%20simulation?action=AttachFile&do=get&target=nxo_gz_cesna.png) --><!-- <\!-- EOF -\-> --></section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="NEXTAGE OPEN Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_en_reference.html" class="btn btn-neutral float-right" title="Overview of robot hardware" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial: Three-Dimensional Recognition &mdash; rtmros_nextage 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Use of DiagnosisUI" href="manual_en_tutorial_gui.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_en_start.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html">Overview of robot hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#computer-and-software-overview">Computer and Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#maintenance-and-management">Maintenance and management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_development-pc-setup.html">Setting up the development PC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_trouble-shooting.html">Trouble shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_python-if.html">Tutorial: Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html">Tutorial: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-python.html">Tutorial: MoveIt! Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_gui.html">Use of DiagnosisUI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial: Three-Dimensional Recognition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#robot-camera-settings">Robot camera settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nextage-fillie-open-cameras">NEXTAGE Fillie OPEN cameras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-specific-cameras">User-Specific Cameras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#head-camera-settings">Head camera settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#running-the-ueye-camera-node">Running the uEye Camera Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calibration-of-the-stereo-camera">Calibration of the stereo camera</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hand-camera-settings-todo-not-tested">Hand-Camera Settings <!--todo not tested--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#camera-settings">Camera settings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Tutorial: Three-Dimensional Recognition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_en_tutorial_3d-perception.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial-three-dimensional-recognition">
+<h1>Tutorial: Three-Dimensional Recognition<a class="headerlink" href="#tutorial-three-dimensional-recognition" title="Permalink to this heading"></a></h1>
+<section id="robot-camera-settings">
+<h2>Robot camera settings<a class="headerlink" href="#robot-camera-settings" title="Permalink to this heading"></a></h2>
+<section id="nextage-fillie-open-cameras">
+<h3>NEXTAGE Fillie OPEN cameras<a class="headerlink" href="#nextage-fillie-open-cameras" title="Permalink to this heading"></a></h3>
+<p>NEXTAGE Fillie OPEN  (not HIRO) can be equipped with a total of 4 IDS uEye cameras,
+2 on the head and optional 1 on each of the left and right hands.
+The operation of these cameras is done in the ueye_cam package, which is basically
+which is summarized below:</p>
+<ul class="simple">
+<li><p>nextage_fillie_open_ros_bridge/launch/nextage_fillie_open_ueye_stereo.launch</p></li>
+<li><p>nextage_fillie_open_ros_bridge/launch/hands_ueye.launch</p></li>
+</ul>
+ <!----><p>Note: About HIRO Cameras</p>
+<ul class="simple">
+<li><p>The content described in this section does not relate to Cameras installed on HIRO.</p></li>
+<li><p>How HIRO Cameras operate may differ from what is described in this section.</p></li>
+</ul>
+</section>
+<section id="user-specific-cameras">
+<h3>User-Specific Cameras<a class="headerlink" href="#user-specific-cameras" title="Permalink to this heading"></a></h3>
+<p>Cameras other than those available as options can also be used if they have a ROS driver.<br />Cameras with ROS drivers can be identified from the following destinations:</p>
+<ul class="simple">
+<li><p>Sensors/Cameras - ROS Wiki</p>
+<ul>
+<li><p><a class="reference external" href="http://wiki.ros.org/Sensors/Cameras">http://wiki.ros.org/Sensors/Cameras</a></p></li>
+<li><p>Note: It does not cover all information because It is updated manually.</p></li>
+</ul>
+</li>
+</ul>
+<p>Some users use Kinect and Xtion cameras on robotic heads.
+In such cases, if collisions are to be determined by checking tf or by MoveIt! ,
+You need to build 3D models for cameras and update robotic models.</p>
+</section>
+<section id="head-camera-settings">
+<h3>Head camera settings<a class="headerlink" href="#head-camera-settings" title="Permalink to this heading"></a></h3>
+<section id="running-the-ueye-camera-node">
+<h4>Running the uEye Camera Node<a class="headerlink" href="#running-the-ueye-camera-node" title="Permalink to this heading"></a></h4>
+<p>Make sure that the robot head camera is installed on the head.
+Run the stereo camera node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source ~/&lt;your_ueye_cam_ws&gt;/devel/setup.bash
+$ roslaunch nextage_fillie_open_ros_bridge nextage_fillie_open_ueye_stereo.launch
+</pre></div>
+</div>
+<p>※ The execution of <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">~/&lt;your_ueye_cam_ws&gt;/devel/setup.bash</span></code> can be omitted if set in .bashrc in advance.</p>
+<p>Since this node uses the ueye_cam package,
+You can subscribe to video topics as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rostopic echo left/image_raw
+$ rostopic echo right/image_raw
+</pre></div>
+</div>
+<p>Videos can be viewed using GUI tools such as rqt_image_view.</p>
+</section>
+<section id="calibration-of-the-stereo-camera">
+<h4>Calibration of the stereo camera<a class="headerlink" href="#calibration-of-the-stereo-camera" title="Permalink to this heading"></a></h4>
+<p>Before using a stereo camera, calibration is necessary.</p>
+<ul class="simple">
+<li><p>How to Calibrate a Stereo Camera - ROS Wiki</p>
+<ul>
+<li><p><a class="reference external" href="http://wiki.ros.org/camera_calibration/Tutorials/StereoCalibration">http://wiki.ros.org/camera_calibration/Tutorials/StereoCalibration</a></p></li>
+</ul>
+</li>
+</ul>
+<p>Use the following command to calibrate the stereo camera.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosrun camera_calibration cameracalibrator.py --size 4x6 --square 0.024 --approximate=0.1 --camera_name=stereo_frame right:=/right/image_raw left:=/left/image_raw right_camera:=/right left_camera:=/left
+</pre></div>
+</div>
+<p>Save the calibration results in &lt;your home directory&gt;/.ros/ camera_info.
+Keep this data intact.</p>
+</section>
+</section>
+<section id="hand-camera-settings-todo-not-tested">
+<h3>Hand-Camera Settings <!--todo not tested--><a class="headerlink" href="#hand-camera-settings-todo-not-tested" title="Permalink to this heading"></a></h3>
+<p>Use the following command to operate the two cameras on the left and right hands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source ~/&lt;your_ueye_cam_ws&gt;/devel/setup.bash
+$ roslaunch nextage_fillie_open_ros_bridge hands_ueye.launch
+</pre></div>
+</div>
+<p>Images from the hand camera can be subscribed to according to the following topics:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rostopic echo /left_hand_ueye/image_raw   (left)
+$ rostopic echo /right_hand_ueye/image_raw  (right)
+</pre></div>
+</div>
+</section>
+<section id="camera-settings">
+<h3>Camera settings<a class="headerlink" href="#camera-settings" title="Permalink to this heading"></a></h3>
+<p>You can use rqt_reconfigure to change camera settings.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosrun rqt_reconfigure rqt_reconfigure
+</pre></div>
+</div>
+<p><img alt="camera_setting" src="_images/camera_setting.png" /></p>
+<p>You can check the camera image using rqt_image_view.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosrun rqt_image_view rqt_image_view
+</pre></div>
+</div>
+<!-- EOF --></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_en_tutorial_gui.html" class="btn btn-neutral float-left" title="Use of DiagnosisUI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

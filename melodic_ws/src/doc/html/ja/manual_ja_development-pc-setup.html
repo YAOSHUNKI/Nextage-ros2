@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>開発用PCのセットアップ &mdash; rtmros_nextage 0.1 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="トラブルシューティング" href="manual_ja_trouble-shooting.html" />
+    <link rel="prev" title="ロボットハードウェアの概要" href="manual_ja_reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_start.html">はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html">ロボットハードウェアの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#computer-and-software-overview">コンピュータとソフトウェアの概要<!--computer-and-software-overview--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#maintenance-and-management">保守・管理<!--Maintenance and management--></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">開発用PCのセットアップ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#debian-installing-from-the-debian-binary-package">Debian バイナリパッケージからのインストール<!--installing-from-the-debian-binary-package--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ros-hiro-installing-the-ros-and-hiro-nextage-open-software">ROS および HIROソフトウェアのインストール<!--installing-the-ros-and-hiro-nextage-open-software--></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nextage-open-installing-nextage-open-software-only">NEXTAGE OPEN ソフトウェアのみのインストール<!--installing-nextage-open-software-only--></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#network-settings">ネットワーク設定<!--network-settings--></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#host-name-setting-optional">ホスト名の設定（オプション）<!--host-name-setting-optional--></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#workspace-setup">ワークスペースのセットアップ<!--workspace-setup--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#diagnosisui-diagnosisui-setup">DiagnosisUIのセットアップ<!--DiagnosisUI-setup--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#camera-setup">カメラのセットアップ<!--Camera-setup--></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_trouble-shooting.html">トラブルシューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_python-if.html">チュートリアル: Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html">チュートリアル: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html">チュートリアル: MoveIt! Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_gui.html">DiagnosisUIの使い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html">チュートリアル: 3次元認識</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">開発用PCのセットアップ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_ja_development-pc-setup.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pc">
+<h1>開発用PCのセットアップ<a class="headerlink" href="#pc" title="この見出しへのパーマリンク"></a></h1>
+<p>新規のubuntu PCを導入するときに以下の手順通りでPCを設定してください。</p>
+<section id="debian-installing-from-the-debian-binary-package">
+<h2>Debian バイナリパッケージからのインストール<!--installing-from-the-debian-binary-package--><a class="headerlink" href="#debian-installing-from-the-debian-binary-package" title="この見出しへのパーマリンク"></a></h2>
+<p>Debian バイナリパッケージからソフトウェアのインストールを行います。</p>
+<section id="ros-hiro-installing-the-ros-and-hiro-nextage-open-software">
+<h3>ROS および HIROソフトウェアのインストール<!--installing-the-ros-and-hiro-nextage-open-software--><a class="headerlink" href="#ros-hiro-installing-the-ros-and-hiro-nextage-open-software" title="この見出しへのパーマリンク"></a></h3>
+<p>ROS Melodic および HIROのパッケージをインストールします。
+ROSのWiki (<a class="reference external" href="http://wiki.ros.org/melodic/Installation/Ubuntu#Ubuntu_install_of_ROS_Melodic">http://wiki.ros.org/melodic/Installation/Ubuntu#Ubuntu_install_of_ROS_Melodic</a>) を確認し、ROSをインストールしてください。次にターミナルで次のコマンドを実行し、HIROのパッケージをインストールしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install -y ros-melodic-rtmros-hironx
+</pre></div>
+</div>
+<p>インストールの最後に setup.bash を読み込み、ROS の環境を設定します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source /opt/ros/melodic/setup.bash
+</pre></div>
+</div>
+<p>これは新しくターミナルを立ち上げて ROS を使用する前に毎回必要になります。
+下記のように .bashrc ファイルに設定を加えて
+ターミナル起動時に setup.bash を自動で実行し ROS 環境になるようにしておくと便利です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;source /opt/ros/melodic/setup.bash&quot; &gt;&gt; ~/.bashrc
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>注意: <strong>上記コマンドの <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> を <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> にしてしまうと元々あった .bashrc 内の設定が消えてしまうのでご注意ください。</strong></p></li>
+</ul>
+</section>
+<section id="nextage-open-installing-nextage-open-software-only">
+<h3>NEXTAGE OPEN ソフトウェアのみのインストール<!--installing-nextage-open-software-only--><a class="headerlink" href="#nextage-open-installing-nextage-open-software-only" title="この見出しへのパーマリンク"></a></h3>
+<p>ROS Melodic が既にインストールされていて NEXTAGE OPEN のソフトウェアのみをインストールする必要がある場合は次の1行だけ実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update &amp;&amp; sudo apt-get install ros-melodic-rtmros-hironx
+</pre></div>
+</div>
+</section>
+</section>
+<section id="network-settings">
+<h2>ネットワーク設定<!--network-settings--><a class="headerlink" href="#network-settings" title="この見出しへのパーマリンク"></a></h2>
+<p>コントローラのIPアドレスは192.168.128.10です。開発用PCのIPアドレスを適切な値に変更してください。</p>
+<section id="host-name-setting-optional">
+<h3>ホスト名の設定（オプション）<!--host-name-setting-optional--><a class="headerlink" href="#host-name-setting-optional" title="この見出しへのパーマリンク"></a></h3>
+<p>デフォルトの NEXTAGE OPEN のソフトウェアでは QNX コンピュータのホスト名を通信の際に使います。
+ホスト名の設定をオペレーティングシステム上で行っておくと便利です。</p>
+<ul class="simple">
+<li><p>次の行を <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> に追加</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># For accessing QNX for NEXTAGE Open</span>
+<span class="mf">192.168.128.10</span> <span class="n">nextage</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>IP アドレスはユーザの環境により上記のものとは異なる場合があります。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ping</span></code> コマンドによりホスト&quot;nextage&quot;から応答があることを確認してください。</p></li>
+<li><p>シミュレータを利用するために上記の設定を変更する必要はありません。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">192.168.128.x</span></code> セグメントを使用するネットワークアプリケーションを使用している場合を除き、この設定はネットワークの使用には有害ではありません。</p></li>
+<li><p>既知の OpenRTM の問題  <a class="reference external" href="https://github.com/start-jsk/rtmros_hironx/issues/33">https://github.com/start-jsk/rtmros_hironx/issues/33</a> を回避するためネットワーク接続に <code class="docutils literal notranslate"><span class="pre">eth0</span></code> が使用されていることを確認してください。</p></li>
+</ul>
+</section>
+</section>
+<section id="workspace-setup">
+<h2>ワークスペースのセットアップ<!--workspace-setup--><a class="headerlink" href="#workspace-setup" title="この見出しへのパーマリンク"></a></h2>
+<!--NEXTAGE OPEN のプログラムコードを作成・ビルドする必要がない場合は
+本項目のインストール手順は不要です。--><p>下記のセットアップ手順ではワークスペース名を <code class="docutils literal notranslate"><span class="pre">catkin_ws</span></code> (catkin workspace) としていますが、
+他の名前・フォルダ名でも問題ありません。
+ここで、rtmros_nextage_fillie_open.tar.bz2はカワダロボティクスが提供するrosパッケージです。
+rtmros_nextage_fillie_open.tar.bz2はサポートサイトよりダウンロードし、ホームディレクトリ( <code class="docutils literal notranslate"><span class="pre">~/</span></code> )に置いて以下手順を実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/src
+$ catkin_init_workspace
+$ tar jxvf ~/rtmros_nextage_fillie_open.tar.bz2 -C ~/catkin_ws/src
+$ cd ~/catkin_ws
+$ catkin_make
+$ source ~/catkin_ws/devel/setup.bash
+</pre></div>
+</div>
+<p>ターミナルを開くたびに <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/catkin_ws/devel/setup.bash</span></code>
+を実行したくない場合は .bashrc に設定します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;source ~/catkin_ws/devel/setup.bash&quot; &gt;&gt; ~/.bashrc
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>注意: <strong>上記コマンドの <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> を <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> にしてしまうと元々あった .bashrc 内の設定が消えてしまうのでご注意ください。</strong></p></li>
+</ul>
+</section>
+<section id="diagnosisui-diagnosisui-setup">
+<h2>DiagnosisUIのセットアップ<!--DiagnosisUI-setup--><a class="headerlink" href="#diagnosisui-diagnosisui-setup" title="この見出しへのパーマリンク"></a></h2>
+<p>DiagnosisUIをサポートサイトからダウンロードし、ホームディレクトリ( ~/ )に置いて以下手順を実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod 744 DiagnosisUI
+$ sudo apt-get install -y libqt4-dev
+</pre></div>
+</div>
+<p>またDiagnosisUIのデスクトップショートカットを利用したい場合は、サポートサイトからダウンロードしデスクトップ上に置いて以下の手順を実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod 744 Link¥ to¥ DiagnosisUI.desktop
+</pre></div>
+</div>
+</section>
+<section id="camera-setup">
+<h2>カメラのセットアップ<!--Camera-setup--><a class="headerlink" href="#camera-setup" title="この見出しへのパーマリンク"></a></h2>
+<p>IDS社製 uEye カメラを使用するため、IDS Software Suiteをインストールしてください。インストール方法はIDS社のWebサイトをご確認ください。</p>
+<p>動作確認済みバージョン : 4.95.2</p>
+<p>rtmros_nextage_fillie_openではueye_camを利用しています。<a class="reference external" href="https://wiki.ros.org/ueye_cam">https://wiki.ros.org/ueye_cam</a> に記載の手順でビルドを行ってください。
+ueye_cam の動作確認は、以下のバージョンで実施しています。</p>
+<p>動作確認済みバージョン : 1.0.17</p>
+<p>バージョンの切り替えは以下のコマンドで実施できます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ueye_cam
+$ git checkout 1.0.17
+</pre></div>
+</div>
+<!-- EOF --></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_ja_reference.html" class="btn btn-neutral float-left" title="ロボットハードウェアの概要" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_ja_trouble-shooting.html" class="btn btn-neutral float-right" title="トラブルシューティング" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

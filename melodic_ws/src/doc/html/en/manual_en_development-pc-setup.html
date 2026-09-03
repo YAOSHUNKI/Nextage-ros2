@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up the development PC &mdash; rtmros_nextage 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Trouble shooting" href="manual_en_trouble-shooting.html" />
+    <link rel="prev" title="Overview of robot hardware" href="manual_en_reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_en_start.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html">Overview of robot hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#computer-and-software-overview">Computer and Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#maintenance-and-management">Maintenance and management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting up the development PC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-from-the-debian-binary-package">Installing from the Debian Binary Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-ros-and-hiro-software">Installing the ROS and HIRO Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-nextage-open-software-only">Installing NEXTAGE OPEN Software Only</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#network-settings">Network settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#host-name-setting-optional">Host name setting (optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#workspace-setup">Workspace setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#diagnosisui-setup">DiagnosisUI setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#camera-setup">Camera Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_trouble-shooting.html">Trouble shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_python-if.html">Tutorial: Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html">Tutorial: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-python.html">Tutorial: MoveIt! Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_gui.html">Use of DiagnosisUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_3d-perception.html">Tutorial: Three-Dimensional Recognition</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Setting up the development PC</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_en_development-pc-setup.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setting-up-the-development-pc">
+<h1>Setting up the development PC<a class="headerlink" href="#setting-up-the-development-pc" title="Permalink to this heading"></a></h1>
+<p>When installing a new ubuntu PC, configure the PCs as follows.</p>
+<section id="installing-from-the-debian-binary-package">
+<h2>Installing from the Debian Binary Package<a class="headerlink" href="#installing-from-the-debian-binary-package" title="Permalink to this heading"></a></h2>
+<p>Install the software from the Debian binary package.</p>
+<section id="installing-the-ros-and-hiro-software">
+<h3>Installing the ROS and HIRO Software<a class="headerlink" href="#installing-the-ros-and-hiro-software" title="Permalink to this heading"></a></h3>
+<p>Install ROS Melodic and HIRO packages.
+Check the ROS Wiki, (<a class="reference external" href="http://wiki.ros.org/melodic/Installation/Ubuntu#Ubuntu_install_of_ROS_Melodic">http://wiki.ros.org/melodic/Installation/Ubuntu#Ubuntu_install_of_ROS_Melodic</a>) and install ROS.
+Next, run the following command in a terminal to install the HIRO package.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install -y ros-melodic-rtmros-hironx
+</pre></div>
+</div>
+<p>Once the installation is done, load the setup.bash and configure the ROS environments.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source /opt/ros/melodic/setup.bash
+</pre></div>
+</div>
+<p>This is required every time you start up new terminals and use the ROS.
+It is useful to automatically run the setup.bash when you start up the terminals and make it ROS by adding settings to the bashrc files as follow:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;source /opt/ros/melodic/setup.bash&quot; &gt;&gt; ~/.bashrc
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Note: <strong>If the command <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, the setting in the bashrc that originally existed disappears.</strong></p></li>
+</ul>
+</section>
+<section id="installing-nextage-open-software-only">
+<h3>Installing NEXTAGE OPEN Software Only<a class="headerlink" href="#installing-nextage-open-software-only" title="Permalink to this heading"></a></h3>
+<p>If the ROS Melodic is already installed and only the NEXTAGE OPEN software needs to be installed, do only the following line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update &amp;&amp; sudo apt-get install ros-melodic-rtmros-hironx
+</pre></div>
+</div>
+</section>
+</section>
+<section id="network-settings">
+<h2>Network settings<a class="headerlink" href="#network-settings" title="Permalink to this heading"></a></h2>
+<p>The IP address of the controller is 192.168.128.10. Change the IP address of the development PC to an appropriate value.</p>
+<section id="host-name-setting-optional">
+<h3>Host name setting (optional)<a class="headerlink" href="#host-name-setting-optional" title="Permalink to this heading"></a></h3>
+<p>The default NEXTAGE OPEN software uses the hostname of the QNX computer for communication.
+It is useful to set the host name on the operating system.</p>
+<ul class="simple">
+<li><p>Add the following line to <code class="docutils literal notranslate"><span class="pre">/</span> <span class="pre">etc/hosts</span></code>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># For accessing QNX for NEXTAGE Open</span>
+<span class="mf">192.168.128.10</span> <span class="n">nextage</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The IP address may differ from the above depending on the user’s environment.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">ping</span></code> and check to return from the nextage.</p></li>
+<li><p>You do not need to change the above settings to use the manikin.</p></li>
+<li><p>Except when you are using a network application that uses the <code class="docutils literal notranslate"><span class="pre">192.168.128.x</span></code> segment,
+This setting is not detrimental to the use of the network.</p></li>
+<li><p>To avoid the https://github.com/start-jsk/rtmros_hironx/issues/33 of known OpenRTM problems,
+make sure that <code class="docutils literal notranslate"><span class="pre">eth0</span></code> is used for networking.</p></li>
+</ul>
+</section>
+</section>
+<section id="workspace-setup">
+<h2>Workspace setup<a class="headerlink" href="#workspace-setup" title="Permalink to this heading"></a></h2>
+<p>In the setup procedures below,  <code class="docutils literal notranslate"><span class="pre">catkin_ws</span></code> (catkin workspace)  is used as the workspace name,
+but any other names and folder names are also acceptable.
+Here, rtmros_nextage_fillie_open.tar.bz2 is the ros package provided by Kawada Robotics.<br />Please download rtmros_nextage_fillie_open.tar.bz2 from support site.
+Place it at Home directory ( <code class="docutils literal notranslate"><span class="pre">~/</span></code> ) and execute following procedures.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/src
+$ catkin_init_workspace
+$ tar jxvf ~/rtmros_nextage_fillie_open.tar.bz2 -C ~/catkin_ws/src
+$ cd ~/catkin_ws
+$ catkin_make
+$ source ~/catkin_ws/devel/setup.bash
+</pre></div>
+</div>
+<p>If you do not want to run <code class="docutils literal notranslate"><span class="pre">source-/catkin_ws/devel/setup.bash</span></code> every time in terminals,
+set it to.bashrc.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;source ~/catkin_ws/devel/setup.bash&quot; &gt;&gt; ~/.bashrc
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Note: <strong>If the command <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, the setting in the bashrc that originally existed disappears.</strong></p></li>
+</ul>
+</section>
+<section id="diagnosisui-setup">
+<h2>DiagnosisUI setup<a class="headerlink" href="#diagnosisui-setup" title="Permalink to this heading"></a></h2>
+<p>Download DiagnosisUI from the support site, place it in your home directory ( ~/ ) and follow the steps below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod 744 DiagnosisUI
+$ sudo apt-get install -y libqt4-dev
+</pre></div>
+</div>
+<p>If you want to use the desktop shortcut for DiagnosisUI, download it from the support site, place it on your desktop, and perform the following steps.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod 744 Link¥ to¥ DiagnosisUI.desktop
+</pre></div>
+</div>
+</section>
+<section id="camera-setup">
+<h2>Camera Setup<a class="headerlink" href="#camera-setup" title="Permalink to this heading"></a></h2>
+<p>Please install IDS Software Suite in order to use IDS uEye cameras. Please refer to the IDS website for installation instructions.</p>
+<p>Tested version : 4.95.2</p>
+<p>rtmros_nextage_fillie_open uses ueye_cam. Please follow the build procedure described in <a class="reference external" href="https://wiki.ros.org/ueye_cam">https://wiki.ros.org/ueye_cam</a>.
+The operation of ueye_cam has been confirmed with the following versions.</p>
+<p>Version confirmed to work : 1.0.17</p>
+<p>Switching between versions can be performed with the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ueye_cam
+$ git checkout 1.0.17
+</pre></div>
+</div>
+<!-- EOF --></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_en_reference.html" class="btn btn-neutral float-left" title="Overview of robot hardware" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_en_trouble-shooting.html" class="btn btn-neutral float-right" title="Trouble shooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

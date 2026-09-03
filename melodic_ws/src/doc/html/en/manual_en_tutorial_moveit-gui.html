@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial: MoveIt! GUI &mdash; rtmros_nextage 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial: MoveIt! Python interfaces" href="manual_en_tutorial_moveit-python.html" />
+    <link rel="prev" title="Tutorial: Python interfaces" href="manual_en_tutorial_python-if.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_en_start.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html">Overview of robot hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#computer-and-software-overview">Computer and Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#maintenance-and-management">Maintenance and management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_development-pc-setup.html">Setting up the development PC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_trouble-shooting.html">Trouble shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_python-if.html">Tutorial: Python interfaces</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial: MoveIt! GUI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#moveit-ros-motion-planning-software">MoveIt!-ROS motion planning software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-the-moveit-gui">Working with the MoveIt! GUI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#switching-to-a-left-arm-and-two-arms-movement-plan">Switching to a left arm and two arms movement plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#displaying-loop-animation-and-trajectories-in-a-motion-plan">Displaying Loop Animation and Trajectories in a Motion Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#confirmation-of-each-posture-in-the-motion-plan">Confirmation of each posture in the motion plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adjustment-of-speed-and-acceleration-of-execution-operation">Adjustment of speed and acceleration of execution operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-of-the-best-solution-in-a-posture-without-an-inverse-kinematic-solution">Use of the best solution in a posture without an inverse kinematic solution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#motion-plans-to-avoid-obstacles-in-moveit-gui">motion plans to avoid obstacles in  MoveIt! GUI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#moveit-motion-planning-using-obstacle-model-data">MoveIt! motion planning using obstacle model data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reading-scene-files-for-obstacle-models">Reading Scene Files for Obstacle Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#motion-plan-for-avoiding-obstacles-and-execution-thereof">motion plan for avoiding obstacles and execution thereof</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-stl-collada-model-files">Using STL /COLLADA Model Files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-python.html">Tutorial: MoveIt! Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_gui.html">Use of DiagnosisUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_3d-perception.html">Tutorial: Three-Dimensional Recognition</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Tutorial: MoveIt! GUI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_en_tutorial_moveit-gui.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial-moveit-gui">
+<h1>Tutorial: MoveIt! GUI<a class="headerlink" href="#tutorial-moveit-gui" title="Permalink to this heading"></a></h1>
+<section id="moveit-ros-motion-planning-software">
+<h2>MoveIt!-ROS motion planning software<a class="headerlink" href="#moveit-ros-motion-planning-software" title="Permalink to this heading"></a></h2>
+<p>A representative software package for ROS’s motion planning application is MoveIt!.
+Since there is rtm_ros_bridge at NEXTAGE Fillie OPEN,
+you can use MoveIt!’s motion planning functions.</p>
+</section>
+<section id="working-with-the-moveit-gui">
+<h2>Working with the MoveIt! GUI<a class="headerlink" href="#working-with-the-moveit-gui" title="Permalink to this heading"></a></h2>
+<p>For basic operations, see “Performing MoveIt! Operations” in “Quick Start”.</p>
+<section id="switching-to-a-left-arm-and-two-arms-movement-plan">
+<h3>Switching to a left arm and two arms movement plan<a class="headerlink" href="#switching-to-a-left-arm-and-two-arms-movement-plan" title="Permalink to this heading"></a></h3>
+<p>When the MoveIt! is started in NEXTAGE Fillie OPEN, to create a motion schedule for the left arm using the left arm, change the MoveIt! settings as follow.</p>
+<ol class="simple">
+<li><p>Select left_arm in the MotionPlanning →Plannning Request →Planning Group in the child window Displays</p></li>
+<li><p>Operate the InteractiveMarker as with the right arm and click [Plan and Execute].</p></li>
+</ol>
+<p><img alt="MoveIt! - left_arm" src="_images/nxo_moveit_planning-group_left_arm.png" /></p>
+<p>The NEXTAGE Fillie OPEN’s MoveIt! also allows you to plan movements on both arms.<br>
+On the MoveIt! GUI:RViz, choose:</p>
+<ol class="simple">
+<li><p>Select botharms in the MotionPlanning →Plannning Request →Planning Group in the Displays.</p></li>
+<li><p>Operate the InteractiveMarker on the arms and click [Plan and Execute].
+<img alt="MoveIt! RViz - Both Arms" src="_images/PlanBothArms.png" /></p></li>
+</ol>
+</section>
+<section id="displaying-loop-animation-and-trajectories-in-a-motion-plan">
+<h3>Displaying Loop Animation and Trajectories in a Motion Plan<a class="headerlink" href="#displaying-loop-animation-and-trajectories-in-a-motion-plan" title="Permalink to this heading"></a></h3>
+<p>When an motion plan is created in the MoveIt!, the animations of the motion plan are displayed once.
+In order to make it easier to check the motion plan, it is possible to display the motion animation repeatedly and display the trajectory.</p>
+<p>Change the MoveIt! settings as follows:</p>
+<ol class="simple">
+<li><p>Turn on the MotionPlanning →Planning Path →Loop Animation checkbox in the child window Displays.</p></li>
+<li><p>Turn on the Show Trail checkbox immediately below the Loop Animation.</p></li>
+</ol>
+<p>Viewing animations and trajectories in the MoveIt! (images are captured in the middle of animations)</p>
+<p><img alt="MoveIt! - Loop Animaiton / Show Trail" src="_images/nxo_moveit_loop-animation_show-trail_pillar.png" /></p>
+</section>
+<section id="confirmation-of-each-posture-in-the-motion-plan">
+<h3>Confirmation of each posture in the motion plan<a class="headerlink" href="#confirmation-of-each-posture-in-the-motion-plan" title="Permalink to this heading"></a></h3>
+<p>To check the posture of an arbitrary elapsed point in the motion plan, which is difficult to check by loop animation
+You use MotionPlanning-Slider.</p>
+<ol class="simple">
+<li><p>Select a MotionPlanning-Slider in the MoveIt! menus Panels</p></li>
+<li><p>After the motion plan is created, the slider is operated to display the posture of the elapsed point.</p></li>
+</ol>
+<p><img alt="MoveIt! - MotionPlanning - Slider" src="_images/nxo_moveit_panels_motionplanning-slider_halfpos.png" /></p>
+</section>
+<section id="adjustment-of-speed-and-acceleration-of-execution-operation">
+<h3>Adjustment of speed and acceleration of execution operation<a class="headerlink" href="#adjustment-of-speed-and-acceleration-of-execution-operation" title="Permalink to this heading"></a></h3>
+<p>In the Options on the Planning tabs in the MotionPlanning</p>
+<ul class="simple">
+<li><p>Velocity Scaling: 1.00</p></li>
+<li><p>Acceleration Scaling: 1.00</p></li>
+</ul>
+<p>You can change the value between 0 and 1 to dynamically change the speed and acceleration of the operation.</p>
+<p><img alt="MoveIt! - Velocity Scalling" src="_images/nxo_moveit_velocity-scalling.png" /></p>
+</section>
+<section id="use-of-the-best-solution-in-a-posture-without-an-inverse-kinematic-solution">
+<h3>Use of the best solution in a posture without an inverse kinematic solution<a class="headerlink" href="#use-of-the-best-solution-in-a-posture-without-an-inverse-kinematic-solution" title="Permalink to this heading"></a></h3>
+<p>By defaulting the InteractiveMarker to posture without an inverse kinematic solution,
+the end effector (e.g., hand tip) stops at the location of the solution.</p>
+<p>In the Planning tab of the MotionPlanning child window,
+if you check Approx IK Solutions,
+even in a posture where there is no exact inverse kinematics solution, the near best solution is used.</p>
+<p><img alt="MoveIt! - Allow Approximate IK Solutions" src="_images/nxo_moveit_approx-ik-solutions.png" /></p>
+</section>
+</section>
+<section id="motion-plans-to-avoid-obstacles-in-moveit-gui">
+<h2>motion plans to avoid obstacles in  MoveIt! GUI<a class="headerlink" href="#motion-plans-to-avoid-obstacles-in-moveit-gui" title="Permalink to this heading"></a></h2>
+<p>One of the biggest features of the MoveIt! is that it automatically generates operations that avoid obstacles.</p>
+<section id="moveit-motion-planning-using-obstacle-model-data">
+<h3>MoveIt! motion planning using obstacle model data<a class="headerlink" href="#moveit-motion-planning-using-obstacle-model-data" title="Permalink to this heading"></a></h3>
+<p>This section introduces how to read files of model
+data into the MoveIt! and plan the operation of the model data　when the environment is known.</p>
+<section id="reading-scene-files-for-obstacle-models">
+<h4>Reading Scene Files for Obstacle Models<a class="headerlink" href="#reading-scene-files-for-obstacle-models" title="Permalink to this heading"></a></h4>
+<p>Load the obstacle model file into the MoveIt! as follows:</p>
+<ol class="simple">
+<li><p>Click [Import] on the Scene Objects tabs in the MotionPlanning.</p></li>
+<li><p>Select nxo_pillar. scene and click OK.</p></li>
+<li><p>If needed, manipulate the obstacle InteractiveMarker to move it close to the robots’ hands</p></li>
+<li><p>In the Scene Objects tabs, click [Publish] → Reflect obstacles to scenes.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Obstacle model file</p>
+<ul>
+<li><p>CATKIN_WORKSPACE  ~/catkin_ws/src/nextage_fillie_open_moveit_config/models/nxo_pillar.scene</p></li>
+</ul>
+</li>
+</ul>
+<p>Import<br></p>
+<p><img alt="MoveIt! - Import From Text" src="_images/nxo_moveit_scene-object_import-from-text.png" /></p>
+<p>Publish<br></p>
+<p><img alt="MoveIt! - Publish Current Scene" src="_images/nxo_moveit_context_publish-current-scene.png" /></p>
+<p>Content of the nxo_pillar.scene scene file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nxo_pillar</span>
+<span class="o">*</span> <span class="n">nxo_pillar</span>
+<span class="mi">1</span>
+<span class="n">box</span>
+<span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">1.1</span>
+<span class="mf">0.4</span> <span class="o">-</span><span class="mf">0.2</span> <span class="o">-</span><span class="mf">0.42</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="motion-plan-for-avoiding-obstacles-and-execution-thereof">
+<h4>motion plan for avoiding obstacles and execution thereof<a class="headerlink" href="#motion-plan-for-avoiding-obstacles-and-execution-thereof" title="Permalink to this heading"></a></h4>
+<p>Move the robot by performing an motion plan according to the environment of the loaded obstacle model.</p>
+<p>Since the route to avoid the obstacle is automatically generated, the operation to plan the motion is the same as when there is no obstacle.</p>
+<p>The following operation automatically generates a motion that avoids an obstacle and outputs the motion to the robot.</p>
+<ul class="simple">
+<li><p>Note: the robot moves.</p></li>
+</ul>
+<ol class="simple">
+<li><p>Turn the Select Start State to &lt; current &gt; of the Planning tabs Query.</p></li>
+<li><p>Turn the Select Goal State to &lt; current &gt; of the Planning tabs Query.</p></li>
+<li><p>Dragging a robotic hand from its present position to the other side of the obstacle with a InteractiveMarker on the MoveIt!</p></li>
+<li><p>Click [Plan &amp; Execute] on the Planning tab Commands.</p></li>
+</ol>
+<p>Example of an Motion Plan to Avoid Obstacles</p>
+<p><img alt="MoveIt! Planning with Pillar" src="_images/nxo_moveit-planning_pillar.png" /></p>
+<p>Example of an Motion Plan in the Non-Obstacle Case</p>
+<p><img alt="MoveIt! Planning without Pillar" src="_images/nxo_moveit-planning_no-pillar.png" /></p>
+</section>
+<section id="using-stl-collada-model-files">
+<h4>Using STL /COLLADA Model Files<a class="headerlink" href="#using-stl-collada-model-files" title="Permalink to this heading"></a></h4>
+<p>MoveIt! also has the ability to import files from STL or COLLADA models.<br>
+Load the obstacle model file into the MoveIt! as follows:</p>
+<ol class="simple">
+<li><p>On the Scene Objects tab in MotionPlanning, select ‘Mesh from file’ in the drop-down list under ‘Add/Remove Scene Objects’ and click the [ + ] button.</p></li>
+<li><p>Select File tsubo.dae or File tsubo.stl and click [OK].</p></li>
+<li><p>If needed, manipulate the obstacle InteractiveMarker to move it close to the robots’ hands</p></li>
+<li><p>In the Scene Objects tabs, click [Publish] → Reflect obstacles to scenes.</p></li>
+</ol>
+<ul class="simple">
+<li><p>STL /COLLADA model file</p>
+<ul>
+<li><p>CATKIN_WORKSPACE  ~/catkin_ws/src/nextage_fillie_open_moveit_config/models/tsubo.*</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="MoveIt! - Import DAE File (Adjusting Position)" src="_images/nxo_moveit_scene-object_tsubo-stl_adjusting-pos.png" /></p>
+<p>Even with the STL /COLLADA model file,
+you can create motion plans to avoid obstacles in the MoveIt!
+in the same way as when reading a scene file.</p>
+<p>Motion Planning - tsubo.stl</p>
+<p><img alt="MoveIt! tsubo.dae Motion Planning" src="_images/nxo_moveit_plan_show-trail-2_tsubo-stl.png" /></p>
+<!-- EOF --></section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_en_tutorial_python-if.html" class="btn btn-neutral float-left" title="Tutorial: Python interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_en_tutorial_moveit-python.html" class="btn btn-neutral float-right" title="Tutorial: MoveIt! Python interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

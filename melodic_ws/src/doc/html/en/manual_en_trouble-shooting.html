@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trouble shooting &mdash; rtmros_nextage 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial: Python interfaces" href="manual_en_tutorial_python-if.html" />
+    <link rel="prev" title="Setting up the development PC" href="manual_en_development-pc-setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_en_start.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html">Overview of robot hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#computer-and-software-overview">Computer and Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_reference.html#maintenance-and-management">Maintenance and management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_development-pc-setup.html">Setting up the development PC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Trouble shooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#monitoring-the-rtm-state">Monitoring the RTM State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#monitoring-the-ros-state">Monitoring the ROS State</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#checking-the-ros-environments">Checking the ROS Environments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#versions-of-the-ros">Versions of the ROS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#environment-variables-for-ros-verify-environment-variables">Environment Variables for ROS Verify Environment Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#monitoring-with-rqt">Monitoring with rqt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#operation-by-ros-topic">Operation by ROS Topic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#designation-of-operation-target">Designation of operation target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-in-actual-operation">Troubleshooting in actual operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-with-diagnosisui">Troubleshooting with DiagnosisUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-with-others">Troubleshooting with others</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_python-if.html">Tutorial: Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html">Tutorial: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-python.html">Tutorial: MoveIt! Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_gui.html">Use of DiagnosisUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_3d-perception.html">Tutorial: Three-Dimensional Recognition</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Trouble shooting</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_en_trouble-shooting.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="trouble-shooting">
+<h1>Trouble shooting<a class="headerlink" href="#trouble-shooting" title="Permalink to this heading"></a></h1>
+<section id="monitoring-the-rtm-state">
+<h2>Monitoring the RTM State<a class="headerlink" href="#monitoring-the-rtm-state" title="Permalink to this heading"></a></h2>
+<p>In the following explanation, it is assumed that “Starting ROS Servers” has been executed.</p>
+<p>To get a list of RT components running on a robotic host, use <code class="docutils literal notranslate"><span class="pre">rtls</span></code>.</p>
+<ul class="simple">
+<li><p>Note: Remember to enter the last slash, <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rtls %HOST_ROBOT%:15005/
+</pre></div>
+</div>
+<blockquote>
+<div><p>Example of Simulation</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rtls localhost:15005/
+</pre></div>
+</div>
+<p>Examples for &gt; NEXTAGE OPEN (Changing the hostname to suit your circumstances)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rtls nextage:15005/
+</pre></div>
+</div>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">rtls</span></code> runs (simulations)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rtls localhost:15005/
+robotuser-PC.host_cxt/              StateHolderServiceROSBridge.rtc
+fk.rtc                              DataLoggerServiceROSBridge.rtc
+longfloor(Robot)0.rtc               ImageSensorROSBridge_HandLeft.rtc
+sh.rtc                              HiroNX(Robot)0.rtc
+ImageSensorROSBridge_HeadRight.rtc  seq.rtc
+HrpsysJointTrajectoryBridge0.rtc    log.rtc
+HGcontroller0.rtc                   sc.rtc
+ModelLoader                         el.rtc
+CollisionDetector0.rtc              ImageSensorROSBridge_HandRight.rtc
+ImageSensorROSBridge_HeadLeft.rtc   HrpsysSeqStateROSBridge0.rtc
+SequencePlayerServiceROSBridge.rtc  ForwardKinematicsServiceROSBridge.rtc
+ic.rtc                              rmfo.rtc
+</pre></div>
+</div>
+<p>You can get information about the RT components in the lists obtained in <code class="docutils literal notranslate"><span class="pre">rtls</span></code> by using <code class="docutils literal notranslate"><span class="pre">rtcat</span></code>.</p>
+<!-- ``` --><!-- $ rtls %HOST_ROBOT%:15005/%CONPONENT_NAME% --><!-- ``` --><p><code class="docutils literal notranslate"><span class="pre">rtcat</span></code> runs (simulations)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rtcat localhost:15005/fk.rtc
+fk.rtc  Active
+  Category       example
+  Description    forward kinematics component
+  Instance name  fk
+  Type name      ForwardKinematics
+  Vendor         AIST
+  Version        315.15.0
+  Parent         
+  Type           Monolithic
+ +Extra properties
++Execution Context 0
++DataInPort: q
++DataInPort: sensorRpy
++DataInPort: qRef
++DataInPort: basePosRef
++DataInPort: baseRpyRef
++CorbaPort: ForwardKinematicsService
+
+$ rtcat localhost:15005/StateHolderServiceROSBridge.rtc
+StateHolderServiceROSBridge.rtc  Active
+  Category       
+  Description    
+  Instance name  StateHolderServiceROSBridge
+  Type name      StateHolderServiceROSBridge
+  Vendor         
+  Version        1.0.0
+  Parent         
+  Type           Monolithic
+ +Extra properties
++Execution Context 0
++CorbaPort: StateHolderService
+
+$ rtcat localhost:15005/ImageSensorROSBridge_HeadRight.rtc
+ImageSensorROSBridge_HeadRight.rtc  Active
+  Category       example
+  Description    openrhp image - ros bridge
+  Instance name  ImageSensorROSBridge_HeadRight
+  Type name      ImageSensorROSBridge
+  Vendor         Kei Okada
+  Version        1.0
+  Parent
+  Type           Monolithic
+ +Extra properties
++Execution Context 0
++DataInPort: image
++DataInPort: timedImage
+robotuser@robotuser-PC:~$
+</pre></div>
+</div>
+</section>
+<section id="monitoring-the-ros-state">
+<h2>Monitoring the ROS State<a class="headerlink" href="#monitoring-the-ros-state" title="Permalink to this heading"></a></h2>
+<section id="checking-the-ros-environments">
+<h3>Checking the ROS Environments<a class="headerlink" href="#checking-the-ros-environments" title="Permalink to this heading"></a></h3>
+<section id="versions-of-the-ros">
+<h4>Versions of the ROS<a class="headerlink" href="#versions-of-the-ros" title="Permalink to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosversion -d
+</pre></div>
+</div>
+</section>
+<section id="environment-variables-for-ros-verify-environment-variables">
+<h4>Environment Variables for ROS Verify Environment Variables<a class="headerlink" href="#environment-variables-for-ros-verify-environment-variables" title="Permalink to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ env | grep ROS
+</pre></div>
+</div>
+</section>
+</section>
+<section id="monitoring-with-rqt">
+<h3>Monitoring with rqt<a class="headerlink" href="#monitoring-with-rqt" title="Permalink to this heading"></a></h3>
+<p>The rqt of the ROS is a set of tools that can be used to visualize data during development.
+This section introduces some tools that are particularly useful in NEXTAGE OPEN.</p>
+<ul class="simple">
+<li><p>For reference: rqt/Plugins-ROS Wiki <a class="reference external" href="http://wiki.ros.org/rqt/Plugins">http://wiki.ros.org/rqt/Plugins</a></p></li>
+</ul>
+<p>Start the rqt first.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rqt
+</pre></div>
+</div>
+<p>Then click Plugins to select the following plug-in:</p>
+<ul class="simple">
+<li><p>Introspection / Node Graph ( <a class="reference external" href="http://wiki.ros.org/rqt_graph">rqt_graph</a> )</p></li>
+<li><p>Robot Tools / Diagnostics Viewer</p></li>
+<li><p>Topics / Topic Monitor ( <a class="reference external" href="http://wiki.ros.org/rqt_topic">rqt_topic</a> )</p></li>
+</ul>
+<p>The window shown below is displayed.</p>
+<ul class="simple">
+<li><p>Note: This image was captured by a simulator with the robot’s monitor diagnostics disabled, so an expiration status is displayed.</p></li>
+</ul>
+<p><img alt="rqt Window" src="_images/snap_rqt_graph_monitor_topic_vertical.png" /></p>
+</section>
+</section>
+<section id="operation-by-ros-topic">
+<h2>Operation by ROS Topic<a class="headerlink" href="#operation-by-ros-topic" title="Permalink to this heading"></a></h2>
+<p>The ROS Topic can be used to specify the angles of the joints to make the robot move. However, do not use <code class="docutils literal notranslate"><span class="pre">/rarm_torso_controller/command</span></code> and <code class="docutils literal notranslate"><span class="pre">/larm_torso_controller/command</span></code>, which are Topic to move the waist and arms simultaneously. If you want to operate the waist and arms at the same time, please execute a combination of <code class="docutils literal notranslate"><span class="pre">/rarm_controller/command</span></code>, <code class="docutils literal notranslate"><span class="pre">/larm_controller/command</span></code> and <code class="docutils literal notranslate"><span class="pre">/torso_controller/command</span></code>.</p>
+</section>
+<section id="designation-of-operation-target">
+<h2>Designation of operation target<a class="headerlink" href="#designation-of-operation-target" title="Permalink to this heading"></a></h2>
+<p>Do not specify <code class="docutils literal notranslate"><span class="pre">rarm_torso</span></code> or <code class="docutils literal notranslate"><span class="pre">larm_torso</span></code> (groups containing both hips and arms) for the argument joint group in <code class="docutils literal notranslate"><span class="pre">setJointAnglesOfGroup</span></code> of the python interface or rosservice. If you want to operate arms and waist, please operate arms and waist separately.</p>
+</section>
+<section id="troubleshooting-in-actual-operation">
+<h2>Troubleshooting in actual operation<a class="headerlink" href="#troubleshooting-in-actual-operation" title="Permalink to this heading"></a></h2>
+<p>The arm may vibrate and generate noise during arm operation. If the robot operation is disturbed, change the movement speed or change the movement trajectory.</p>
+</section>
+<section id="troubleshooting-with-diagnosisui">
+<h2>Troubleshooting with DiagnosisUI<a class="headerlink" href="#troubleshooting-with-diagnosisui" title="Permalink to this heading"></a></h2>
+<p>The following error may occur when running DiagnosisUI</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Failed</span> <span class="n">to</span> <span class="n">load</span> <span class="n">module</span> <span class="s2">&quot;canberra-gtk-module&quot;</span>
+</pre></div>
+</div>
+<p>DiagnosisUI will still work correctly when this error occurs, but you can install libcanberra-gtk-module to eliminate the error.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install libcanberra-gtk-module
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting-with-others">
+<h2>Troubleshooting with others<a class="headerlink" href="#troubleshooting-with-others" title="Permalink to this heading"></a></h2>
+<p>Retrieve the diagnostic log and the emergency stop log by referring to the <a class="reference external" href="manual_en_tutorial_gui.html">DiagnosisUI usage</a>,
+and contact support.</p>
+<!-- HIRO / NEXTAGE OPEN の QNX 内プロセスの状態を見るリモート監視ツールがないため、 --><!-- その状態を見るためには QNX コンピュータ上のログファイルの内容を見る必要があります。 --><!-- ### ログの回収<TODO ログインさせない場合どう取得する？> --><!-- QNX のログファイルは `/opt/jsk/var/log` にあります。 --><!-- - Nameserver.log --><!--   - OpenRTM または CORBA に関係したログの多くが記載 --><!-- - Modelloader.log --><!--   - OpenHRP3 に関するログ --><!-- - rtcd.log --><!--   - hrpsys のRTコンポーネントに関連したログ --><!-- これらのログファイルは次のいずれかの方法で取得することができます。 --><!-- ##### 【推奨】 ログファイルの zip ボールを取得するスクリプトを実行する --><!-- - 注意: rtmros_hironx 1.1.25 以降で利用可能 --><!-- ``` --><!-- # Simplest --><!-- $ rosrun hironx_ros_bridge qnx_fetch_log.sh nextage qnx_nxo_user --><!-- $ rosrun hironx_ros_bridge qnx_fetch_log.sh 192.168.128.10 root --><!-- : --><!-- $ ls --><!-- opt_jsk_var_logs_20170602-020236.zip --><!-- # Fetch only files generated after certain date. "1" can be anything except "archive" --><!-- $ rosrun hironx_ros_bridge qnx_fetch_log.sh nextage qnx_nxo_user 1 2017-01-11 --><!-- ``` --><!-- ##### 【代替】 QNX にリモート接続する --><!-- QNX コンピュータに SSH 接続をして、 --><!-- ディレクトリ `/opt/jsk/var/log` 下にあるログファイルにアクセスしてください。 --><!-- ### ログのチェック --><!-- #### ロボット肩LEDが電源投入後に緑色点灯状態にならない場合 --><!-- 電源投入後正常起動した場合はロボット肩LEDが緑色点灯する状態となります。 --><!-- それ以外の場合は QNX のログを確認してください。 --><!-- `/opt/jsk/var/log/rtcd.log` が次のようになってるかを確認してください。 --><!-- ``` --><!-- Logger::Logger: streambuf address = 0x805fc70 --><!-- hrpExecutionContext is registered --><!-- pdgains.file_name: /opt/jsk/etc/HIRONX/hrprtc/PDgains.sav --><!-- dof = 15 --><!-- open_iob - shmif instance at 0x80b3f58 --><!-- the number of gyros = 0 --><!-- the number of accelerometers = 0 --><!-- the number of force sensors = 0 --><!-- period = 5[ms], priority = 49 --><!-- ``` --><!-- `/opt/jsk/var/log/Nameserver.log` が次のようになってるかを確認してください。 --><!-- ``` --><!-- Sat Jan 24 10:55:33 2015: --><!-- Starting omniNames for the first time. --><!-- Wrote initial log file. --><!-- Read log file successfully. --><!-- Root context is IOR:010000002b00000049444c3a6f6d672e6f72672f436f734e616d696e672f4e616d696e67436f6e74 --><!-- 6578744578743a312e300000010000000000000070000000010102000d0000003139322e3136382e312e313600009d3a0b00 --><!-- 00004e616d6553657276696365000300000000000000080000000100000000545441010000001c0000000100000001000100 --><!-- 0100000001000105090101000100000009010100035454410800000095fbc2540100001b --><!-- Checkpointing Phase 1: Prepare. --><!-- Checkpointing Phase 2: Commit. --><!-- Checkpointing completed. --><!-- Sat Jan 24 11:10:33 2015: --><!-- Checkpointing Phase 1: Prepare. --><!-- Checkpointing Phase 2: Commit. --><!-- Checkpointing completed. --><!-- ``` --><!-- `/opt/jsk/var/log/ModelLoader.log` が次のようになっているかを確認してください。 --><!-- ``` --><!-- ready --><!-- loading /opt/jsk/etc/HIRONX/model/main.wrl --><!-- Humanoid node --><!-- Joint nodeWAIST --><!--   Segment node WAIST_Link --><!--   Joint nodeCHEST_JOINT0 --><!--     Segment node CHEST_JOINT0_Link --><!--     Joint nodeHEAD_JOINT0 --><!--       Segment node HEAD_JOINT0_Link --><!--       Joint nodeHEAD_JOINT1 --><!--         Segment node HEAD_JOINT1_Link --><!--         VisionSensorCAMERA_HEAD_R --><!--         VisionSensorCAMERA_HEAD_L --><!--     Joint nodeRARM_JOINT0 --><!--       Segment node RARM_JOINT0_Link --><!--       Joint nodeRARM_JOINT1 --><!--         Segment node RARM_JOINT1_Link --><!--         Joint nodeRARM_JOINT2 --><!--           Segment node RARM_JOINT2_Link --><!--           Joint nodeRARM_JOINT3 --><!--             Segment node RARM_JOINT3_Link --><!--             Joint nodeRARM_JOINT4 --><!--               Segment node RARM_JOINT4_Link --><!--               Joint nodeRARM_JOINT5 --><!--                 Segment node RARM_JOINT5_Link --><!--     Joint nodeLARM_JOINT0 --><!--       Segment node LARM_JOINT0_Link --><!--       Joint nodeLARM_JOINT1 --><!--         Segment node LARM_JOINT1_Link --><!--         Joint nodeLARM_JOINT2 --><!--           Segment node LARM_JOINT2_Link --><!--           Joint nodeLARM_JOINT3 --><!--             Segment node LARM_JOINT3_Link --><!--             Joint nodeLARM_JOINT4 --><!--               Segment node LARM_JOINT4_Link --><!--               Joint nodeLARM_JOINT5 --><!--                 Segment node LARM_JOINT5_Link --><!-- The model was successfully loaded ! --><!-- ``` --><!-- すべてのログが上記のような表示でしたらログに関しては正常で、 --><!-- 他に何か複雑なことが起こっている可能性があります。 --><!-- サポートにお問い合わせください。 --><!-- EOF --></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_en_development-pc-setup.html" class="btn btn-neutral float-left" title="Setting up the development PC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_en_tutorial_python-if.html" class="btn btn-neutral float-right" title="Tutorial: Python interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

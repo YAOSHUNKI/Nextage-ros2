@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DiagnosisUIの使い方 &mdash; rtmros_nextage 0.1 ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="チュートリアル: 3次元認識" href="manual_ja_tutorial_3d-perception.html" />
+    <link rel="prev" title="チュートリアル: MoveIt! Python インタフェース" href="manual_ja_tutorial_moveit-python.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_start.html">はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html">ロボットハードウェアの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#computer-and-software-overview">コンピュータとソフトウェアの概要<!--computer-and-software-overview--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_reference.html#maintenance-and-management">保守・管理<!--Maintenance and management--></a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_development-pc-setup.html">開発用PCのセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_trouble-shooting.html">トラブルシューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_python-if.html">チュートリアル: Python インタフェース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-gui.html">チュートリアル: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_moveit-python.html">チュートリアル: MoveIt! Python インタフェース</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DiagnosisUIの使い方</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#diagnosisui-starting-the-diagnosisui-and-connecting-robots">DiagnosisUIの起動とロボットとの接続 <!--Starting the DiagnosisUI and Connecting Robots--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#end-pause">一時停止解除<!--End Pause--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digital-input-outputdigital-output-checking-the-digital-input-output-and-operating-the-digital-output">Digital Input/Outputの確認、Digital Outputの操作<!--Checking the Digital Input/Output and operating the Digital Output--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#servo-on-off">サーボオン/オフ<!--Servo ON/OFF--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#brake-on-off">ブレーキオン/オフ<!--Brake ON/OFF--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-emergency-stop-log">診断レポートとログの取得<!--Get Emergency Stop Log--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ueyedemo-hoge">uEyeDemoの起動<!--hoge--></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shutdown-of-the-controller">コントローラのシャットダウン<!--Shutdown of the controller--></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_ja_tutorial_3d-perception.html">チュートリアル: 3次元認識</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">DiagnosisUIの使い方</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_ja_tutorial_gui.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="diagnosisui">
+<h1>DiagnosisUIの使い方<a class="headerlink" href="#diagnosisui" title="この見出しへのパーマリンク"></a></h1>
+<p>ロボットの一部の機能を簡易GUIである、DiagnosisUIから以下の機能を実行できます。</p>
+<ul class="simple">
+<li><p>ジョイントキャリブレーション</p></li>
+<li><p>Digital I/O の確認、制御</p></li>
+<li><p>Servo ON/OFF</p></li>
+<li><p>Brake ON/OFF</p></li>
+<li><p>一時停止の解除</p></li>
+<li><p>診断レポートとログの取得</p></li>
+<li><p>コントローラのシャットダウン</p></li>
+<li><p>uEyeDemoの起動</p></li>
+</ul>
+<section id="diagnosisui-starting-the-diagnosisui-and-connecting-robots">
+<h2>DiagnosisUIの起動とロボットとの接続 <!--Starting the DiagnosisUI and Connecting Robots--><a class="headerlink" href="#diagnosisui-starting-the-diagnosisui-and-connecting-robots" title="この見出しへのパーマリンク"></a></h2>
+<p>DiagnosisUIを起動します。新しくターミナルを開いて次のコマンドを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source /opt/ros/melodic/setup.bash
+$ cd ~/;./DiagnosisUI
+</pre></div>
+</div>
+<p>※ <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/ros/melodic/setup.bash</span></code>は事前に.bashrcに設定していれば省略できます。</p>
+<p><img alt="diagnosisui" src="_images/dignosisUI.png" /></p>
+<p>DiagnosisUIの起動直後は、ConnectボタンとuEyeDemoボタンしか使用できません。
+まずはHostname or IPaddr の入力ボックスにロボットのホスト名またはIPアドレスを入力し、[connect] ボタンを押してください(デフォルトではnextageと設定されています)。
+ロボットとの接続に成功すると、全てのボタンが使用可能になります。
+接続に失敗した場合は、ユーザPCのネットワーク設定や、LANケーブルの接続を確認してください。</p>
+<!--## ジョイントキャリブレーション--><!--ロボットが起動後に、LEDが青点滅の状態になったら関節角度のエンコーダのキャリブレーションを行ってください。--><!--[Joint Calibration]ボタンをクリックすることでのエンコーダのキャリブレーションを行います。--><!-- ロボット起動後、ロボットの関節原点復帰に失敗(LEDが青点滅)の場合にこの作業を行います。 --><!-- Joint Calibrationボタンを押すことでジョイントキャリブを行います。 --><!--ジョイントキャリブに成功するとLEDが緑点灯になります。--></section>
+<section id="end-pause">
+<h2>一時停止解除<!--End Pause--><a class="headerlink" href="#end-pause" title="この見出しへのパーマリンク"></a></h2>
+<p>スイッチボックスの一旦停止スイッチを「一旦停止」位置に回す、
+または手動運転モードにおいてイネーブルスイッチを離す、あるいは握り込むとロボットが一時停止になります。
+このとき、以下の手順で復帰してください。</p>
+<ul class="simple">
+<li><p>自動運転モードの場合:</p>
+<ul>
+<li><p>一旦停止スイッチを「作動」位置に戻す</p></li>
+<li><p>[Suspend Resume] ボタンを押す</p></li>
+</ul>
+</li>
+<li><p>手動運転モードの場合:</p>
+<ul>
+<li><p>一旦停止スイッチを「作動」位置に戻す</p></li>
+<li><p>イネーブルスイッチを中間位置で保持する</p></li>
+<li><p>[Suspend Resume] ボタンを押す</p></li>
+</ul>
+</li>
+</ul>
+<p>ただし、上位にある動作生成コントローラの指令値出力が止まってから復帰できます。<br />e.g. 10秒間で移動する動作の動作中にロボットを一時停止状態にしたら、
+ロボットの動作が止まりますが、上位にあるコントローラが計画通りに10秒間指令値を出力し続けます。
+この10秒の間に[Suspend Resume]ボタンを押しても復帰しません。<br />また、低速で動作中に停止するなど、停止直前の動作によっては[Suspend Resume]ボタンの操作なしで復帰する場合があります。</p>
+<!-- ロボットの一旦停止からの復帰条件は"ジョイントの現在値と同じ指令値を連続2回を受信"となります。 --><!-- このボタン押すと、指令値を現在値と一瞬に上書きするが、上位にある動作生成コントローラの動作はキャンセルされないので、 --><!-- 指令値はまたすぐに上位にある動作生成コントローラの出力に --><!-- すなわち、 --></section>
+<section id="digital-input-outputdigital-output-checking-the-digital-input-output-and-operating-the-digital-output">
+<h2>Digital Input/Outputの確認、Digital Outputの操作<!--Checking the Digital Input/Output and operating the Digital Output--><a class="headerlink" href="#digital-input-outputdigital-output-checking-the-digital-input-output-and-operating-the-digital-output" title="この見出しへのパーマリンク"></a></h2>
+<p>[Digital I/O]ボタンを押すとDIOの操作ウィンドウが起動します。</p>
+<p><img alt="dio_window" src="_images/dio_window.png" /></p>
+<p>この画面におけるDIOの状態は100msの周期で更新されます。</p>
+<ul class="simple">
+<li><p>Inputの表示</p>
+<ul>
+<li><p>赤：ショート</p></li>
+<li><p>灰：オープン</p></li>
+</ul>
+</li>
+<li><p>Outputの表示</p>
+<ul>
+<li><p>緑：ショート</p></li>
+<li><p>灰：オープン</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="servo-on-off">
+<h2>サーボオン/オフ<!--Servo ON/OFF--><a class="headerlink" href="#servo-on-off" title="この見出しへのパーマリンク"></a></h2>
+<p>[Servo ON]ボタンでサーボを入れ、
+[Servo OFF]ボタンでサーボを切ります。
+一旦停止中にはサーボオン操作はできません。</p>
+</section>
+<section id="brake-on-off">
+<h2>ブレーキオン/オフ<!--Brake ON/OFF--><a class="headerlink" href="#brake-on-off" title="この見出しへのパーマリンク"></a></h2>
+<p>[Brake ON]ボタンで左右両腕のブレーキをオンにします。
+[Brake OFF Right/Left]ボタンで左右どちらかの腕のブレーキを解除できます。</p>
+</section>
+<section id="get-emergency-stop-log">
+<h2>診断レポートとログの取得<!--Get Emergency Stop Log--><a class="headerlink" href="#get-emergency-stop-log" title="この見出しへのパーマリンク"></a></h2>
+<p>トラブル発生時、お問合せの際に診断レポートとログが必要となることがあります。
+[Get Log]ボタンを押すと取得するログの期間を指定する画面が開かれます。
+ここでログの取得開始/終了日の日付とチェックボックスを入力し、Getボタンを押すと、日単位のログデータが&quot;log_開始日-終了日.tar.bz2&quot;としてカレントディレクトリにコピーされます。取得開始/終了日は、画面に表示されている今日の日付を参考にコントローラの時間で指定してください。コントローラのタイムゾーンはUTCに設定されています。
+診断レポートとログは暗号化されるため、ユーザが閲覧することができません。</p>
+<p><img alt="get_log" src="_images/getlog.png" /></p>
+<ul>
+<li><p>開始日のチェックボックス</p>
+<p>チェックにより、取得開始日の指定が有効化されます。<br />なしの場合は、一番古いログの日付が開始日として適用されます。</p>
+</li>
+<li><p>終了日のチェックボックス</p>
+<p>チェックすると、取得終了日の指定が有効化されます。<br />なしの場合は、最新のログの日付が終了日として適用されます。</p>
+</li>
+</ul>
+</section>
+<section id="ueyedemo-hoge">
+<h2>uEyeDemoの起動<!--hoge--><a class="headerlink" href="#ueyedemo-hoge" title="この見出しへのパーマリンク"></a></h2>
+<p>[uEyeDemo] ボタン押すとuEyeカメラの操作画面が起動します。
+この画面からカメラの状態を確認できます。</p>
+</section>
+<section id="shutdown-of-the-controller">
+<h2>コントローラのシャットダウン<!--Shutdown of the controller--><a class="headerlink" href="#shutdown-of-the-controller" title="この見出しへのパーマリンク"></a></h2>
+<p>[Shutdown QNX] ボタン押すとコントローラの電源をオフにします。
+ユーザPCの電源は別途でシャットダウンしてください。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_ja_tutorial_moveit-python.html" class="btn btn-neutral float-left" title="チュートリアル: MoveIt! Python インタフェース" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_ja_tutorial_3d-perception.html" class="btn btn-neutral float-right" title="チュートリアル: 3次元認識" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

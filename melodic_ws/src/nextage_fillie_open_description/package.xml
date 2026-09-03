@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <name>nextage_fillie_open_description</name>
+  <version>1.0.0</version>
+  <description>As a part of rtmros_nextage_fillie_open package that is a ROS interface for <a href = " http://www.kawadarobot.co.jp/en/nextage/">Nextage Fillie</a> dual-armed robot from Kawada Robotics Corporation, this package provides its 3D model that can be used in simulation and <a href = "http://ros.org/wiki/moveit">MoveIt!</a>-based motion planning tasks.
+  </description>
+  <maintainer email="opensource@kawadarobot.co.jp">KRC</maintainer>
+  <author>Kei Okada</author>
+  <author>Isaac Isao Saito</author>
+  <author email="w.yasuda@opensource-robotics.tokyo.jp">Wataru Yasuda</author>
+  <license>BSD</license>
+  <license>KRC Robot Model License</license>
+  <!-- <url type="website">http://ros.org/wiki/nextage_description</url> -->
+  <!-- <url type="bugtracker">https://github.com/tork-a/rtmros_nextage/issues</url> -->
+  <!-- <url type="repository">https://github.com/tork-a/rtmros_nextage</url> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>urdf</build_depend>
+  <run_depend>urdf</run_depend>
+
+  <export/>
+</package>

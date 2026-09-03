@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: nextage_fillie_open_description
+    relative_path: urdf/FillieOpen.urdf
+  SRDF:
+    relative_path: config/FillieOpen.srdf
+  CONFIG:
+    generated_timestamp: 1382894286

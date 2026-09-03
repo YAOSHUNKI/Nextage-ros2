@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview of robot hardware &mdash; rtmros_nextage 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Setting up the development PC" href="manual_en_development-pc-setup.html" />
+    <link rel="prev" title="Introduction" href="manual_en_start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rtmros_nextage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual_en_start.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview of robot hardware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#robot-specifications">Robot specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coordinate-system">Coordinate system</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#computer-and-software-overview">Computer and Software Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#computer-for-control">Computer for control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-computer">Development computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-the-software">Overview of the software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary-of-api">Summary of API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#maintenance-and-management">Maintenance and management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#updating-ubuntu-software">Updating Ubuntu Software</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_development-pc-setup.html">Setting up the development PC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_trouble-shooting.html">Trouble shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_python-if.html">Tutorial: Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-gui.html">Tutorial: MoveIt! GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_moveit-python.html">Tutorial: MoveIt! Python interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_gui.html">Use of DiagnosisUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual_en_tutorial_3d-perception.html">Tutorial: Three-Dimensional Recognition</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rtmros_nextage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Overview of robot hardware</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manual_en_reference.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview-of-robot-hardware">
+<h1>Overview of robot hardware<a class="headerlink" href="#overview-of-robot-hardware" title="Permalink to this heading"></a></h1>
+<section id="robot-specifications">
+<h2>Robot specifications<a class="headerlink" href="#robot-specifications" title="Permalink to this heading"></a></h2>
+<p>For details, refer to the NEXTAGE specifications and instruction manuals on the Kawada Robotics site.</p>
+<!-- URLについてはNXFの英語版製品仕様が作成された後に修正 --><ul class="simple">
+<li><p>Kawada Robotics NEXTAGE Fillie - Products Specifications</p>
+<ul>
+<li><p>Manufacturer’s site</p>
+<ul>
+<li><p><a class="reference external" href="https://nextage.kawadarobot.co.jp/fillie/open">https://nextage.kawadarobot.co.jp/fillie/open</a></p></li>
+</ul>
+</li>
+<li><p>Degree of freedom: 15 axes</p>
+<ul>
+<li><p>6 axes arms x 2: shoulder Yaw-Pitch, elbow Pitch, wrist Roll-Pitch-Yaw</p></li>
+<li><p>2 axes neck: neck Yaw-Pitch</p></li>
+<li><p>1 axis waist: waist Yaw</p></li>
+</ul>
+</li>
+<li><p>Maximum load capacity</p>
+<ul>
+<li><p>Single arm: 2.0 kg</p></li>
+<li><p>Both arms: 4.0 kg</p></li>
+</ul>
+</li>
+<li><p>Camera</p>
+<ul>
+<li><p>Head: stereo Camera</p></li>
+<li><p>Hand Camera (optional)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="coordinate-system">
+<h2>Coordinate system<a class="headerlink" href="#coordinate-system" title="Permalink to this heading"></a></h2>
+<p>The NEXTAGE OPEN coordinate system is shown below.</p>
+<p>The base coordinate is set to the center of the hip base.</p>
+<ul class="simple">
+<li><p>Base coordinate</p>
+<ul>
+<li><p>x axis: positive-anterior/negative-posterior</p></li>
+<li><p>Y-axis: positive-left/negative-right</p></li>
+<li><p>Z axis: positive-up/negative-down</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Nextage Open - Coordinate Sys / Base WAIST" src="_images/nxo_base-coordinate-sys.png" /></p>
+<p>The coordinate system of each frame is as follows.</p>
+<ul class="simple">
+<li><p>Each coordinate axis and color notation</p>
+<ul>
+<li><p>x axis: Red</p></li>
+<li><p>Y-axis: Green</p></li>
+<li><p>Z-axis: Blue</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Nextage Open - Coordinate Sys / All Frames" src="_images/nxo_frame-coodinate-sys.png" /></p>
+</section>
+</section>
+<section id="computer-and-software-overview">
+<h1>Computer and Software Overview<a class="headerlink" href="#computer-and-software-overview" title="Permalink to this heading"></a></h1>
+<p>The Kawada Robotics NEXTAGE OPEN robotics system has two computers:</p>
+<section id="computer-for-control">
+<h2>Computer for control<a class="headerlink" href="#computer-for-control" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Controller (QNX Computer)</p>
+<ul>
+<li><p>Computer that controls the robot</p></li>
+<li><p>QNX: Real-time Operating System</p></li>
+<li><p>No software installation or modification is allowed.</p></li>
+<li><p>Maintenance and update are possible.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="development-computer">
+<h2>Development computer<a class="headerlink" href="#development-computer" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Development Computer Requirements Specification</p>
+<ul>
+<li><p>Processor with 2.3GHz or faster and 2 or more cores<br />(Operation confirmed with Intel Core i5-5300U)</p></li>
+<li><p>Memory of-8GB or more</p></li>
+<li><p>Disk space of-20 GB or more</p></li>
+<li><p>Ubuntu 18.04</p>
+<ul>
+<li><p>Ubuntu 18.04 is reaching End of Standard Support in May 2023. Please implement security and other measures as necessary.</p></li>
+</ul>
+</li>
+<li><p>ROS Melodic</p></li>
+<li><p>USB * 2 or more</p>
+<ul>
+<li><p>For robot-mounted camera * 1 (USB 3.0 Type A)</p></li>
+<li><p>Other applications * 1 or more (any standard)</p></li>
+</ul>
+</li>
+<li><p>At least 2 ports in total for Ethernet / WLAN</p>
+<ul>
+<li><p>Connect the QNX Computer via Ethernet (robot owner only)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="overview-of-the-software">
+<h2>Overview of the software<a class="headerlink" href="#overview-of-the-software" title="Permalink to this heading"></a></h2>
+<p>The following is a block diagram of the QNX and Ubuntu software components of the NEXTAGE OPEN.
+Users can program robots with either ROS or RTM (hrpsys).</p>
+<p><img alt="Software Components Diagram" src="https://docs.google.com/drawings/d/1ZfQg4EHrGAC7fvHEWLVQxxjBbdmWLu9tMwqmFhb1eQo/pub?w=960&amp;h=720" /></p>
+</section>
+<section id="summary-of-api">
+<h2>Summary of API<a class="headerlink" href="#summary-of-api" title="Permalink to this heading"></a></h2>
+<p>There are two types of API used in NEXTAGE OPEN, namely RTM and ROS ,
+You can also divide the ROS API into a ROS interface and a MoveIt interface.</p>
+<ul class="simple">
+<li><p>RTM API on hrpsys</p></li>
+<li><p>ROS API</p>
+<ul>
+<li><p>ROS interfaces</p></li>
+<li><p>MoveIt interfaces</p></li>
+</ul>
+</li>
+</ul>
+<p>Each API is available in programming languages such as Python and C++.</p>
+<p>The following diagram shows the structure of the API.</p>
+<p><img alt="API Diagram" src="_images/nxo_api_diagram.png" /></p>
+</section>
+</section>
+<section id="maintenance-and-management">
+<h1>Maintenance and management<a class="headerlink" href="#maintenance-and-management" title="Permalink to this heading"></a></h1>
+<section id="updating-ubuntu-software">
+<h2>Updating Ubuntu Software<a class="headerlink" href="#updating-ubuntu-software" title="Permalink to this heading"></a></h2>
+<p>To update all the software on the Ubuntu, execute the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update &amp;&amp; sudo apt-get dist-upgrade
+</pre></div>
+</div>
+<p>To update only NEXTAGE OPEN software, execute the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update &amp;&amp; sudo apt-get install ros-melodic-rtmros-hironx
+</pre></div>
+</div>
+<!-- TODO github URL確定--><p>Download the ros packages provided by Kawada Robotics (rtmros_nextage_fillie_open.tar.bz2) from support site.
+Decompress it into the catkin workspace and catakin_make.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar jxvf rtmros_nextage_fillie_open.tar.bz2 -C ~/catkin_ws/src
+$ cd ~/catkin_ws; catkin_make
+</pre></div>
+</div>
+<!-- ## QNX での作業 --><!-- ### QNX GUIツール - NextageOpenSupervisor --><!-- QNX に関する日常的な作業のうち次のものは --><!-- カワダロボティクスから提供されている GUI ツール NextageOpenSupervisor を用いて操作することができます。 --><!-- - コントロールボックス（QNXコンピュータ）のシャットダウン処理 --><!-- - アップデート --><!-- このツールは UIコンピュータ（Ubuntuコンピュータ/ビジョンPC）に --><!-- nxouser アカウントでログオンするとデスクトップ上にアイコンがあります。 --><!-- ### QNXのコマンド操作 --><!-- 本作業は QNX にログオンできることを前提としたものです。 --><!-- 次のコマンドで QNX にSSH接続とログオンを行います。 --><!-- ``` --><!-- YOURHOST$ ssh -l %QNX_YOUR_USER% %IPADDR_YOUR_QNX% --><!-- ``` --><!-- ##### QNX シャットダウンコマンド --><!-- ``` --><!-- QNX$ su -c '/opt/grx/bin/shutdown.sh' --><!-- ``` --><!-- ##### QNX リブートコマンド --><!-- ``` --><!-- QNX$ su -c '/bin/shutdown' --><!-- ``` --><!-- ### ログファイルの定期メンテナンス --><!-- ### QNXのログファイル --><!-- QNX のログファイルは `/opt/jsk/var/log` にあります。 --><!-- - Nameserver.log --><!-- - Modelloader.log --><!-- - rtcd.log --><!-- これらのログファイルは自動的に生成されますが，自動的には削除されません。 --><!-- ### ログファイルの圧縮・削除 --><!-- ディスクスペースにおいてログファイルはすぐに何ギガバイトにもなってしまします。 --><!-- これらのログファイルは自動的に削除される仕組みにはなっておりませんので， --><!-- 時おり `/opt/jsk/var/log` 下のログファイルを削除することをお勧めします。 --><!-- ログファイルの削除はスクリプトの実行もしくはリモートログインによる手動操作で行うことができます。 --><!-- ##### スクリプト操作によるログファイルの圧縮 --><!-- ``` --><!-- # Remove all raw .log files to free disk space. Same .zip file will be kept in the log folder. --><!-- $ rosrun hironx_ros_bridge qnx_fetch_log.sh nextage qnx_nxo_user archive --><!-- ``` --><!-- ##### 手動でのログファイルの削除 --><!-- QNX コンピュータログオンできる場合においては SSH 接続をして， --><!-- ディレクトリ `/opt/jsk/var/log` 下にあるログファイルを削除することができます。 --><!-- ##### ディスク空き容量の確認 --><!-- QNX コンピュータログオンできる場合においては SSH 接続をして， --><!-- ディスクの空き容量を確認することができます。 --><!-- ``` --><!-- QNX$ df -h --><!-- ``` --><!-- ディスク空き容量の例 --><!-- ``` --><!-- /dev/hd0t179 7.8G 7.1G 725M 92% / --><!-- /dev/hd0t178 229G 22G 207G 10% /opt/ --><!-- /dev/hd0 466G 466G 0 100% --><!-- ``` --><!-- ### QNXでのインストールやソフトウェア利用 --><!-- HIRO / NEXTAGE OPEN ソフトウェアはすべて公開されていますが， --><!-- それは HIRO / NEXTAGE OPEN でダウンロードしてただ実行するだけで済むということを意味していません。 --><!-- それらのソフトウェアは QNX オペレーティングシステム上で動いているコントローラボックスで --><!-- ビルド・コンパイルする必要があります。 --><!-- QNX 上ででコンパイルするには，地域のベンダーから購入できる開発者ライセンスが必要です。 --><!-- QNX に必要なソフトウェアをインストールする方法も開示されていません。 --><!-- QNX は開発者ライセンス以外にも，その運用者は運用認定が必要もしくは十分に運用に精通している必要がある商用ソフトウェアです。 --><!-- また，QNX では頑強なパッケージングインフラストラクチャ（ROSのようなもの）がないため， --><!-- インストール作業は非常に長い手作業となる可能性があり，エラーが発生しやすくなります。 --><!-- しかし，次のような場合には QNX 内での作業が必要となります。 --><!-- - 以前のクローズドソースの GRX コントローラに戻す必要があるとき --><!-- - デバッグ時に Ubuntu ソフトウェアの API で見られるログだけでは原因が不明な場合に QNX 上のログファイルを見るとき --><!-- このような場合には製造元またはソフトウェアサービスプロバイダからログオンアカウント情報を入手することができます。 --><!-- EOF --></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_en_start.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manual_en_development-pc-setup.html" class="btn btn-neutral float-right" title="Setting up the development PC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Tokyo Opensource Robotic Kyokai Association.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
