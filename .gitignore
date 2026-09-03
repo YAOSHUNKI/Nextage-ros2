@@ -1,0 +1,31 @@
+# ---- catkin / ROS build artifacts (machine-specific absolute paths inside) ----
+melodic_ws/build/
+melodic_ws/devel/
+melodic_ws/install/
+melodic_ws/logs/
+melodic_ws/.catkin_tools/
+
+dashing_ws/build/
+dashing_ws/install/
+dashing_ws/log/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# ---- Editor / OS junk ----
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# ---- Docker local overrides ----
+docker-compose.override.yml
+
+# ---- ROS runtime junk ----
+*.bag
+*.bag.active
+core
