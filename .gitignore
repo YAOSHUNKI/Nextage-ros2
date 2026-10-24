@@ -2,7 +2,7 @@
 melodic_ws/build/
 melodic_ws/devel/
 melodic_ws/install/
-melodic_ws/logs/
+melodic_ws/log/
 melodic_ws/.catkin_tools/
 
 dashing_ws/build/
