@@ -1,31 +1,35 @@
-# ---- catkin / ROS build artifacts (machine-specific absolute paths inside) ----
+# ===== catkin build artifacts (catkin_make / catkin build で再生成) =====
 melodic_ws/build/
 melodic_ws/devel/
 melodic_ws/install/
 melodic_ws/log/
+melodic_ws/logs/
 melodic_ws/.catkin_tools/
+# catkin_make が /opt/ros/... へのシンボリックリンクとして自動生成
+melodic_ws/src/CMakeLists.txt
 
-dashing_ws/build/
-dashing_ws/install/
-dashing_ws/log/
+# ===== 生成ドキュメント (Sphinx 出力。ソースは doc/src) =====
+melodic_ws/src/doc/html/
 
-# ---- Python ----
+# ===== Python =====
 __pycache__/
 *.py[cod]
 *.egg-info/
 
-# ---- Editor / OS junk ----
-.vscode/
-.idea/
+# ===== バックアップ / エディタ / OS =====
+*.bak
+*.orig
 *.swp
 *~
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
 
-# ---- Docker local overrides ----
+# ===== Docker =====
 docker-compose.override.yml
 
-# ---- ROS runtime junk ----
+# ===== ROS 実行時の生成物 =====
 *.bag
 *.bag.active
 core
